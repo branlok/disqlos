@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ProfileCircle({imageURL = "https://images.businessoffashion.com/profiles/asset/1803/66020face65d71ce2645adbb38f614dca1e9f744.jpeg?auto=format%2Ccompress&crop=top&fit=crop&h=576&w=1024", link}) {
+function ProfileCircle({imageURL = "https://firebasestorage.googleapis.com/v0/b/tierliz.appspot.com/o/test%2Ftumblr_dcd52407b045254bd57867b80ff5d9b8_8d32fced_540.png?alt=media&token=0623aebd-d476-4cff-a38c-007939def1d9", link}) {
 
     
     return (

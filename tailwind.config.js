@@ -6,12 +6,14 @@ module.exports = {
       colors: {
         'base-gray':'#E9E8EB',
         'custom-pink': {
+          300: '#F9F6FF',
           400: '#F9F6FF',
           500: '#F3F1F5',
           550: '#ECE9F1',
           600: '#E5DEEC',
           900: '#755D8D',
           950: '#221C38',
+          1000: '#221C38',
         },
         'custom-gray': {
           500: '#F5F1F1'
@@ -20,7 +22,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      margin: ['last'],
+    }
   },
   plugins: [],
 }

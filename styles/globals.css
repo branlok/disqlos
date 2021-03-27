@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer utilities {
+  .scroll-snap-y {
+    scroll-snap-type: y mandatory;
+  }
+  .child {
+    scroll-snap-align: start;
+  }
   @variants responsive {
     /* Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
@@ -12,6 +18,8 @@
     .no-scrollbar {
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;  /* Firefox */
+      overscroll-behavior-y: none;
     }
+    
   }
 }

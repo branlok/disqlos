@@ -8,7 +8,7 @@ function PostMaker() {
                 <div>IMG SVG</div>
                 <div className="flex items-center">
                     <div className="mx-2 rounded-sm px-10 bg-gray-200 rounded-sm">Settings</div>
-                    <div className="mx-2 -mr-0 rounded-sm bg-blue-900  text-white px-10 rounded-sm">POST</div>
+                    <div className="mx-2 -mr-0 rounded-sm bg-custom-pink-1000  text-white px-10 rounded-sm">Queue</div>
                 </div>
             </div>
         </div>
