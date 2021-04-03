@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileCircle from "../BasicComponents/ProfileCircle";
-import CollapseSvg from "../../styles/svg/Collapse.svg";
+import CollapseSvg from "../../styles/svg/collapse.svg";
 import Explore from "../../styles/svg/explore.svg";
 import Home from "../../styles/svg/home2.svg";
 import Settings from "../../styles/svg/settings.svg";

@@ -6,9 +6,6 @@ function MinimizedSocial() {
       <MiniUserCard />
       <MiniUserCard />
       <MiniUserCard />
-      <MiniUserCard />
-      <MiniUserCard />
-      <MiniUserCard />
     </div>
   );
 }
