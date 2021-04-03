@@ -1,11 +1,19 @@
-import React from 'react'
+import React, {useState} from "react";
+import InputComment from "./InputComment";
+import CommentsViewer from "./CommentsViewer";
+function Comments({postId, viewerOpened, setViewerOpened}) {
 
-function Comments() {
-    return (
-        <div className="h-full px-2 py-2 mb-2 bg-custom-pink-300 rounded-md shadow-md flex child last:mb-0 transition  mb-4 ">
-            <form className=" h-full w-full items-center flex justify-center"><input className="w-9/12 mr-2 rounded-md pl-2" type="text"></input><input className="w-1/4 bg-gray-800 text-white rounded-md" type="submit" value="Comment"></input></form>
-        </div>
-    )
+  return (
+
+    <div className="h-full px-2 py-2 mb-2 bg-custom-pink-300 rounded-md shadow-md flex flex-col child transition">
+     {viewerOpened && <CommentsViewer postId={postId} viewerOpened={viewerOpened}/>}
+      <InputComment postId={postId} setViewerOpened={setViewerOpened} viewerOpened={viewerOpened}/>
+    </div>
+  );
 }
 
-export default Comments
+/* Component fetches on first exapnding comments the first time.
+    subsequent fetches occurs when user submits a comment.
+*/
+
+export default Comments;

@@ -2,6 +2,9 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    minHeight: {
+      '40': '10em'
+     },
     extend: {
       colors: {
         'base-gray':'#E9E8EB',
@@ -23,7 +26,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      margin: ['last'],
+      margin: ['last', 'first'],
     }
   },
   plugins: [],

@@ -1,10 +1,9 @@
 import Head from "next/head";
-import Link from "next/Link";
+import Link from "next/link";
 import Comment from "../components/Comment";
+import { useAuth } from "../utils/auth";
 export default function Home() {
-
-
-  
+  let { userId } = useAuth();
   return (
     <div>
       <Head>
@@ -23,12 +22,16 @@ export default function Home() {
               is a new microblogging social platform. We empower users to relay
               thoughts and messages into organized and meaningful stories.
             </p>
-            
           </header>
           <section className="h-1/2 w-full flex flex-col justify-center items-center">
             <div className="border p-2 bg-custom-pink-1000 text-white rounded-md">
-              <Link href="/signin">
+              <Link href="/signup">
                 <a>Get Started</a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/signin">
+                <a>Sign In</a>
               </Link>
             </div>
           </section>

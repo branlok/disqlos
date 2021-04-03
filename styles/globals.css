@@ -3,23 +3,39 @@
 @tailwind utilities;
 
 @layer utilities {
-  .scroll-snap-y {
+  .scrollbehaviour .scroll-snap-y {
     scroll-snap-type: y mandatory;
   }
   .child {
     scroll-snap-align: start;
   }
-  @variants responsive {
-    /* Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+  .wrapText {
+    overflow-wrap: break-word;
+  }
+  .grayFill > * {
+    fill: #6b6b6b;
+    transition: 0.3s;
+  }
+  .grayFill:hover > * {
+    fill: black;
+    transition: 0.3s;
+  }
 
-    .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-      overscroll-behavior-y: none;
-    }
-    
+
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    overscroll-behavior-y: none;
+  }
+
+  @variants responsive {
   }
 }

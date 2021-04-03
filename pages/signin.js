@@ -4,18 +4,18 @@ import {useRouter} from 'next/router';
 import SignInModal from '../components/AuthModal/SignInModal'
 
 function SignIn() {
-    const auth = useAuth();
+    const {userId, signinResponse, signin} = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-        if (auth.userId) {
+        if (userId) {
             router.push('/dashboard');
         }
-        console.log(auth.mutateSignin.status)
+        console.log(signinResponse.status)
     })
 
     const signIn = (email, pass) => {
-        auth.signin(email, pass)
+        signin(email, pass)
         .then((value) => {
             console.log("Asdfasdf")
             router.push('/dashboard');
@@ -26,9 +26,10 @@ function SignIn() {
         });
     }  
 
+    if (userId) return <div></div>
     return (
         <div>
-            {auth.mutateSignin.status}
+            {signinResponse.status}
             <SignInModal handleSignIn={signIn} />
         </div>
     )

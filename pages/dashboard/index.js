@@ -1,17 +1,31 @@
-import React from "react";
+import React, {useEffect} from "react";
 import SocialSidebar from "../../components/SocialSidebar";
 import UserControlSidebar from "../../components/UserControlSidebar";
 import UserCenterMain from "../../components/UserCenterMain/";
+import {useRouter} from "next/router";
+import {useAuth} from "../../utils/auth";
 //user dashboard do not require prerendering. but serverside rendering can aide
 
 function Dashboard() {
+
+  const router = useRouter();
+  const {userId} = useAuth();
+
+  useEffect(() => {
+    if (!userId) {
+      router.push("/signin");
+    }
+  })
+
+  if (!userId) return null;
+
   return (
     <div className="flex flex-col h-screen w-screen ">
       <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray flex items-center px-4"><div><b>Disqlos</b></div></nav>
       <div className="w-full h-full  flex flex-row bg-red-300 flex-initial overflow-hidden">
         <UserControlSidebar/>
         <UserCenterMain/>
-        <SocialSidebar />
+        <SocialSidebar/>
       </div>
     </div>
   );

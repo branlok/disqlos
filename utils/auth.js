@@ -2,7 +2,8 @@ import React, {useState, useEffect, useContext, createContext} from 'react';
 import firebase from 'firebase/app';
 import {useMutation} from 'react-query';
 import 'firebase/auth';
-import {useRouter} from 'next/router';
+import 'firebase/firestore';
+import {auth, db} from './firebase';
 const config = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY,
     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -29,51 +30,51 @@ export const useAuth = () => {
 
 function useProvideAuth() {
     const [user, setUser] = useState(null);
-    const router = useRouter();
 
-    let mutateSignin = useMutation("email", async ({email, password}) => {
-        firebase
-        .auth()
+    /* SIGN IN request */
+    let signinResponse = useMutation("email",  ({email, password}) => {
+        return auth
         .signInWithEmailAndPassword(email, password)
         .then((response) => {
             setUser(response.user);
-            router.push('/dashboard');
-            // console.log(response.data);
-            // return response.user;
-        })
-        .catch((error) => {
-            console.log(error);
+            return response.user;
         })
     }, false )
 
-    let signin = (email, password) => mutateSignin.mutate({ email, password })
+    let signin = (email, password) => signinResponse.mutate({ email, password })
 
-    let mutateSignup = useMutation("email", ({email, password}) => {
-        return firebase
-            .auth()
+
+    /* SIGN UP Request */
+    let signupResponse = useMutation("email", ({email, password}) => {
+        return auth
             .createUserWithEmailAndPassword(email, password)
             .then((response) => {
+                db.collection('users').doc(response.user.uid).set({id: response.user.uid});
                 setUser(response.user);
+                signupResponse.reset(); //clear the state if another signup 
                 return response.user;
-            });
+            })
     }, false )
 
-    const signup = (email, password) => mutateSignup.mutate({email, password})
+    const signup = (email, password) => signupResponse.mutate({email, password})
 
+    /* SIGN OUT Request */
 
+    let signout = () => mutateSignout.mutate();
 
-    const signout = () => {
-        return firebase
-            .auth()
+    let mutateSignout = useMutation("signout",  () => {
+        return auth
             .signOut()
             .then(() => {
                 setUser(false);
             });
-    };
+    })
+
+
+   
 
     const sendPasswordResetEmail = (email) => {
-        return firebase
-            .auth()
+        return auth
             .sendPasswordResetEmail(email)
             .then(() => {
                 return true;
@@ -83,8 +84,7 @@ function useProvideAuth() {
     const confirmPasswordReset = (password, code) => {
         const resetCode = code || getFromQueryString('oobCode');
 
-        return firebase
-            .auth()
+        return auth
             .confirmPasswordReset(resetCode, password)
             .then(() => {
                 return true;
@@ -92,7 +92,8 @@ function useProvideAuth() {
     };
 
     useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+        //listening to authenticaiton server if users is on or off
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 setUser(user);
             } else {
@@ -108,8 +109,8 @@ function useProvideAuth() {
         signin,
         signup,
         signout,
-        mutateSignin,
-        mutateSignup,
+        signinResponse,
+        signupResponse,
         sendPasswordResetEmail,
         confirmPasswordReset
     };

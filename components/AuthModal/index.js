@@ -1,21 +1,26 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
+import { useAuth } from "../../utils/auth";
+
 function authModal({handleSignIn}) {
 
-
+    let {userId, signinResponse} = useAuth();
 
   let signupSchema = {
     email: "",
     password: "",
   };
 
+
+  if (userId) return <div></div> //fallback on an empty page if user already signed in.
+
   return (
-    <div className="w-96 h-1/3 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 shadow-md">
+    <div className="w-96 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 shadow-md">
       <header className="">
         <h1 className="text-3xl font-bold text-center ">Disqlos</h1>
         <h3 className="font-bold text-center">Sign In</h3>
       </header>
-
+      {signinResponse?.error?.code && <div> {signinResponse.error.code}</div>}
       <Formik
         initialValues={signupSchema}
         onSubmit={({email, password}) => handleSignIn(email, password)}
