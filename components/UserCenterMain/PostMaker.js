@@ -2,61 +2,28 @@ import React, { useState, useEffect, useRef } from "react";
 import { Formik, Form, Field } from "formik";
 import { useAuth } from "../../utils/auth";
 import { useMutation } from "react-query";
-import CloseSvg from "../../styles/svg/x.svg"
+
 import * as yup from "yup";
 import { useQueryClient } from "react-query";
 import PictureSvg from "../../styles/svg/picture.svg";
-
+import PictureSvg2 from "../../styles/svg/spinner.svg";
+import SpinnerSvg from "./SpinnerSvg"; //custom svg because tailwind cannot inject styles into svgcomponents
 import handleNewPost from "./utils/postNewPost";
 
-function PostMaker() {
+function PostMaker({setDirective}) {
   const { userId } = useAuth();
   const myFormRef = useRef();
   const imageInputRef = useRef();
   const queryClient = useQueryClient();
   const [imageFile, setImageFile] = useState(null);
   const [type, setType] = useState("text");
+  const [queue, setQueue] = useState(false);
 
-  const mutation = useMutation((value) => handleNewPost(value, userId), {
+  const mutation = useMutation((value) => handleNewPost(value, userId, queue), {
     onSuccess: () => {
       queryClient.invalidateQueries("fetchFollowingPosts");
     },
   });
-
-  // async function handleNewPost(value, type = "text") {
-  //   if (type === "image") {
-  //     try {
-  //       let imageUrl = await uploadToDatabase(value.files, userId);
-  //       let content = value.value.content;
-  //       const id = nanoid();
-  //       //Add new post to firestore
-  //       return db.collection("PUBLIC_POSTS").doc(id).set({
-  //         postId: id,
-  //         userId,
-  //         content,
-  //         createdOn: firebase.firestore.Timestamp.now(),
-  //         type,
-  //         imageUrl,
-  //       });
-  //     } catch (error) {
-  //       return "error";
-  //     }
-  //   }
-
-  //   if (type === "text") {
-  //     let content = value.value.content;
-  //     const id = nanoid();
-  //     //Add new post to firestore
-  //     return db.collection("PUBLIC_POSTS").doc(id).set({
-  //       postId: id,
-  //       userId,
-  //       content,
-  //       createdOn: firebase.firestore.Timestamp.now(),
-  //       type,
-  //       imageUrl: false,
-  //     });
-  //   }
-  // }
 
   const validationSchema = yup.object({
     content: yup.string().min(1).required(),
@@ -115,20 +82,30 @@ function PostMaker() {
     }
   }
 
+  useEffect(() => {
+    console.log(mutation.status);
+    console.log(queue);
+  });
   return (
     <div className="w-100 h-34 bg-white rounded-md border-1 border-gray flex flex-col overflow-hidden mb-2 shadow-lg flex">
       <Formik
         initialValues={postSchema}
         validationSchema={validationSchema}
-        onSubmit={(value, action) =>
-          mutation.mutate(
+        onSubmit={(value, action) => mutation.mutate(
             { value },
             {
+              onSuccess: () => {
+                if (queue) {
+                  console.log("okkokok");
+                  setDirective("queue")
+                }
+              },
               onSettled: (data, error, variables) => {
                 imageInputRef.current.value = null;
                 action.resetForm();
                 setType("text");
-              },
+                setQueue(false);
+              }
             }
           )
         }
@@ -147,27 +124,52 @@ function PostMaker() {
               max="1"
               accept="image/*"
               onChange={(e) => handleFile(e, formik.setFieldValue)}
-              className={`${type !== "image" && "hidden"} mt-2 border p-2 rounded-md`}
+              className={`${
+                type !== "image" && "hidden"
+              } mt-2 border p-2 rounded-md`}
               ref={imageInputRef}
             />
             {console.log(formik.errors, formik.values)}
             <div className="w-full h-8 flex-none flex justify-between items-center mt-2">
               <div
-                className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer ${type === "image" ? "border-4 border-red-200 bg-red-100" : "bg-gray-50 border-4"}`}
+                className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer ${
+                  type === "image"
+                    ? "border-4 border-red-200 bg-red-100"
+                    : "bg-gray-50 border-4"
+                }`}
                 onClick={() => {
                   handleImageToggle(formik.setFieldValue);
                 }}
               >
-                {type === "text" ? <PictureSvg className="cursor-pointer" />: null }
-                {type === "text" ? <p className="px-2">Picture</p> : <p className="px-2">Cancel</p> }
+                {type === "text" ? (
+                  <PictureSvg className="cursor-pointer" />
+                ) : null}
+                {type === "text" ? (
+                  <p className="px-2">Picture</p>
+                ) : (
+                  <p className="px-2">Cancel</p>
+                )}
               </div>
               <div className="h-full flex justify-between items-end">
-                <button className="h-full rounded-md mx-2 rounded-sm px-10 bg-custom-pink-600 rounded-md">
-                  Queue
+                {mutation.status === "loading" && (
+                  <div className="h-full rounded-md  justify-center flex items-center mx-1  rounded-sm rounded-md ">
+                    <PictureSvg2 className="animate-spin fill-current text-gray-400 " />
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setQueue(true);
+                    formik.submitForm();
+                    // myFormRef.current.click();
+                  }}
+                  className="h-full rounded-md mx-1 rounded-sm px-10 bg-custom-pink-600 rounded-md"
+                >
+                  New Queue
                 </button>
                 <button
                   type="submit"
-                  className="h-full mx-2 -mr-0 rounded-sm bg-custom-pink-1000  text-white px-10 rounded-md"
+                  className="h-full mx-1 -mr-0 rounded-sm bg-custom-pink-1000  text-white px-10 rounded-md"
                   ref={myFormRef}
                 >
                   Post
