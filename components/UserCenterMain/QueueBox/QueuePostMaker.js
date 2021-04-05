@@ -1,29 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Formik, Form, Field } from "formik";
-import { useAuth } from "../../utils/auth";
+import { useAuth } from "../../../utils/auth";
 import { useMutation } from "react-query";
-
 import * as yup from "yup";
 import { useQueryClient } from "react-query";
-import PictureSvg from "../../styles/svg/picture.svg";
-import PictureSvg2 from "../../styles/svg/spinner.svg";
-import SpinnerSvg from "./SpinnerSvg"; //custom svg because tailwind cannot inject styles into svgcomponents
-import handleNewPost from "./utils/handleNewPost";
+import PictureSvg from "../../../styles/svg/picture.svg";
+import SpinnerSvg from "../../../styles/svg/spinner.svg";
+import handleNewPost from "../utils/handleNewPost";
 
-function PostMaker({setDirective , directive}) {
+function QueuePostMaker({setDirective}) {
   const { userId } = useAuth();
   const myFormRef = useRef();
   const imageInputRef = useRef();
   const queryClient = useQueryClient();
-  const [imageFile, setImageFile] = useState(null);
   const [type, setType] = useState("text");
-  const [queue, setQueue] = useState(false); //used for sending handleNewPost signal to switch directory
 
-  const mutation = useMutation((value) => handleNewPost(value, userId, queue), {
+  const mutation = useMutation((value) => handleNewPost(value, userId, true), {
     onSuccess: async () => {
-      await queryClient.refetchQueries("fetchQueuedPosts");
-      //queryClient.invalidateQueries("fetchQueuedPosts");
-      queryClient.invalidateQueries("fetchFollowingPosts");
+        await queryClient.refetchQueries('fetchQueuedPosts');
+        // queryClient.invalidateQueries("");
     },
   });
 
@@ -94,18 +89,10 @@ function PostMaker({setDirective , directive}) {
         onSubmit={(value, action) => mutation.mutate(
             { value },
             {
-              onSuccess: () => {
-                if (queue) {
-                  console.log("queue passed");
-                   //change route
-                }
-              },
               onSettled: (data, error, variables) => {
                 imageInputRef.current.value = null;
                 action.resetForm();
                 setType("text");
-                setQueue(false);
-                
               }
             }
           )
@@ -154,25 +141,15 @@ function PostMaker({setDirective , directive}) {
               <div className="h-full flex justify-between items-end">
                 {mutation.status === "loading" && (
                   <div className="h-full rounded-md  justify-center flex items-center mx-1  rounded-sm rounded-md ">
-                    <PictureSvg2 className="animate-spin fill-current text-gray-400 " />
+                    <SpinnerSvg className="animate-spin fill-current text-gray-400 " />
                   </div>
                 )}
-                {/* <button
-                  type="button"
-                  onClick={() => {
-                    setQueue(true);
-                    formik.submitForm();
-                  }}
-                  className="h-full rounded-md mx-1 px-10  text-custom-pink-1000 font-bold border-4 bg-custom-pink-500  "
-                >
-                  New Queue
-                </button> */}
                 <button
                   type="submit"
                   className="h-full mx-1 -mr-0 rounded-sm bg-custom-pink-1000  text-white px-10 rounded-md"
                   ref={myFormRef}
                 >
-                  Post
+                  New Space
                 </button>
               </div>
             </div>
@@ -183,4 +160,4 @@ function PostMaker({setDirective , directive}) {
   );
 }
 
-export default PostMaker;
+export default QueuePostMaker;

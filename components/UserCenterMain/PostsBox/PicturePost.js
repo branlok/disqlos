@@ -3,7 +3,7 @@ import ImageCard from "./ImageCard";
 import ContentBody from "./ContentBody";
 import PortfolioCard from "./PortfolioCard";
 import Comments from "./Comments";
-function PicturePost({ item }) {
+function PicturePost({ item, useComments = true }) {
     const [viewerOpened, setViewerOpened] = useState(false);
   console.log(item);
   return (
@@ -13,7 +13,7 @@ function PicturePost({ item }) {
         <PortfolioCard />
         <ContentBody postContent={item.content} />
       </div>
-      <Comments postId={item.postId} viewerOpened={viewerOpened} setViewerOpened={setViewerOpened}/>
+     {useComments && <Comments postId={item.postId} viewerOpened={viewerOpened} setViewerOpened={setViewerOpened}/>}
     </div>
   );
 }

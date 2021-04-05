@@ -3,7 +3,7 @@ import PortfolioCard from "./PortfolioCard";
 import ContentBody from "./ContentBody";
 import Settings from "./Settings";
 import Comments from "./Comments/index";
-function BasicPost({ item }) {
+function BasicPost({ item, useComments = true}) {
 
   const [viewerOpened, setViewerOpened] = useState(false);
   
@@ -14,7 +14,7 @@ function BasicPost({ item }) {
         <ContentBody postContent={item.content} />
         <Settings />
       </div>
-      <Comments postId={item.postId} viewerOpened={viewerOpened} setViewerOpened={setViewerOpened}/>
+      {useComments && <Comments postId={item.postId} viewerOpened={viewerOpened} setViewerOpened={setViewerOpened}/>}
     </div>
   );
 }

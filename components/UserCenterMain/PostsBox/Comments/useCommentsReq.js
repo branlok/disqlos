@@ -20,7 +20,7 @@ export default function useCommentsReq(postId, viewerOpened = false) {
           });
           return docArray;
         }),
-    { enabled: viewerOpened, refetchOnMount: false, staleTime: 60 * 1000 }
+    { enabled: viewerOpened, refetchOnMount: false, staleTime: 60 * 1000, cacheTime: 60 * 1000 }
   );
 
   return {

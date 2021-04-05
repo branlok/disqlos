@@ -1,20 +1,43 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../../../utils/auth";
-import usePostGetters from "./usePostGetters";
+import useQueuedPostGetters from "./useQueuedPostGetters";
 import QueuePost from "./QueuePost";
-function QueueBox() {
-  let { userId } = useAuth();
-  let { ownPostsResponse } = usePostGetters();
-  if (ownPostsResponse.isSuccess) {
+
+function QueueBox({ setQueueId }) {
+  let { ownQueuePostsResponse } = useQueuedPostGetters();
+
+  useEffect(() => {
+    console.log("ownpostresponse:", ownQueuePostsResponse.data);
+  });
+
+  if (ownQueuePostsResponse.isSuccess) {
     return (
       <div className="w-full mt-2">
-        {ownPostsResponse.data.map((item) => {
-          return <QueuePost key={item.queueId} item={item} />;
+        {ownQueuePostsResponse.data.map((item) => {
+          return (
+            <QueuePost key={item.queueId} item={item} setQueueId={setQueueId} />
+          );
         })}
       </div>
     );
+  } else if (ownQueuePostsResponse.isLoading) {
+    return (
+      <div class=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
+        <div class="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
+          Loading
+        </div>
+      </div>
+    );
+  } else if (ownQueuePostsResponse.isError) {
+    return (
+      <div class=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
+        <div class="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
+          Something Went Wrong
+        </div>
+      </div>
+    );
   } else {
-      return null;
+      return null
   }
 }
 

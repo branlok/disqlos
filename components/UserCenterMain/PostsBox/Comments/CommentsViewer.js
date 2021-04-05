@@ -27,7 +27,7 @@ function CommentsViewer({ postId, viewerOpened }) {
     );
   } else {
     return (
-      <div className="h-full w-full py-2 bg-custom-pink-550 mb-2 rounded-md ">
+      <div className="animate-pulse  h-full w-full py-2 bg-custom-pink-550 mb-2 rounded-md ">
         <div className="max-h-56 px-2 rounded-md overflow-y-scroll no-scrollbar">
           <div className="flex justify-center flex-col items-center font-xs py-2">
           Loading...
@@ -37,5 +37,6 @@ function CommentsViewer({ postId, viewerOpened }) {
     );
   }
 }
+
 
 export default CommentsViewer;

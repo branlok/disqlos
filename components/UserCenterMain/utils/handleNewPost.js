@@ -29,7 +29,7 @@ export default async function handleNewPost(value, userId, queue) {
             createdOn: firebase.firestore.Timestamp.now(),
             type,
             queue,
-            leadpost: true,
+            leadPost: true,
             imageUrl,
           })
       } catch (error) {
@@ -57,7 +57,7 @@ export default async function handleNewPost(value, userId, queue) {
             createdOn: firebase.firestore.Timestamp.now(),
             type,
             queue,
-            leadpost: true,
+            leadPost: true,
             imageUrl: false,
           });
       } catch (error) {
