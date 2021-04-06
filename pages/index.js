@@ -1,6 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useQueryClient } from "react-query";
 export default function Home() {
+  
+
   
 
   return (

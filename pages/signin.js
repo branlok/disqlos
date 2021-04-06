@@ -9,7 +9,7 @@ function SignIn() {
 
     useEffect(() => {
         if (userId) {
-            router.push('/dashboard');
+            router.push('/dashboard/posts');
         }
         console.log(signinResponse.status)
     })
@@ -18,7 +18,7 @@ function SignIn() {
         signin(email, pass)
         .then((value) => {
             console.log("Asdfasdf")
-            router.push('/dashboard');
+            router.push('/dashboard/posts');
         })
         .catch((error) => {
             console.log("failed");

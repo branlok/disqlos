@@ -10,7 +10,7 @@ function Signup() {
   
   useEffect(() => {
     if (userId) {
-      router.push("/dashboard");
+      router.push("/dashboard/posts");
     }
   });
 

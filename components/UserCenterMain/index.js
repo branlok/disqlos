@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useRouter} from "next/router";
 import Header from "./Header";
 import ProfileNav from "./ProfileNav";
 
@@ -15,9 +16,27 @@ import userFirestoreUserSelf from "../Queries/USERS/firestoreUserSelf";
 import userQuery from "../Queries/USERS/firestoreUserSelf";
 
 function UserCenterMain() {
-  const [user, setUser] = useState("owner"); //username in database
+
+    const router = useRouter();
+  const { tab } = router.query
+
   const [directive, setDirective] = useState("posts"); //submap of user's content 1. View Posts [filters], StoryMode
   const [queueId, setQueueId] = useState(false);
+
+
+  useEffect(() => {
+    console.log(tab);
+    if (tab == "feed") {
+      setDirective("feed")
+      console.log("ran")
+    } else if (tab == "posts") {
+      setDirective("posts")
+      console.log("ran")
+    } else if(tab == "queue") {
+      setDirective("queue")
+      console.log("ran")
+    }
+  })
 
 
   if (directive === "posts") {
@@ -27,7 +46,7 @@ function UserCenterMain() {
           <Header />
           <PostMaker setDirective={setDirective} />
           <ProfileNav directive={directive} setDirective={setDirective} />
-          <PostsBox />
+          <PostsBox  directive={directive} />
         </div>
       </div>
     );

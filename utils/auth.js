@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext, createContext} from 'react';
 import firebase from 'firebase/app';
-import {useMutation} from 'react-query';
+import {useMutation, useQueryClient} from 'react-query';
 import 'firebase/auth';
 import 'firebase/firestore';
 import {auth, db} from './firebase';
@@ -62,10 +62,13 @@ function useProvideAuth() {
     /* SIGN OUT Request */
 
     let signout = () => mutateSignout.mutate();
-
+    const queryClient = useQueryClient();
     let mutateSignout = useMutation("signout",  () => {
         return auth
             .signOut()
+            .then(() => {
+                queryClient.clear()
+            })
             .then(() => {
                 setUser(false);
             });

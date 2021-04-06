@@ -21,12 +21,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ProvideAuth>
-        <ProvideUser>
+        {/* <ProvideUser> */}
           <Provider store={store}>
             <Component {...pageProps} />
             <ReactQueryDevtools initialIsOpen={false} />
           </Provider>
-        </ProvideUser>
+        {/* </ProvideUser> */}
       </ProvideAuth>
     </QueryClientProvider>
   );
