@@ -8,7 +8,7 @@ import useMetaQueuePostGetters from "./useMetaQueuePostGetters";
 function MetaQueueBox({ queueId, setQueueId }) {
   let { userId } = useAuth();
   let { metaPosts } = useMetaQueuePostGetters(queueId);
-
+    
   useEffect(() => {
     console.log(metaPosts, "asdfasdfasdfasdf");
     console.log(queueId);

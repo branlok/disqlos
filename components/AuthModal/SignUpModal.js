@@ -1,25 +1,26 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Formik, Field, Form } from "formik";
-import {useAuth} from "../../utils/auth";
+import { useAuth } from "../../utils/auth";
 import * as yup from "yup";
+import Link from "next/link";
 function SignUpModal({ handleSignUp }) {
-
-  const {userId, signupResponse} = useAuth();
+  const { userId, signupResponse } = useAuth();
 
   useEffect(() => {
     if (userId) {
-      console.log("Get outta heraaa")
+      console.log("Get outta heraaa");
     }
-  })
+  });
 
   const signupSchema = {
+    displayName: "",
     email: "",
     password: "",
     passwordVerify: "",
   };
-  
 
   const validationSchema = yup.object({
+    displayName: yup.string().required("name is required").max(36),
     email: yup
       .string()
       .required("A email is required")
@@ -36,22 +37,34 @@ function SignUpModal({ handleSignUp }) {
   });
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <div className="w-screen h-screen flex justify-center items-center svgBackground">
       <div className="w-96 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 shadow-md">
         <header className="">
-          <h1 className="text-3xl font-bold text-center ">Disqlos</h1>
+          <Link href="/">
+            <h1 className="text-3xl font-bold text-center cursor-pointer">
+              <a>Disqlos</a>
+            </h1>
+          </Link>
           <h3 className="font-bold text-center">Sign Up</h3>
         </header>
-          {signupResponse?.error?.code && <div> {signupResponse.error.code}</div>}
+        {signupResponse?.error?.code && <div> {signupResponse.error.code}</div>}
         <Formik
           initialValues={signupSchema}
           validationSchema={validationSchema}
           validateOnChange={false}
           validateOnBlur={false}
-          onSubmit={({ email, password }) => handleSignUp(email, password)}
+          onSubmit={({ email, password, displayName }) =>
+            handleSignUp(email, password, displayName)
+          }
         >
           {(props) => (
-            <Form className="flex flex-col my-8 w-full">
+            <Form className="flex flex-col my-8 w-full font-bold">
+              <label className=" pl-2 mb-1">Name</label>
+              <Field
+                className="w-full border mb-4 pl-2 h-8 rounded"
+                type="text"
+                name="displayName"
+              />
               <label className="pl-2 mb-1">Email</label>
               <Field
                 className="w-full border mb-4 pl-2 h-8 rounded"

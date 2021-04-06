@@ -45,18 +45,19 @@ function useProvideAuth() {
 
 
     /* SIGN UP Request */
-    let signupResponse = useMutation("email", ({email, password}) => {
+    let signupResponse = useMutation("email", ({email, password, displayName}) => {
         return auth
             .createUserWithEmailAndPassword(email, password)
             .then((response) => {
-                db.collection('users').doc(response.user.uid).set({id: response.user.uid});
+                db.collection('USERS').doc(response.user.uid).set({displayName}, {merge: true});
+                //db.collection('users').doc(response.user.uid).set({id: response.user.uid});
                 setUser(response.user);
-                signupResponse.reset(); //clear the state if another signup 
+                signupResponse.reset(); //clear the state if another signup - useMutation 
                 return response.user;
             })
     }, false )
 
-    const signup = (email, password) => signupResponse.mutate({email, password})
+    const signup = (email, password, displayName) => signupResponse.mutate({email, password, displayName})
 
     /* SIGN OUT Request */
 
@@ -69,9 +70,6 @@ function useProvideAuth() {
                 setUser(false);
             });
     })
-
-
-   
 
     const sendPasswordResetEmail = (email) => {
         return auth

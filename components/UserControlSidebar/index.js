@@ -6,7 +6,7 @@ import MinimizedSidebar from "./MinimizedSidebar";
 import CollapseSvg from "../../styles/svg/collapse.svg";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 
-function UserControlSidebar() {
+function UserControlSidebar({userData}) {
   let [collapse, setCollapse] = useState(false); //this is going to the redux/contextapi
 
   let [showToggle, setShowToggle] = useState(true);
@@ -28,7 +28,7 @@ function UserControlSidebar() {
     return (
       <div className="relative h-full w-64 flex-none  bg-custom-pink-500 p-2 justify-between flex-col flex ">
         <div>
-          <BasicProfile />
+          <BasicProfile userData={userData}/>
           <Button name="Home" />
           <Button name="Explore" />
           <Button name="Queue" />

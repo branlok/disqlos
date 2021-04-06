@@ -23,7 +23,7 @@ function PostMaker({setDirective , directive}) {
     onSuccess: async () => {
       await queryClient.refetchQueries("fetchQueuedPosts");
       //queryClient.invalidateQueries("fetchQueuedPosts");
-      queryClient.invalidateQueries("fetchFollowingPosts");
+      queryClient.invalidateQueries("fetchOwnPosts");
     },
   });
 

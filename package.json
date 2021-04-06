@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "firebase": "^8.3.1",
-    "firebase-admin": "^9.5.0",
     "formik": "^2.2.6",
     "nanoid": "^3.1.22",
     "next": "10.0.9",

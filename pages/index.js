@@ -1,9 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import Comment from "../components/Comment";
-import { useAuth } from "../utils/auth";
 export default function Home() {
-  let { userId } = useAuth();
+  
+
   return (
     <div>
       <Head>

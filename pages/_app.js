@@ -3,7 +3,8 @@ import { Provider } from "react-redux";
 import { ProvideAuth } from "../utils/auth";
 import { useStore } from "../Store/store";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from "react-query/devtools";
+import { ProvideUser } from "../components/Queries/USERS/firestoreUserSelf";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,16 +14,19 @@ const queryClient = new QueryClient({
   },
 });
 
+
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ProvideAuth>
-        <Provider store={store}>
-          <Component {...pageProps} />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </Provider>
+        <ProvideUser>
+          <Provider store={store}>
+            <Component {...pageProps} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </Provider>
+        </ProvideUser>
       </ProvideAuth>
     </QueryClientProvider>
   );

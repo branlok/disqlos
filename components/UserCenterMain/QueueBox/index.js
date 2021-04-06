@@ -22,16 +22,16 @@ function QueueBox({ setQueueId }) {
     );
   } else if (ownQueuePostsResponse.isLoading) {
     return (
-      <div class=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
-        <div class="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
+      <div className=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
+        <div className="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
           Loading
         </div>
       </div>
     );
   } else if (ownQueuePostsResponse.isError) {
     return (
-      <div class=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
-        <div class="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
+      <div className=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
+        <div className="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
           Something Went Wrong
         </div>
       </div>

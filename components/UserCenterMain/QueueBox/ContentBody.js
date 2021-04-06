@@ -2,7 +2,7 @@ import React from "react";
 
 function ContentBody({ postContent, setQueueId, queueId }) {
   return (
-    <div className="text-s font-gray-700 w-full bg-custom-pink-550 flex flex-col justify-center items-center text-center  rounded-md p-6  my-2 overflow-hidden">
+    <div className="text-s font-gray-700 bg-custom-pink-550 w-full flex flex-col justify-center items-center text-center  rounded-md p-6  my-2 overflow-hidden">
       <div className="text-gray-500 text-xs my-2 border-gray-300  w-3/4">
         January 31, 2019
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import { useAuth } from "../../utils/auth";
-
+import Link from "next/link";
 function authModal({ handleSignIn }) {
   let { userId, signinResponse } = useAuth();
 
@@ -15,7 +15,11 @@ function authModal({ handleSignIn }) {
   return (
     <div className="w-96 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 shadow-md">
       <header className="">
-        <h1 className="text-3xl font-bold text-center ">Disqlos</h1>
+      <Link href="/">
+            <h1 className="text-3xl font-bold text-center cursor-pointer">
+              <a>Disqlos</a>
+            </h1>
+          </Link>
         <h3 className="font-bold text-center">Sign In</h3>
       </header>
       {signinResponse?.error?.code && <div> {signinResponse.error.code}</div>}
