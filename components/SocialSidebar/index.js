@@ -3,6 +3,7 @@ import CollapseSvg from "../../styles/svg/collapse.svg";
 import UserCard from "./UserCard";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import MinimizedSocial from "./MinimizedSocial";
+import TriangleSvg from "../../styles/svg/trianglearrow.svg";
 
 function SocialSidebar() {
   let [collapse, setCollapse] = useState(false);
@@ -23,12 +24,14 @@ function SocialSidebar() {
     return (
       <div className="relative">
         <MinimizedSocial />
-        {showToggle && <div
-          className="w-14 h-12 absolute top-2 -left-14 z-10 flex justify-center items-center bg-gray-300 rounded-l"
-          onClick={() => setCollapse(!collapse)}
-        >
-          <CollapseSvg className="grayFill cursor-pointer" />
-        </div>}
+        {showToggle && (
+          <div
+            className="w-14 h-12 absolute top-2 -left-14 z-10 flex justify-center items-center bg-gray-300 rounded-l"
+            onClick={() => setCollapse(!collapse)}
+          >
+            <CollapseSvg className="grayFill cursor-pointer" />
+          </div>
+        )}
       </div>
     );
   } else {
@@ -56,6 +59,9 @@ function SocialSidebar() {
             <CollapseSvg className="grayFill cursor-pointer " />
           </div>
         )}
+        <div className="absolute bottom-4 -left-10 w-6 h-6 flex justify-center items-center border rounded-md cursor-pointer bg-gray-300 hover:bg-gray-400 transition-all">
+          <a href="#top"><TriangleSvg style={{fill: "white"}}/></a>
+        </div>
       </div>
     );
   }

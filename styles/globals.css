@@ -26,6 +26,10 @@
     background-attachment: fixed;
   }
 
+  .smoothScroll {
+    scroll-behavior: smooth;
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
     -webkit-appearance: none;
