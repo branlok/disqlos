@@ -7,7 +7,7 @@ import ArrowDownSvg from "../../../../styles/svg/arrowDown.svg";
 import ArrowUpSvg from "../../../../styles/svg/arrowUp.svg";
 import {useQueryClient} from "react-query";
 import useCommentsReq from "./useCommentsReq"
-function InputComment({postId, viewerOpened, setViewerOpened}) {
+function InputComment({postId, viewerOpened, setViewerOpened, page}) {
   const initialValues = {
     content: "",
   };
@@ -35,7 +35,7 @@ function InputComment({postId, viewerOpened, setViewerOpened}) {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={({ content }, helper) => {addComment(postId, userId, content); queryClient.prefetchQuery(["fetchComments", postId]); setViewerOpened(true); helper.resetForm()}}
+      onSubmit={({ content }, helper) => {addComment(postId, userId, content, page); queryClient.prefetchQuery(["fetchComments", postId]); setViewerOpened(true); helper.resetForm()}}
     >
       <Form className=" h-full w-full items-center flex justify-center">
         <Field

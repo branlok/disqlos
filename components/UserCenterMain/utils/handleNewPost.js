@@ -5,6 +5,8 @@ import { db } from "../../../utils/firebase";
 
 export default async function handleNewPost(value, userId, queue) {
   let type = value.value.type;
+  let likedBy = [userId];
+  let numberOfComments = 0;
   /* CHECK IF USER IS POSTING TO QUEUE */
   if (queue) {
     /* CHECK IF USER IS POSTING as IMAGE or TEXT */
@@ -31,6 +33,8 @@ export default async function handleNewPost(value, userId, queue) {
             queue,
             leadPost: true,
             imageUrl,
+            likedBy,
+            numberOfComments,
           })
       } catch (error) {
         return error;
@@ -43,7 +47,7 @@ export default async function handleNewPost(value, userId, queue) {
         let content = value.value.content;
         const postId = await nanoid();
         const queueId = await nanoid();
-        
+
         return db
           .collection("USERS")
           .doc(userId)
@@ -59,6 +63,8 @@ export default async function handleNewPost(value, userId, queue) {
             queue,
             leadPost: true,
             imageUrl: false,
+            likedBy,
+            numberOfComments,
           });
       } catch (error) {
         return error;
@@ -79,6 +85,8 @@ export default async function handleNewPost(value, userId, queue) {
           createdOn: firebase.firestore.Timestamp.now(),
           type,
           imageUrl,
+          likedBy,
+          numberOfComments,
         });
       } catch (error) {
         return "error";
@@ -98,6 +106,8 @@ export default async function handleNewPost(value, userId, queue) {
           createdOn: firebase.firestore.Timestamp.now(),
           type,
           imageUrl: false,
+          likedBy,
+          numberOfComments,
         });
       } catch (error) {
         return error;

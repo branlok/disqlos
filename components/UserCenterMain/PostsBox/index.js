@@ -1,33 +1,30 @@
 import React, { useEffect, useState, useRef } from "react";
 import BasicPost from "./BasicPost";
 import PicturePost from "./PicturePost";
-import { useAuth } from "../../../utils/auth";
 import usePostGetters from "./usePostGetters";
-import { useQueryClient } from "react-query";
 
 function PostsBox({ directive }) {
   let { ownPostsResponse, followPostsResponse } = usePostGetters();
-
-  useEffect(() => {});
 
   if (directive == "posts") {
     if (ownPostsResponse.isSuccess) {
       return (
         <div className="w-full mt-2 flex flex-col pb-40">
-          {ownPostsResponse.data.pages.map((page) => {
+          {ownPostsResponse.data.pages.map((page, pageIdx) => {
             return (
-              <React.Fragment key={page.pageParam}>
-                {page.map((item) => {
+              <React.Fragment key={pageIdx + "posts"}>
+                {page.map((item, entryIdx) => {
+                    //{pageIdx,entryIdx} used for updating query-cache in userLikedPost.js
                   if (item.type == "text")
-                    return <BasicPost key={item.postId} item={item} />;
+                    return <BasicPost key={item.postId} item={item} page={{pageIdx,entryIdx}} />;
                   if (item.type == "image")
-                    return <PicturePost key={item.postId} item={item} />;
+                    return <PicturePost key={item.postId} item={item} page={{pageIdx,entryIdx}}  />;
                 })}
               </React.Fragment>
             );
           })}
           <button
-            className="font-bold text-lg text-white mt-10 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all"
+            className="font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all"
             onClick={() => ownPostsResponse.fetchNextPage()}
           >
             {ownPostsResponse.isSuccess && ownPostsResponse.hasNextPage ? "Load More" : ownPostsResponse.data.pages[0].length > 0 ? "End of Results" : ""}

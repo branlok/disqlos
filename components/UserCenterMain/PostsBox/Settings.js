@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../utils/auth";
 import useDeletePost from "../utils/useDeletePost";
-// import DotsSvg from "../../../styles/svg/dots.svg";
+import SDFWE from "../../../styles/svg/threedots.svg";
+import HeartItSvg from "../../../styles/svg/heart.svg";
+import useLikePost from "../utils/useLikePost";
 
-function Settings({ postId, postOwner }) {
+function Settings({ postId, postOwner, liked, handleLikeUnlike}) {
   let { userId } = useAuth();
 
   const ownership = userId == postOwner ? true : false;
@@ -11,33 +13,36 @@ function Settings({ postId, postOwner }) {
   let [toggle, setToggle] = useState(false);
   let { deletePost, deletePostMutation } = useDeletePost();
 
-  //deletePostMutation use for error if fails to delete
   return (
     <div>
       <div
-        className="absolute top-4 right-4 cursor-pointer border rounded-md bg-gray-200 h-6 flex justify-center items-center hover:bg-gray-300 transition-all"
+        className="absolute top-4 right-4 cursor-pointer border rounded-md bg-gray-200 h-6 flex justify-center items-center hover:bg-gray-300 transition-all "
         onClick={() => setToggle(!toggle)}
       >
-        {/* <DotsSvg className="fill-current text-white"/> */}
-        ...
+        <SDFWE className="fill-current text-gray-400 p-1" />
       </div>
       {toggle && (
-        <div className="absolute h-6 flex justify-center top-4 right-12">
-          {/* <button className="bg-custom-pink-900 text-white text-sm rounded-md py-1 px-2 mx-1 transition-all">
-            {" "}
-            Expand{" "}
-          </button> */}
-          {ownership &&
+        <div className="absolute flex justify-center top-4 right-12  h-6">
+          {ownership && (
             <button
               onClick={() => deletePost(postId, "fetchOwnPosts")}
               className="bg-red-500 text-white text-sm rounded-md h-full flex justify-center items-center px-2 mx-1"
             >
-              {" "}
-              Delete{" "}
+              Delete
             </button>
-          }
+          )}
         </div>
       )}
+      <div
+        className="absolute bottom-4 right-4 cursor-pointer border rounded-md bg-gray-200  flex justify-center items-center hover:bg-gray-300 transition-all"
+        onClick={() => handleLikeUnlike()}
+      >
+        <HeartItSvg
+          className={`fill-current  ${
+            liked ? "text-red-400" : "text-gray-400"
+          } p-1 h-6 w-6`}
+        />
+      </div>
     </div>
   );
 }

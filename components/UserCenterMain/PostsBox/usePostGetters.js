@@ -14,7 +14,7 @@ export default function usePostGetters() {
     : [""];
 
   const ownPostsResponse = useInfiniteQuery(
-    ["fetchOwnPosts"],
+    "fetchOwnPosts",
     ({pageParam = false}) => {
         console.log(pageParam, "red me")
       if (pageParam) {
@@ -23,7 +23,7 @@ export default function usePostGetters() {
           .where("userId", "==", userId)
           .orderBy("createdOn", "desc")
           .startAfter(pageParam)
-          .limit(4)
+          .limit(2)
           .get()
           .then((querySnapshot) => {
             console.log(querySnapshot.docs, "vaezlues");
@@ -38,7 +38,7 @@ export default function usePostGetters() {
         return db.collection("PUBLIC_POSTS")
           .where("userId", "==", userId)
           .orderBy("createdOn", "desc")
-          .limit(4)
+          .limit(2)
           .get()
           .then((querySnapshot) => {
             console.log(querySnapshot, "values");
@@ -53,45 +53,45 @@ export default function usePostGetters() {
       }
     },
     {
-        //firestore will return less than the limit indicating its the last few items
-        getNextPageParam: (lastPage, allPage) => lastPage.length < 4 ? undefined : lastPage[lastPage.length - 1].createdOn, 
+        //if length is zero, we will stop allowing the next pagination request.
+        getNextPageParam: (lastPage, allPage) => lastPage.length == 0 ? undefined : lastPage[lastPage.length - 1].createdOn, 
       refetchOnMount: false,
       staleTime: 1800000,
       cacheTime: 1800000,
     }
   );
 
-  const ownPostsResponsePag = useQuery(
-    ["ownPostsResponsePag", snapshot],
-    () =>
-      db
-        .collection("PUBLIC_POSTS")
-        .where("userId", "==", userId)
-        .orderBy("createdOn", "desc")
-        .startAfter(snapshot)
-        .limit(2)
-        .get()
-        .then((querySnapshot) => {
-          console.log(querySnapshot.docs, "vaezlues");
-          //for pagination
-          //   setSnapshot(
-          //     querySnapshot.docs[querySnapshot.docs.length - 1].data().createdOn
-          //   );
-          let docArray = [];
-          console.log("fetchOwnPosts");
-          querySnapshot.forEach((item) => {
-            docArray.push(item.data());
-          });
-          return docArray;
-        }),
-    {
-      enabled: !!snapshot,
-      refetchOnMount: false,
-      staleTime: 1800000,
-      cacheTime: 1800000,
-      keepPreviousData: true,
-    }
-  );
+//   const ownPostsResponsePag = useQuery(
+//     ["ownPostsResponsePag", snapshot],
+//     () =>
+//       db
+//         .collection("PUBLIC_POSTS")
+//         .where("userId", "==", userId)
+//         .orderBy("createdOn", "desc")
+//         .startAfter(snapshot)
+//         .limit(2)
+//         .get()
+//         .then((querySnapshot) => {
+//           console.log(querySnapshot.docs, "vaezlues");
+//           //for pagination
+//           //   setSnapshot(
+//           //     querySnapshot.docs[querySnapshot.docs.length - 1].data().createdOn
+//           //   );
+//           let docArray = [];
+//           console.log("fetchOwnPosts");
+//           querySnapshot.forEach((item) => {
+//             docArray.push(item.data());
+//           });
+//           return docArray;
+//         }),
+//     {
+//       enabled: !!snapshot,
+//       refetchOnMount: false,
+//       staleTime: 1800000,
+//       cacheTime: 1800000,
+//       keepPreviousData: true,
+//     }
+//   );
 
   // let followersArray = ["ylkv3cgZTwfbC7oPa4Q1f36HxNr1", "zo5cGdkQsQW0c50p7bfc3wn80Ci2"]
 
@@ -125,7 +125,6 @@ export default function usePostGetters() {
   return {
     ownPostsResponse,
     followPostsResponse,
-    ownPostsResponsePag,
     setSnapshot,
   };
 }
