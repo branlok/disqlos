@@ -7,7 +7,7 @@ import ArrowDownSvg from "../../../../styles/svg/arrowDown.svg";
 import ArrowUpSvg from "../../../../styles/svg/arrowUp.svg";
 import {useQueryClient} from "react-query";
 import useCommentsReq from "./useCommentsReq"
-function InputComment({postId, viewerOpened, setViewerOpened, page}) {
+function InputComment({postId, viewerOpened, setViewerOpened, page, directory}) {
   const initialValues = {
     content: "",
   };
@@ -16,7 +16,7 @@ function InputComment({postId, viewerOpened, setViewerOpened, page}) {
     content: yup.string().min(1).max(250).required(),
   });
   const {userId} = useAuth();
-  const {addComment} = usePushPost();
+  const {addComment} = usePushPost(directory);
   const {commentsResponse} = useCommentsReq(postId); //becayse you put in a prop, it knows its different. im guess.
   //you could also use queryClient.invalidateQueries(postId) as long as thiscomments always exists, so will the direct useHook.
   const queryClient = useQueryClient()

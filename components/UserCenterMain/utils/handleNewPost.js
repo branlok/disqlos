@@ -3,9 +3,9 @@ import { nanoid } from "nanoid";
 import firebase from "firebase";
 import { db } from "../../../utils/firebase";
 
-export default async function handleNewPost(value, userId, queue) {
+export default async function handleNewPost(value, userId, queue, userData) {
   let type = value.value.type;
-  let likedBy = [userId];
+  let likedBy = [];
   let numberOfComments = 0;
   /* CHECK IF USER IS POSTING TO QUEUE */
   if (queue) {
@@ -35,6 +35,7 @@ export default async function handleNewPost(value, userId, queue) {
             imageUrl,
             likedBy,
             numberOfComments,
+            primaryProfileImage: userData.data.primaryProfileImage
           })
       } catch (error) {
         return error;
@@ -65,6 +66,7 @@ export default async function handleNewPost(value, userId, queue) {
             imageUrl: false,
             likedBy,
             numberOfComments,
+            primaryProfileImage: userData.data.primaryProfileImage
           });
       } catch (error) {
         return error;
@@ -87,6 +89,7 @@ export default async function handleNewPost(value, userId, queue) {
           imageUrl,
           likedBy,
           numberOfComments,
+          primaryProfileImage: userData.data.primaryProfileImage
         });
       } catch (error) {
         return "error";
@@ -108,6 +111,7 @@ export default async function handleNewPost(value, userId, queue) {
           imageUrl: false,
           likedBy,
           numberOfComments,
+          primaryProfileImage: userData.data.primaryProfileImage
         });
       } catch (error) {
         return error;

@@ -7,15 +7,17 @@ import { useQueryClient } from "react-query";
 import PictureSvg from "../../../styles/svg/picture.svg";
 import SpinnerSvg from "../../../styles/svg/spinner.svg";
 import handleNewPost from "../utils/handleNewPost";
+import useUser from "../../Queries/USERS/useUser";
 
 function QueuePostMaker({setDirective}) {
   const { userId } = useAuth();
+  const {userData} = useUser();
   const myFormRef = useRef();
   const imageInputRef = useRef();
   const queryClient = useQueryClient();
   const [type, setType] = useState("text");
 
-  const mutation = useMutation((value) => handleNewPost(value, userId, true), {
+  const mutation = useMutation((value) => handleNewPost(value, userId, true, userData), {
     onSuccess: async () => {
         await queryClient.refetchQueries('fetchQueuedPosts');
         // queryClient.invalidateQueries("");

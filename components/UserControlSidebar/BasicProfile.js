@@ -1,24 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import ProfileCircle from "../BasicComponents/ProfileCircle";
 import useUser from "../Queries/USERS/useUser";
+import displaySelection from "../UserCenterMain/helperFunctions/displaySelection";
+import BasicProfilePl from "./placeholders/BasicProfilePl";
+import ProfileUpdater from "./ProfileUpdater";
 
 function BasicProfile() {
-  const { userData } = useUser();
-  const data = userData.data.data();
+  const { userData, isReady2} = useUser();
+  const userProfile = userData.data;
+  const [showProfileUpdater, setShowProfileUpdater] = useState(false);
+    
 
-  return (
-    <div className="h-60 w-full rounded-md bg-custom-pink-550 flex flex-col items-center justify-center p-8">
-      <div className="h-24 w-24">
-        <ProfileCircle imageURL="https://firebasestorage.googleapis.com/v0/b/tierliz.appspot.com/o/test%2FLauv-press-by-Lauren-Dunn-2020-billboard-1548-compressed.jpg?alt=media&token=ac524eac-c293-48b1-8497-a7bfdfe0a100" />
+let primaryProfileImage =  userProfile.primaryProfileImage
+
+  if (!isReady2) {
+    return <BasicProfilePl />;
+  } else
+    return (
+      <div className="h-72 w-full rounded-md bg-custom-pink-550 flex flex-col items-center justify-center p-8">
+        <div className="h-24 w-24">
+          <ProfileCircle imageURL={primaryProfileImage} />
+        </div>
+        <p>
+          <b>{userProfile.displayName}</b>{" "}
+        </p>
+        <p className="text-gray-600 text-sm">{userProfile.uniqueDisplayName}</p>
+        <p className="text-center text-xs">
+          here is a short description of yourself can be placed
+        </p>
+        <button
+          type="button"
+          onClick={() => setShowProfileUpdater(true)}
+          className="border rounded-md px-2 py-1 bg-gray-100 text-sm my-2 hover:bg-gray-800 hover:text-white "
+        >
+          Edit Profile
+        </button>
+        {showProfileUpdater && (
+          <ProfileUpdater setShowProfileUpdater={setShowProfileUpdater} />
+        )}
       </div>
-      <p><b>{data.displayName}</b> </p> 
-      <p className="text-gray-600 text-sm">{data.userId}</p>
-      <p className="text-center text-xs">
-          
-        here is a short description of yourself can be placed
-      </p>
-    </div>
-  );
+    );
 }
 
 export default BasicProfile;

@@ -8,26 +8,26 @@ function CommentsViewer({
   viewerOpened,
   postCachedLocation,
   numberOfComments,
+  directory
 }) {
   const { commentsResponse } = useCommentsReq(postId, viewerOpened);
   const queryClient = useQueryClient();
-  console.log(numberOfComments, "S");
+
+
+  let NoCommentsMessage = (<div className="flex justify-center flex-col items-center font-xs py-2">
+  <MessageBubble className="mb-2" /> No one has replied yet, be the
+  first!
+</div>)
+
   if (commentsResponse.isSuccess) {
     return (
       <div className="h-full w-full py-2 bg-custom-pink-550 mb-2 rounded-md ">
         <div className="max-h-56 px-2 rounded-md overflow-y-scroll no-scrollbar flex flex-col">
-          {numberOfComments == 0 && (
-            <div className="flex justify-center flex-col items-center font-xs py-2">
-              <MessageBubble className="mb-2" /> No one has replied yet, be the
-              first!
-            </div>
-          )}
-          <>
+          {commentsResponse.data.pages.length == "0" && <NoCommentsMessage/>}
             {commentsResponse.data.pages.map((page, pageIdx) => {
               return (
                 <React.Fragment key={pageIdx + postId}>
                   {page.map((comment, commentIdx) => {
-                    console.log("fired");
                     return (
                       <SingleComment
                         key={comment.commentId}
@@ -35,6 +35,7 @@ function CommentsViewer({
                         item={comment}
                         postCachedLocation={postCachedLocation}
                         page={{ pageIdx, commentIdx }}
+                        directory={directory}
                       />
                     );
                   })}
@@ -55,14 +56,13 @@ function CommentsViewer({
                     onClick={() =>
                       queryClient.prefetchQuery(["fetchComments", postId])
                     }
-                    className="px-2 my-2 border rounded-md bg-gray-300 font-bold text-white cursor-pointer"
+                    className="px-2 my-2 text-xs border rounded-md bg-gray-400 font-bold text-white cursor-pointer hover:bg-gray-500 active:bg-gray-700"
                   >
                     Refresh
                   </button>
                 )}
               </div>
             }
-          </>
         </div>
       </div>
     );

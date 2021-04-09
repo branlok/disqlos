@@ -3,9 +3,11 @@ import { nanoid } from "nanoid";
 import firebase from "firebase";
 import { db } from "../../../utils/firebase";
 
-export default async function postNewMetaPost(value, userId, queueId) {
+export default async function postNewMetaPost(value, userId, queueId, userData) {
   let type = value.value.type;
+  let likedBy = [];
   let queue = true;
+
   console.log("i ran")
   if (type === "image") {
     try {
@@ -29,6 +31,8 @@ export default async function postNewMetaPost(value, userId, queueId) {
           queue,
           leadPost: false, //metaposts have leadPost false
           imageUrl,
+          primaryProfileImage: userData.data.primaryProfileImage,
+          likedBy,
         })
     } catch (error) {
       return error;
@@ -56,6 +60,8 @@ export default async function postNewMetaPost(value, userId, queueId) {
           queue,
           leadPost: false,
           imageUrl: false,
+          primaryProfileImage: userData.data.primaryProfileImage,
+          likedBy
         });
     } catch (error) {
       return error;

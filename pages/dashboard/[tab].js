@@ -30,7 +30,7 @@ function Dashboard() {
 
   if (userData.isSuccess) {
     return (
-      <div className="flex flex-col h-screen w-screen ">
+      <div className="flex flex-col h-screen w-screen">
         <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray flex items-center px-4">
           <div>
             <b>Disqlos</b>

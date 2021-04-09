@@ -5,7 +5,7 @@ import SDFWE from "../../../styles/svg/threedots.svg";
 import HeartItSvg from "../../../styles/svg/heart.svg";
 import useLikePost from "../utils/useLikePost";
 
-function Settings({ postId, postOwner, liked, handleLikeUnlike}) {
+function Settings({ postId, postOwner, liked, handleLikeUnlike, queuedPost }) {
   let { userId } = useAuth();
 
   const ownership = userId == postOwner ? true : false;
@@ -31,9 +31,15 @@ function Settings({ postId, postOwner, liked, handleLikeUnlike}) {
               Delete
             </button>
           )}
+            {!ownership && <button
+              onClick={() => deletePost(postId, "fetchOwnPosts")}
+              className="bg-red-500 text-white text-sm rounded-md h-full flex justify-center items-center px-2 mx-1"
+            >
+              Report
+            </button>}
         </div>
       )}
-      <div
+      { !queuedPost && <div
         className="absolute bottom-4 right-4 cursor-pointer border rounded-md bg-gray-200  flex justify-center items-center hover:bg-gray-300 transition-all"
         onClick={() => handleLikeUnlike()}
       >
@@ -42,7 +48,7 @@ function Settings({ postId, postOwner, liked, handleLikeUnlike}) {
             liked ? "text-red-400" : "text-gray-400"
           } p-1 h-6 w-6`}
         />
-      </div>
+      </div>}
     </div>
   );
 }

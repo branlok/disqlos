@@ -23,11 +23,11 @@ function MetaQueueBox({ queueId, setQueueId }) {
         {metaPosts.data.map((item) => {
           if (item.type == "text")
             return (
-              <BasicPost useComments={false} key={item.postId} item={item} />
+              <BasicPost queuedPost={true} key={item.postId} item={item} />
             );
           if (item.type == "image")
             return (
-              <PicturePost useComments={false} key={item.postId} item={item} />
+              <PicturePost queuedPost={true} key={item.postId} item={item} />
             );
         })}
         {metaPosts.data.length == 0 && (

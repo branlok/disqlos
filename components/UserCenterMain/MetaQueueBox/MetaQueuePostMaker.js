@@ -8,15 +8,17 @@ import { useQueryClient } from "react-query";
 import PictureSvg from "../../../styles/svg/picture.svg";
 import SpinnerSvg from "../../../styles/svg/spinner.svg";
 import postNewMetaPost from "../utils/postNewMetaPost";
+import useUser from "../../Queries/USERS/useUser";
 
 function MetaQueuePostMaker({queueId}) {
   const { userId } = useAuth();
+  const {userData} = useUser();
   const myFormRef = useRef();
   const imageInputRef = useRef();
   const queryClient = useQueryClient();
   const [type, setType] = useState("text");
 
-  const mutation = useMutation((value) => postNewMetaPost(value, userId, queueId), {
+  const mutation = useMutation((value) => postNewMetaPost(value, userId, queueId, userData), {
     onSuccess: async () => {
       await queryClient.refetchQueries(['fetchMetaPosts', queueId]);
   },

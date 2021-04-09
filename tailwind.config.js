@@ -21,12 +21,17 @@ module.exports = {
         'custom-gray': {
           500: '#F5F1F1'
         },
+      },
+      fontFamily: {
+        body: ['Roboto']
       }
     },
   },
   variants: {
     extend: {
+      backgroundColor: ['active'],
       margin: ['last', 'first'],
+
     }
   },
   plugins: [],

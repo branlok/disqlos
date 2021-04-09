@@ -9,9 +9,11 @@ import PictureSvg from "../../styles/svg/picture.svg";
 import PictureSvg2 from "../../styles/svg/spinner.svg";
 import SpinnerSvg from "./SpinnerSvg"; //custom svg because tailwind cannot inject styles into svgcomponents
 import handleNewPost from "./utils/handleNewPost";
+import useUser from "../Queries/USERS/useUser";
 
 function PostMaker({setDirective , directive}) {
   const { userId } = useAuth();
+  const {userData} = useUser();
   const myFormRef = useRef();
   const imageInputRef = useRef();
   const queryClient = useQueryClient();
@@ -19,7 +21,7 @@ function PostMaker({setDirective , directive}) {
   const [type, setType] = useState("text");
   const [queue, setQueue] = useState(false); //used for sending handleNewPost signal to switch directory
 
-  const mutation = useMutation((value) => handleNewPost(value, userId, queue), {
+  const mutation = useMutation((value) => handleNewPost(value, userId, queue, userData), {
     onSuccess: async () => {
       await queryClient.refetchQueries("fetchQueuedPosts");
       //queryClient.invalidateQueries("fetchQueuedPosts");
