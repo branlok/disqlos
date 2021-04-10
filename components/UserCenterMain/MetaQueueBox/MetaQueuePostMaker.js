@@ -146,7 +146,7 @@ function MetaQueuePostMaker({queueId}) {
                 )}
                 <button
                   type="submit"
-                  className="h-full mx-1 -mr-0 rounded-sm bg-custom-pink-1000  text-white px-10 rounded-md"
+                  className="h-full mx-1 -mr-0 rounded-sm bg-custom-pink-1000 text-sm text-white px-10 rounded-md"
                   ref={myFormRef}
                 >
                   Post

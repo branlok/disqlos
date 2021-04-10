@@ -11,7 +11,6 @@ function SocialSidebar() {
   let { width } = useWindowDimensions();
 
   useEffect(() => {
-    console.log(width);
     if (width < 900) {
       setCollapse(true);
       setShowToggle(false);
@@ -60,7 +59,9 @@ function SocialSidebar() {
           </div>
         )}
         <div className="absolute bottom-4 -left-10 w-6 h-6 flex justify-center items-center border rounded-md cursor-pointer bg-gray-300 hover:bg-gray-400 transition-all shadow-sm">
-          <a href="#top"><TriangleSvg style={{fill: "white"}}/></a>
+          <a href="#top">
+            <TriangleSvg style={{ fill: "white" }} />
+          </a>
         </div>
       </div>
     );

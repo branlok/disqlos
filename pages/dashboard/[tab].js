@@ -5,18 +5,18 @@ import UserCenterMain from "../../components/UserCenterMain";
 import { useRouter } from "next/router";
 import { useAuth } from "../../utils/auth";
 import useUser from "../../components/Queries/USERS/useUser";
+
 import { useQueryClient } from "react-query";
 //user dashboard do not require prerendering. but serverside rendering can aide
 
 function Dashboard() {
 
   const { userId } = useAuth();
-
   const { userData } = useUser();
-
   const router = useRouter();
-  const { tab } = router.query
+  // const { tab } = router.query
 
+ 
   // useEffect(() => {
   //   console.log(userId, "logging");
   //   if (!userId) {

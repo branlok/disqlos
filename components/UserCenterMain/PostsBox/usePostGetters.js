@@ -94,9 +94,9 @@ export default function usePostGetters() {
       }
     },
     {
-      refetchOnMount: false,
-      staleTime: 1800000,
-      cacheTime: 1800000,
+      refetchOnMount: true,
+      staleTime: 5000,
+      cacheTime: 5000,
       getNextPageParam: (lastPage, allPage) =>
         lastPage.length == 0
           ? undefined

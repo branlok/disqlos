@@ -13,7 +13,6 @@ function UserControlSidebar({userData}) {
   let { width } = useWindowDimensions();
 
   useEffect(() => {
-    console.log(width);
     if (width < 900) {
       setCollapse(true);
       setShowToggle(false);

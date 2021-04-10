@@ -4,6 +4,7 @@ import ProfileCircle from "../../../BasicComponents/ProfileCircle";
 import useUser from "../../../Queries/USERS/useUser";
 import displaySelection from "../../helperFunctions/displaySelection";
 import useDeleteComment from "../../utils/useDeleteComment";
+import TimeAgo from "react-timeago";
 function SingleComment({ postId, item, page, postCachedLocation, directory }) {
   const { userData } = useUser();
   const uid = userData.data.uid;
@@ -18,52 +19,61 @@ function SingleComment({ postId, item, page, postCachedLocation, directory }) {
   );
 
   if (uid == item.uid) {
-    let primaryProfileImage =  userData.data.primaryProfileImage
+    let primaryProfileImage = userData.data.primaryProfileImage;
+    return (
+      <div className="my-2 bg-custom-pink-300 rounded-sm flex flex-row justify-between items-center px-2 py-1 first:mt-0 last:mb-0">
+        <div className="relative flex flex-col w-full">
+          <header className="flex justify-between items-center w-full border-b-2 pb-1 ">
+            <div className="flex justify-between items-center py-2 h-full flex-col md:flex-row w-full">
+              <div className="flex-col md:flex-row flex justify-between items-center">
+                <img
+                  className="w-7 h-7 object-cover rounded-full border"
+                  src={primaryProfileImage}
+                />
+                <div className="text-sm font-bold text-gray-800 mx-2">
+                  {item.uniqueDisplayName}
+                </div>
+              </div>
+
+              <TimeAgo
+                className="items-center text-xs text-gray-600"
+                date={item.createdOn.toDate()}
+                minPeriod="30"
+              />
+            </div>
+            <div
+              className="absolute md:relative md:ml-2 top-0.5 right-0 flex items-center justify-center w-8 h-8 flex-initial rounded-md bg-custom-pink-500 text-gray-300 hover:bg-red-500 hover:text-red-300 cursor-pointer"
+              onClick={() => deleteComment()}
+            >
+              {item.uid == uid && (
+                <BinSVG className="w-4 h-4 fill-current " />
+              )}
+            </div>
+          </header>
+          <div className="relative text-sm mt-2 pl-2 pb-4 ">{item.content}</div>
+        </div>
+      </div>
+    );
+  } else {
+    let primaryProfileImage = item.primaryProfileImage;
     return (
       <div className="my-2 bg-custom-pink-300 rounded-sm flex flex-row justify-between items-center px-2 py-1 first:mt-0 last:mb-0">
         <div className="flex flex-col w-full">
           <header className="flex justify-between items-center w-full border-b-2 pb-1 ">
             <div className="flex justify-between items-center  h-full">
-              <img className="w-7 h-7 object-cover rounded-full border" src={primaryProfileImage}>
-
-              </img>
+              <img
+                className="w-7 h-7 object-cover rounded-full border"
+                src={primaryProfileImage}
+              ></img>
               <div className="ml-2 text-sm font-bold text-gray-800">
                 {item.uniqueDisplayName}
               </div>
-            </div>
-            <div
-              className="flex items-center justify-center w-8 h-8 flex-initial rounded-full bg-custom-pink-500"
-              onClick={() => deleteComment()}
-            >
-              {item.uid == uid && (
-                <BinSVG className="w-4 h-4 fill-current text-gray-600 hover:text-red-600 cursor-pointer" />
-              )}
             </div>
           </header>
           <div className="text-sm mt-2 pl-2 pb-2 ">{item.content}</div>
         </div>
       </div>
     );
-  } else {
-    let primaryProfileImage = item.primaryProfileImage
-    return (
-        <div className="my-2 bg-custom-pink-300 rounded-sm flex flex-row justify-between items-center px-2 py-1 first:mt-0 last:mb-0">
-          <div className="flex flex-col w-full">
-            <header className="flex justify-between items-center w-full border-b-2 pb-1 ">
-              <div className="flex justify-between items-center  h-full">
-                <img className="w-7 h-7 object-cover rounded-full border" src={primaryProfileImage}>
-  
-                </img>
-                <div className="ml-2 text-sm font-bold text-gray-800">
-                  {item.uniqueDisplayName}
-                </div>
-              </div>
-
-            </header>
-            <div className="text-sm mt-2 pl-2 pb-2 ">{item.content}</div>
-          </div>
-        </div>
-      );
   }
 }
 

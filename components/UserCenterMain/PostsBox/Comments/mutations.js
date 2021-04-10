@@ -15,6 +15,7 @@ function postComment({ postId, userId, content, userDataContent }) {
     createdOn: firebase.firestore.Timestamp.now(),
     likedBy: [], //better created by cloud function to avoid injection. or add security rules for create and update.
     primaryProfileImage: userDataContent.primaryProfileImage,
+    uniqueDisplayName: userDataContent.uniqueDisplayName,
   };
 
   return db
