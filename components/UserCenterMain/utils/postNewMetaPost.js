@@ -8,7 +8,7 @@ export default async function postNewMetaPost(value, userId, queueId, userData) 
   let likedBy = [];
   let queue = true;
 
-  console.log("i ran")
+
   if (type === "image") {
     try {
       console.log("posting to Metapost, type:", type);

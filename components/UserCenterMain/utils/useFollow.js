@@ -16,7 +16,17 @@ export default function useFollow(userId, targetUserId) {
               following: firebase.firestore.FieldValue.arrayUnion(targetUserId),
             },
             { merge: true }
-          );
+          )
+          .then((res) => {
+            db.collection("USERS")
+              .doc(targetUserId)
+              .set(
+                {
+                  followers: firebase.firestore.FieldValue.arrayUnion(userId),
+                },
+                { merge: true }
+              );
+          });
       }
       //unfollow
       if (!follow) {
@@ -30,7 +40,14 @@ export default function useFollow(userId, targetUserId) {
               ),
             },
             { merge: true }
-          );
+          )
+          .then((res) => {
+            db.collection("USERS")
+              .doc(targetUserId)
+              .set({
+                followers: firebase.firestore.FieldValue.arrayRemove(userId),
+              }, {merge: true});
+          });
       }
     },
     {

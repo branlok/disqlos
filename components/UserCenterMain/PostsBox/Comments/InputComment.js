@@ -44,6 +44,7 @@ function InputComment({postId, viewerOpened, setViewerOpened, page, directory}) 
           className="w-full mr-2 rounded-md pl-2 border-gray border"
           type="text"
           placeholder="Reply"
+          autoComplete="off"
         ></Field>
         <button
           className="w-28 bg-gray-800 text-white rounded-md"

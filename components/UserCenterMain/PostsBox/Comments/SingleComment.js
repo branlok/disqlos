@@ -42,7 +42,7 @@ function SingleComment({ postId, item, page, postCachedLocation, directory }) {
               />
             </div>
             <div
-              className="absolute md:relative md:ml-2 top-0.5 right-0 flex items-center justify-center w-8 h-8 flex-initial rounded-md bg-custom-pink-500 text-gray-300 hover:bg-red-500 hover:text-red-300 cursor-pointer"
+              className="absolute md:relative md:ml-2 top-0.5 right-0 flex items-center justify-center w-8 h-8 flex-initial rounded-md bg-custom-pink-500 text-gray-300 hover:bg-red-500 hover:text-red-900 cursor-pointer"
               onClick={() => deleteComment()}
             >
               {item.uid == uid && (
