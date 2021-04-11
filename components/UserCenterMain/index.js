@@ -39,7 +39,7 @@ function UserCenterMain() {
   if (directive === "posts") {
     return (
       <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll ">
-        <div id="top" className=" w-3/4 m-auto ">
+        <div id="top" className=" w-3/4 m-auto  pb-40 mb-40 ">
           <Header />
           <PostMaker setDirective={setDirective} />
           <ProfileNav directive={directive} setDirective={setDirective} />
@@ -57,7 +57,7 @@ function UserCenterMain() {
   } else if (directive === "queue") {
     return (
       <div className="svgBackground h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 pt-4 overflow-scroll no-scrollbar overscroll-contain ">
-        <div className="w-3/4 m-auto">
+        <div className="w-3/4 m-auto pb-60 mb-40">
           <Header />
           {queueId ? (
             <MetaQueuePostMaker queueId={queueId} />

@@ -4,12 +4,11 @@ import { db } from "../../../utils/firebase";
 
 function useRetrieveFollowerData() {
   const { userId } = useAuth();
-
   const followerDataQuery = useQuery("followerData", () => {
     return db
       .collection("USERS")
       .where("followers", "array-contains", userId)
-      .limit(5)
+      .limit(10)
       .get()
       .then((querySnapshot) => {
         let docArray = [];

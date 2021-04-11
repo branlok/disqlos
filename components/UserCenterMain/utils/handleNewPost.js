@@ -7,6 +7,7 @@ export default async function handleNewPost(value, userId, queue, userData) {
   let type = value.value.type;
   let likedBy = [];
   let numberOfComments = 0;
+  let numberOfChildren = 0;
   /* CHECK IF USER IS POSTING TO QUEUE */
   if (queue) {
     /* CHECK IF USER IS POSTING as IMAGE or TEXT */
@@ -35,6 +36,7 @@ export default async function handleNewPost(value, userId, queue, userData) {
             imageUrl,
             likedBy,
             numberOfComments,
+            numberOfChildren,
             primaryProfileImage: userData.data.primaryProfileImage
           })
       } catch (error) {
@@ -66,6 +68,7 @@ export default async function handleNewPost(value, userId, queue, userData) {
             imageUrl: false,
             likedBy,
             numberOfComments,
+            numberOfChildren,
             primaryProfileImage: userData.data.primaryProfileImage
           });
       } catch (error) {

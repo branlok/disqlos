@@ -61,7 +61,7 @@ export default async function postNewMetaPost(value, userId, queueId, userData) 
           leadPost: false,
           imageUrl: false,
           primaryProfileImage: userData.data.primaryProfileImage,
-          likedBy
+          likedBy,
         });
     } catch (error) {
       return error;

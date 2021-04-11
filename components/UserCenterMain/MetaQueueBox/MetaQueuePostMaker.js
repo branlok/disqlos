@@ -10,19 +10,22 @@ import SpinnerSvg from "../../../styles/svg/spinner.svg";
 import postNewMetaPost from "../utils/postNewMetaPost";
 import useUser from "../../Queries/USERS/useUser";
 
-function MetaQueuePostMaker({queueId}) {
+function MetaQueuePostMaker({ queueId }) {
   const { userId } = useAuth();
-  const {userData} = useUser();
+  const { userData } = useUser();
   const myFormRef = useRef();
   const imageInputRef = useRef();
   const queryClient = useQueryClient();
   const [type, setType] = useState("text");
 
-  const mutation = useMutation((value) => postNewMetaPost(value, userId, queueId, userData), {
-    onSuccess: async () => {
-      await queryClient.refetchQueries(['fetchMetaPosts', queueId]);
-  },
-  });
+  const mutation = useMutation(
+    (value) => postNewMetaPost(value, userId, queueId, userData),
+    {
+      onSuccess: () => {
+        queryClient.refetchQueries(["fetchMetaPosts", queueId]);
+      },
+    }
+  );
 
   const validationSchema = yup.object({
     content: yup.string().min(1).required(),
@@ -86,14 +89,15 @@ function MetaQueuePostMaker({queueId}) {
       <Formik
         initialValues={postSchema}
         validationSchema={validationSchema}
-        onSubmit={(value, action) => mutation.mutate(
+        onSubmit={(value, action) =>
+          mutation.mutate(
             { value },
             {
               onSettled: (data, error, variables) => {
                 imageInputRef.current.value = null;
                 action.resetForm();
                 setType("text");
-              }
+              },
             }
           )
         }

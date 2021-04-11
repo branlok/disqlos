@@ -9,7 +9,9 @@ function ProfileNav({ directive }) {
           directive == "feed" && "font-bold"
         } `}
       >
-        <Link className="cursor-pointer" href="/dashboard/feed">Feed</Link>
+        <Link className="cursor-pointer" href="/dashboard/feed">
+          Feed
+        </Link>
       </div>
       <ul className="h-full w-full flex justify-end items-center">
         <li

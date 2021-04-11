@@ -10,9 +10,8 @@ function MetaQueueBox({ queueId, setQueueId }) {
   let { metaPosts } = useMetaQueuePostGetters(queueId);
     
   useEffect(() => {
-    console.log(metaPosts, "asdfasdfasdfasdf");
-    console.log(queueId);
     return () => {
+        //queueId set false is for resetting the tab
       setQueueId(false);
     };
   }, []);
@@ -23,11 +22,11 @@ function MetaQueueBox({ queueId, setQueueId }) {
         {metaPosts.data.map((item) => {
           if (item.type == "text")
             return (
-              <BasicPost queuedPost={true} key={item.postId} item={item} />
+              <BasicPost queuedPost={true} key={item.postId} item={item} queueId={queueId}/>
             );
           if (item.type == "image")
             return (
-              <PicturePost queuedPost={true} key={item.postId} item={item} />
+              <PicturePost queuedPost={true} key={item.postId} item={item} queueId={queueId}/>
             );
         })}
         {metaPosts.data.length == 0 && (

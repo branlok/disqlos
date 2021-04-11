@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import CollapseSvg from "../../styles/svg/collapse.svg";
-import UserCard from "./UserCard";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import MinimizedSocial from "./MinimizedSocial";
 import TriangleSvg from "../../styles/svg/trianglearrow.svg";
-import AddFollowerSvg from "../../styles/svg/personAdd.svg";
 import useRetrieveFollowerData from "./utils/useRetrieveFollowerData";
 
 import SocialSidebarRegular from "./SocialSidebarRegular";
-import FollowerSearch from "./FollowerSearch";
 export default function SocialSidebar() {
   let [collapse, setCollapse] = useState(false);
   let [showToggle, setShowToggle] = useState(true);

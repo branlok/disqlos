@@ -5,13 +5,24 @@ import SDFWE from "../../../styles/svg/threedots.svg";
 import HeartItSvg from "../../../styles/svg/heart.svg";
 import useLikePost from "../utils/useLikePost";
 
-function Settings({ postId, postOwner, liked, handleLikeUnlike, queuedPost }) {
+function Settings({
+  postId,
+  postOwner,
+  liked,
+  handleLikeUnlike,
+  queuedPost,
+  queueId,
+}) {
   let { userId } = useAuth();
 
   const ownership = userId == postOwner ? true : false;
 
   let [toggle, setToggle] = useState(false);
-  let { deletePost, deletePostMutation } = useDeletePost();
+  let {
+    deletePost,
+    deletePostMutation,
+    deletePostMutationWithQueue,
+  } = useDeletePost();
 
   return (
     <div>
@@ -25,30 +36,43 @@ function Settings({ postId, postOwner, liked, handleLikeUnlike, queuedPost }) {
         <div className="absolute flex justify-center top-4 right-12  h-6">
           {ownership && (
             <button
-              onClick={() => deletePost(postId, "fetchOwnPosts")}
+              onClick={() => {
+                queuedPost
+                  ? deletePostMutationWithQueue.mutate({
+                      userId,
+                      postId,
+                      refetchTarget: "fetchMetaPosts",
+                      queueId,
+                    })
+                  : deletePost(postId, "fetchOwnPosts");
+              }}
               className="bg-red-500 text-white text-sm rounded-md h-full flex justify-center items-center px-2 mx-1"
             >
               Delete
             </button>
           )}
-            {!ownership && <button
+          {!ownership && (
+            <button
               onClick={() => deletePost(postId, "fetchOwnPosts")}
               className="bg-red-500 text-white text-sm rounded-md h-full flex justify-center items-center px-2 mx-1"
             >
               Report
-            </button>}
+            </button>
+          )}
         </div>
       )}
-      { !queuedPost && <div
-        className="absolute bottom-4 right-4 cursor-pointer border rounded-md bg-gray-200  flex justify-center items-center hover:bg-gray-300 transition-all"
-        onClick={() => handleLikeUnlike()}
-      >
-        <HeartItSvg
-          className={`fill-current  ${
-            liked ? "text-red-400" : "text-gray-400"
-          } p-1 h-6 w-6`}
-        />
-      </div>}
+      {!queuedPost && (
+        <div
+          className="absolute bottom-4 right-4 cursor-pointer border rounded-md bg-gray-200  flex justify-center items-center hover:bg-gray-300 transition-all"
+          onClick={() => handleLikeUnlike()}
+        >
+          <HeartItSvg
+            className={`fill-current  ${
+              liked ? "text-red-400" : "text-gray-400"
+            } p-1 h-6 w-6`}
+          />
+        </div>
+      )}
     </div>
   );
 }
