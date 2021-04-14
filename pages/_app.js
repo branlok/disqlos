@@ -4,7 +4,6 @@ import { ProvideAuth } from "../utils/auth";
 import { useStore } from "../Store/store";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { ProvideUser } from "../components/Queries/USERS/firestoreUserSelf";
 
 const queryClient = new QueryClient({
   defaultOptions: {

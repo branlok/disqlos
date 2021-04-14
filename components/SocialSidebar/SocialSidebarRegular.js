@@ -23,6 +23,7 @@ function SocialSidebarRegular({ followerDataQuery, setShowSearch }) {
                   name={item.displayName}
                   caption={item.profileDescription}
                   imageURL={item.primaryProfileImage}
+                  targetId={item.uid}
                 />
               );
             })}

@@ -6,31 +6,38 @@ import Comments from "./Comments/index";
 import PostStats from "./PostStats";
 import useLikePost from "../utils/useLikePost";
 import useUser from "../../Queries/USERS/useUser";
+import { useQuery, useQueryClient } from "react-query";
+import {getOwnUserData} from "../../Queries/USERS/useUser";
+import useOnlyUserData from "../../Queries/USERS/useOnlyUserData";
+
+// function matchDirectoryToCache(directory, targetId) {
+// return directory == "posts" ? "fetchOwnPosts" : directory == "feed" ? "fetchFollowingPosts" : ["getTargetPosts", targetId]
+// }
 
 
-
-function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId }) {
-  const [viewerOpened, setViewerOpened] = useState(false);
-  const { userData } = useUser();
-  //did user like the post
-
+function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId, targetId }) {
   
-  const liked = item.likedBy.includes(userData.data.uid);
-  console.log(item.likedBy);
-  const { mutateLikePost } = useLikePost(item.postId);
+  const { userData } = useOnlyUserData();
 
+  //const cacheReference = matchDirectoryToCache(directory, targetId) 
+ const liked = item.likedBy.includes(userData.data.uid);
+
+ 
+  const { likeMutation } = useLikePost(item.postId, directory);
+  
   function handleLikeUnlike() {
     if (liked) {
-      //({unlike, page, directory})
-      mutateLikePost(true, page, directory);
+      likeMutation.mutate({unlike: true, page})
+      // mutateLikePost(true, page, directory);
     } else {
-      mutateLikePost(false, page, directory);
+      likeMutation.mutate({unlike: false, page})
+      // mutateLikePost(false, page, directory);
     }
   }
 
   return (
-    <div className="relative mb-4">
-      <div className="h-full px-2 mb-2 min-h-40 max-h-80 bg-custom-pink-300 rounded-md shadow-md flex child last:mb-0 transition relative">
+    <div className="relative h-full px-2 mb-4 bg-custom-pink-300 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
+      <div className="h-full flex child">
         <PortfolioCard postOwner={item.userId} post={item} />
         <ContentBody postContent={item.content} />
         <Settings
@@ -45,11 +52,11 @@ function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId }) 
       {!queuedPost && (
         <Comments
           postId={item.postId}
-          viewerOpened={viewerOpened}
-          setViewerOpened={setViewerOpened}
           page={page}
           numberOfComments={item.numberOfComments}
           directory={directory}
+          handleLikeUnlike={handleLikeUnlike}
+          liked={liked}
         />
       )}
       {!queuedPost && (

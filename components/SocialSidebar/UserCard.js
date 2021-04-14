@@ -3,6 +3,7 @@ import { useAuth } from "../../utils/auth";
 import ProfileCircle from "../BasicComponents/ProfileCircle";
 import useUser from "../Queries/USERS/useUser";
 import useFollow from "../UserCenterMain/utils/useFollow";
+import { useRouter } from "next/router";
 
 function UserCard({
   name,
@@ -21,6 +22,9 @@ function UserCard({
     const {userData} = useUser();
   const { followMutation } = useFollow(userId, targetId);
     const following = userData.data.following.includes(targetId);
+
+    const router = useRouter();
+
   //const baseColor = "bg-custom-pink-550"
   // const baseColor = "bg-gray-200"
   //Notification Active
@@ -33,7 +37,7 @@ function UserCard({
       <div
         className={`w-full h-full px-1 ${dynamicBg} rounded-sm flex flex-row items-center justify-between cursor-pointer`}
       >
-        <div className="flex flex-row items-center justify-start">
+        <div onClick={() => router.push(`/explore/${targetId}`) } className="flex flex-row items-center justify-start">
           <div className="h-12 w-12 flex-none">
             <ProfileCircle imageURL={imageURL} />
           </div>

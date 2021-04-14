@@ -3,7 +3,6 @@ import { useAuth } from "../../../utils/auth";
 import useDeletePost from "../utils/useDeletePost";
 import SDFWE from "../../../styles/svg/threedots.svg";
 import HeartItSvg from "../../../styles/svg/heart.svg";
-import useLikePost from "../utils/useLikePost";
 
 function Settings({
   postId,
@@ -27,7 +26,7 @@ function Settings({
   return (
     <div>
       <div
-        className="absolute top-4 right-4 cursor-pointer border rounded-md bg-gray-200 h-6 flex justify-center items-center hover:bg-gray-300 transition-all "
+        className="absolute top-4 right-4 cursor-pointer rounded-md bg-gray-200 h-6 flex justify-center items-center hover:bg-gray-300 transition-all "
         onClick={() => setToggle(!toggle)}
       >
         <SDFWE className="fill-current text-gray-400 p-1" />
@@ -61,7 +60,7 @@ function Settings({
           )}
         </div>
       )}
-      {!queuedPost && (
+      {/* {!queuedPost && (
         <div
           className="absolute bottom-4 right-4 cursor-pointer border rounded-md bg-gray-200  flex justify-center items-center hover:bg-gray-300 transition-all"
           onClick={() => handleLikeUnlike()}
@@ -72,7 +71,7 @@ function Settings({
             } p-1 h-6 w-6`}
           />
         </div>
-      )}
+      )} */}
     </div>
   );
 }

@@ -7,16 +7,23 @@ import { useAuth } from "../../utils/auth";
 import useUser from "../../components/Queries/USERS/useUser";
 
 import { useQueryClient } from "react-query";
+import ExploreRouter from "../../components/UserCenterMain/ExploreRouter";
+import ExploreMain from "../../components/ExploreMain";
 //user dashboard do not require prerendering. but serverside rendering can aide
 
 function Dashboard() {
+
   const { userId } = useAuth();
-  const { userData, isReady2 } = useUser();
+  const { userData } = useUser();
   const router = useRouter();
 
+  const {exploreId} = router.query;
 
 
-  if (userData.isSuccess && isReady2) {
+  if (!userId) return null;
+
+
+  if (userData.isSuccess) {
     return (
       <div className="flex flex-col h-screen w-screen">
         <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray flex items-center px-4">
@@ -26,12 +33,13 @@ function Dashboard() {
         </nav>
         <div className="w-full h-full  flex flex-row bg-red-300 flex-initial overflow-hidden">
           <UserControlSidebar />
-          <UserCenterMain userId={userId}/>
+          <UserCenterMain userId={userId} targetId={exploreId}/>
+          {/* <ExploreMain targetId={exploreId}/> */}
           <SocialSidebar />
         </div>
       </div>
     );
-  } else if (!isReady2) {
+  } else if (userData.isLoading) {
     return <div className="flex flex-col h-screen w-screen ">Loading</div>;
   } else {
     return <div>Error</div>;

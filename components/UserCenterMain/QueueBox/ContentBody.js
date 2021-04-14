@@ -12,7 +12,7 @@ function ContentBody({
       <h1 className="my-2 h-full items-center flex justify-center text-lg w-full font-bold py-3 bg-gray-100 rounded-md px-4">
         {postContent}{" "}
       </h1>
-      <div className="relative w-full flex-initial flex flex-col justify-center items-center py-4 bg-white-100">
+      <div className="relative w-full flex-initial flex flex-col justify-center items-center py-4 bg-white-100 border-t border-gray-400 mt-4">
         <button
           onClick={() => setQueueId(queueId)}
           className=" w-32 mx-2 rounded-md text-white py-2  my-1 font-bold bg-custom-pink-1000"

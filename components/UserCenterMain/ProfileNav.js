@@ -16,7 +16,7 @@ function ProfileNav({ directive }) {
       <ul className="h-full w-full flex justify-end items-center">
         <li
           className={`px-4 mx-2 color-gray-600  ${
-            directive == "posts" && "font-bold"
+            directive == "dashboardPosts" && "font-bold"
           } `}
         >
           <Link className="cursor-pointer" href="/dashboard/posts">

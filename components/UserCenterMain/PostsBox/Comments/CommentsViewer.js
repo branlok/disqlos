@@ -8,9 +8,10 @@ function CommentsViewer({
   viewerOpened,
   postCachedLocation,
   numberOfComments,
+  commentsResponse,
   directory
 }) {
-  const { commentsResponse } = useCommentsReq(postId, viewerOpened);
+  //const { commentsResponse } = useCommentsReq(postId, viewerOpened);
   const queryClient = useQueryClient();
 
 
@@ -54,7 +55,7 @@ function CommentsViewer({
                 ) : (
                   <button
                     onClick={() =>
-                      queryClient.prefetchQuery(["fetchComments", postId])
+                      queryClient.invalidateQueries(["fetchComments", postId])
                     }
                     className="px-2 my-2 text-xs border rounded-md bg-gray-400 font-bold text-white cursor-pointer hover:bg-gray-500 active:bg-gray-700"
                   >

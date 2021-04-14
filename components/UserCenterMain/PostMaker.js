@@ -23,9 +23,10 @@ function PostMaker({setDirective , directive}) {
 
   const mutation = useMutation((value) => handleNewPost(value, userId, queue, userData), {
     onSuccess: async () => {
-      await queryClient.refetchQueries("fetchQueuedPosts");
+      queryClient.refetchQueries(["getPosts", "posts"])
+      queryClient.refetchQueries("fetchQueuedPosts");
       //queryClient.invalidateQueries("fetchQueuedPosts");
-      queryClient.invalidateQueries("fetchOwnPosts");
+     // queryClient.invalidateQueries("fetchOwnPosts");
     },
   });
 

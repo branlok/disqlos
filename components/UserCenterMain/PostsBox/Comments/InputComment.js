@@ -2,12 +2,25 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import usePushPost from "./mutations";
-import {useAuth} from "../../../../utils/auth";
+import { useAuth } from "../../../../utils/auth";
 import ArrowDownSvg from "../../../../styles/svg/arrowDown.svg";
 import ArrowUpSvg from "../../../../styles/svg/arrowUp.svg";
-import {useQueryClient} from "react-query";
-import useCommentsReq from "./useCommentsReq"
-function InputComment({postId, viewerOpened, setViewerOpened, page, directory}) {
+import HeartItSvg from "../../../../styles/svg/heart.svg";
+import { useQueryClient } from "react-query";
+import useCommentsReq from "./useCommentsReq";
+import useAddComments from "./useAddComments";
+import useOnlyUserData from "../../../Queries/USERS/useOnlyUserData";
+
+function InputComment({
+  postId,
+  viewerOpened,
+  setViewerOpened,
+  page,
+  directory,
+  loginProtected,
+  liked,
+  handleLikeUnlike,
+}) {
   const initialValues = {
     content: "",
   };
@@ -15,27 +28,49 @@ function InputComment({postId, viewerOpened, setViewerOpened, page, directory}) 
   const validationSchema = yup.object({
     content: yup.string().min(1).max(250).required(),
   });
-  const {userId} = useAuth();
-  const {addComment} = usePushPost(directory);
-  const {commentsResponse} = useCommentsReq(postId); //becayse you put in a prop, it knows its different. im guess.
+  const { userId } = useAuth();
+  const { userData } = useOnlyUserData();
+  // const { addComment } = usePushPost(directory);
+  const cacheReference =
+    directory == "posts"
+      ? "fetchOwnPosts"
+      : directory == "feed"
+      ? "fetchFollowingPosts"
+      : "getTargetPosts";
+
+  const { addCommentMutation } = useAddComments(
+    ["getPosts", directory],
+    userData
+  );
+  //const { commentsResponse } = useCommentsReq(postId); //becayse you put in a prop, it knows its different. im guess.
   //you could also use queryClient.invalidateQueries(postId) as long as thiscomments always exists, so will the direct useHook.
-  const queryClient = useQueryClient()
-
-  function handleExpand() {
-    setViewerOpened(!viewerOpened);
-
-    //only fetch when it is opened.
-    if (!viewerOpened ) {
-      //queryClient.prefetchQuery(["fetchComments", postId])
-      // commentsResponse.refetch();
-    }
-  }
+  const queryClient = useQueryClient();
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={({ content }, helper) => {addComment(postId, userId, content, page); queryClient.prefetchQuery(["fetchComments", postId]); setViewerOpened(true); helper.resetForm()}}
+      onSubmit={({ content }, helper) => {
+        if (loginProtected) {
+          alert("login please");
+          return;
+        }
+
+        addCommentMutation.mutate({
+          content,
+          userId,
+          postId,
+          page,
+          userData: userData.data,
+        });
+        // addComment(postId, userId, content, page);
+        //refetch
+        //console.log([cacheReference, postId], ["fetchComments","jURed72Eh_SnC8vDwBA_S"])
+        setViewerOpened(true);
+        queryClient.invalidateQueries(["fetchComments", postId]);
+
+        helper.resetForm();
+      }}
     >
       <Form className=" h-full w-full items-center flex justify-center">
         <Field
@@ -53,8 +88,22 @@ function InputComment({postId, viewerOpened, setViewerOpened, page, directory}) 
         >
           Submit
         </button>
-        <div className="border rounded-md ml-2 bg-gray-200 flex justify-center items-center" onClick={handleExpand}>
-          {viewerOpened ? <ArrowUpSvg/> : <ArrowDownSvg/>}
+
+        <div
+          className="border rounded-md ml-2 bg-gray-200 flex justify-center items-center"
+          onClick={() => setViewerOpened(!viewerOpened)}
+        >
+          {viewerOpened ? <ArrowUpSvg /> : <ArrowDownSvg />}
+        </div>
+        <div
+          className="border rounded-md ml-2 bg-gray-200 flex justify-center items-center cursor-pointer"
+          onClick={() => handleLikeUnlike()}
+        >
+          <HeartItSvg
+            className={`fill-current  ${
+              liked ? "text-red-400" : "text-gray-400"
+            } p-1 h-6 w-6`}
+          />
         </div>
       </Form>
     </Formik>

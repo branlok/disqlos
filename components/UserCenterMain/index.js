@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Header from "./Header";
+import PublicHeader from "../PublicUserPage/PublicHeader";
 import ProfileNav from "./ProfileNav";
 
 import PostMaker from "./PostMaker";
@@ -12,38 +13,42 @@ import QueuePostMaker from "./QueueBox/QueuePostMaker";
 import MetaQueuePostMaker from "./MetaQueueBox/MetaQueuePostMaker";
 import MetaQueueBox from "./MetaQueueBox/index";
 
-import userFirestoreUserSelf from "../Queries/USERS/firestoreUserSelf";
-import userQuery from "../Queries/USERS/firestoreUserSelf";
-
-function UserCenterMain() {
+function UserCenterMain({ targetId, userId }) {
   const router = useRouter();
   const { tab } = router.query;
+  const { exploreId } = router.query;
 
-  const [directive, setDirective] = useState("posts"); //submap of user's content 1. View Posts [filters], StoryMode
+  const [directive, setDirective] = useState(""); //submap of user's content 1. View Posts [filters], StoryMode
+
   const [queueId, setQueueId] = useState(false);
 
   useEffect(() => {
-    console.log(tab);
+    //user
+    if (exploreId) {
+      setDirective("userPosts");
+
+    }
+
+    //dashbaord
     if (tab == "feed") {
       setDirective("feed");
-      console.log("ran");
-    } else if (tab == "posts") {
-      setDirective("posts");
-      console.log("ran");
-    } else if (tab == "queue") {
+    }
+    if (tab == "posts") {
+      setDirective("dashboardPosts");
+    }
+    if (tab == "queue") {
       setDirective("queue");
-      console.log("ran");
     }
   });
 
-  if (directive === "posts") {
+  if (directive === "dashboardPosts") {
     return (
       <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll ">
         <div id="top" className=" w-3/4 m-auto  pb-40 mb-40 ">
           <Header />
           <PostMaker setDirective={setDirective} />
           <ProfileNav directive={directive} setDirective={setDirective} />
-          <PostsBox directive={directive} />
+          <PostsBox directive={directive} targetId={userId} />
         </div>
       </div>
     );
@@ -77,8 +82,18 @@ function UserCenterMain() {
         </div>
       </div>
     );
+  } else if (directive == "userPosts") {
+    return (
+      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 px-2 md:px-20 pt-4 overflow-scroll no-scrollbar">
+        {/* <PublicHeader /> */}
+        <PostsBox
+          directive={directive}
+          targetId={targetId}
+        />
+      </div>
+    );
   } else {
-    return <div>Error</div>;
+    return <div></div>;
   }
 }
 

@@ -4,13 +4,15 @@ import ProfileCircle from "../../../BasicComponents/ProfileCircle";
 import useUser from "../../../Queries/USERS/useUser";
 import displaySelection from "../../helperFunctions/displaySelection";
 import useDeleteComment from "../../utils/useDeleteComment";
+
 import TimeAgo from "react-timeago";
+
 function SingleComment({ postId, item, page, postCachedLocation, directory }) {
   const { userData } = useUser();
   const uid = userData.data.uid;
 
   //cacheLoaction is the pointer to the react-query cache system.
-  const { deleteComment } = useDeleteComment(
+  const { deleteCommentMutation } = useDeleteComment(
     postId,
     item.commentId,
     page,
@@ -34,7 +36,6 @@ function SingleComment({ postId, item, page, postCachedLocation, directory }) {
                   {item.uniqueDisplayName}
                 </div>
               </div>
-
               <TimeAgo
                 className="items-center text-xs text-gray-600"
                 date={item.createdOn.toDate()}
@@ -43,11 +44,9 @@ function SingleComment({ postId, item, page, postCachedLocation, directory }) {
             </div>
             <div
               className="absolute md:relative md:ml-2 top-0.5 right-0 flex items-center justify-center w-8 h-8 flex-initial rounded-md bg-custom-pink-500 text-gray-300 hover:bg-red-500 hover:text-red-900 cursor-pointer"
-              onClick={() => deleteComment()}
+              onClick={() => deleteCommentMutation.mutate()}
             >
-              {item.uid == uid && (
-                <BinSVG className="w-4 h-4 fill-current " />
-              )}
+              {item.uid == uid && <BinSVG className="w-4 h-4 fill-current " />}
             </div>
           </header>
           <div className="relative text-sm mt-2 pl-2 pb-4 ">{item.content}</div>

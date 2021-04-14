@@ -2,7 +2,7 @@ import React from 'react'
 import useUser from '../Queries/USERS/useUser'
 
 function Header() {
-
+    
     const {userData} = useUser();
     const userProfile = userData.data;
 
@@ -10,6 +10,8 @@ function Header() {
     const numberOfPosts = userProfile.numberOfPosts ? userProfile.numberOfPosts : "0";
     const numberOfFollowers = userProfile.numberOfFollowers ? userProfile.numberOfFollowers : "0";
     const numberOfFollowing = userProfile.following?.length - 1 ? userProfile.following.length - 1  : "0"; 
+    
+    
 
     return (
         <div className="h-14 w-full flex flex-col md:flex-row justify-between items-center bg-custom-pink-400 px-4 rounded-md border-2 border-gray mb-5">
