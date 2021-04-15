@@ -19,7 +19,7 @@ export default function useUser() {
 
   const [refetchInterval, setRefetchInterval] = useState(1000);
 
-  const userData = useQuery("selfData", () => getOwnUserData(userId), {
+  const userData = useQuery("selfData", () => getUserData(userId), {
     enabled: isReady,
     refetchInterval: refetchInterval,
     refetchOnMount: false, //subsequent calls on this function, if within staletime and cache time, it wont be called again.
@@ -44,7 +44,7 @@ export default function useUser() {
   return { userData, isReady2 };
 }
 
-export function getOwnUserData(userId) {
+export function getUserData(userId) {
   return db
     .collection("USERS")
     .doc(userId)

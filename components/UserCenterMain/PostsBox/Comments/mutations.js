@@ -4,6 +4,7 @@ import firebase from "firebase";
 import { nanoid } from "nanoid";
 import useUser from "../../../Queries/USERS/useUser";
 
+
 function postComment({ postId, userId, content, userDataContent }) {
   let commentId = nanoid();
 

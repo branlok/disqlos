@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CollapseSvg from "../../styles/svg/collapse.svg";
+import CollapseSvg from "../../styles/svg/arrowRight.svg";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import MinimizedSocial from "./MinimizedSocial";
 import TriangleSvg from "../../styles/svg/trianglearrow.svg";
@@ -11,7 +11,7 @@ export default function SocialSidebar() {
   let [showToggle, setShowToggle] = useState(true);
   let [showSearch, setShowSearch] = useState();
   let { width } = useWindowDimensions();
-  let followerDataQuery = useRetrieveFollowerData();
+  let {followerDataQuery} = useRetrieveFollowerData();
 
   useEffect(() => {
     if (width < 900) {
@@ -22,35 +22,42 @@ export default function SocialSidebar() {
     }
   }, [width]);
 
-  return (
-    <div className="relative">
-      {collapse ? (
-        <MinimizedSocial
+  if (followerDataQuery.isSuccess) {
+    return (
+      <div className="relative">
+        {collapse ? (
+          <MinimizedSocial
+            collapse={collapse}
+            setCollapse={setCollapse}
+            followerDataQuery={followerDataQuery}
+            showToggle={showToggle}
+          />
+        ) : (
+          <SocialSidebarRegular
+            collapse={collapse}
+            setCollapse={setCollapse}
+            followerDataQuery={followerDataQuery}
+            showToggle={showToggle}
+            setShowSearch={setShowSearch}
+          />
+        )}
+        <Collapser
           collapse={collapse}
           setCollapse={setCollapse}
-          followerDataQuery={followerDataQuery}
           showToggle={showToggle}
         />
-      ) : (
-        <SocialSidebarRegular
-          collapse={collapse}
-          setCollapse={setCollapse}
-          followerDataQuery={followerDataQuery}
-          showToggle={showToggle}
-          setShowSearch={setShowSearch}
-        />
-      )}
-      <Collapser
-        collapse={collapse}
-        setCollapse={setCollapse}
-        showToggle={showToggle}
-      />
-      <ScrollToTop />
-    </div>
-  );
+        <ScrollToTop />
+      </div>
+    );
+  } else  {
+    return <div></div>
+  }
+  
 }
 
-const Collapser = ({ collapse, setCollapse, showToggle }) => {
+//action accessories
+
+function Collapser({ collapse, setCollapse, showToggle }) {
   const orientationLeft = collapse;
 
   if (showToggle) {
@@ -62,9 +69,9 @@ const Collapser = ({ collapse, setCollapse, showToggle }) => {
         onClick={() => setCollapse(!collapse)}
       >
         {orientationLeft ? (
-          <CollapseSvg className="grayFill cursor-pointer" />
+          <CollapseSvg className="grayFill cursor-pointer  transform rotate-180" />
         ) : (
-          <CollapseSvg className="grayFill cursor-pointer transform rotate-180" />
+          <CollapseSvg className="grayFill cursor-pointer" />
         )}
       </div>
     );

@@ -6,13 +6,14 @@ import firebase from "firebase";
 function useAddComments(cacheTarget) {
   const queryClient = useQueryClient();
   const addCommentMutation = useMutation(addCommentsToPost, {
-    onSuccess: (data, variables) => {updateCache(cacheTarget, variables);},
+    onSuccess: (data, variables) => {
+      updateCache(cacheTarget, variables);
+    },
   });
 
   const updateCache = (cacheTarget, variables) => {
       console.log(cacheTarget)
     queryClient.setQueryData(cacheTarget, (oldData) => {
-        console.log("should update")
       let { pageIdx, entryIdx } = variables.page;
       oldData.pages[pageIdx][entryIdx].numberOfComments++;
       return oldData;
@@ -23,7 +24,7 @@ function useAddComments(cacheTarget) {
 }
 
 function addCommentsToPost({ postId, userId, content, userData }) {
-
+  console.log(userData.uniqueDisplayName, userData.displayName, "#@");
   let commentId = nanoid();
   const payload = {
     commentId: commentId,
@@ -34,6 +35,7 @@ function addCommentsToPost({ postId, userId, content, userData }) {
     likedBy: [],
     primaryProfileImage: userData.primaryProfileImage,
     uniqueDisplayName: userData.uniqueDisplayName,
+    displayName: userData.displayName,
   };
 
   return db

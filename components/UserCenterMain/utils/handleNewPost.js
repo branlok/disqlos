@@ -37,7 +37,7 @@ export default async function handleNewPost(value, userId, queue, userData) {
             likedBy,
             numberOfComments,
             numberOfChildren,
-            primaryProfileImage: userData.data.primaryProfileImage
+            primaryProfileImage: userData.data.primaryProfileImage,
           })
       } catch (error) {
         return error;
@@ -92,7 +92,9 @@ export default async function handleNewPost(value, userId, queue, userData) {
           imageUrl,
           likedBy,
           numberOfComments,
-          primaryProfileImage: userData.data.primaryProfileImage
+          primaryProfileImage: userData.data.primaryProfileImage,
+          displayName: userData.data.displayName,
+          uniqueDisplayName: userData.data.uniqueDisplayName
         });
       } catch (error) {
         return "error";
@@ -114,7 +116,9 @@ export default async function handleNewPost(value, userId, queue, userData) {
           imageUrl: false,
           likedBy,
           numberOfComments,
-          primaryProfileImage: userData.data.primaryProfileImage
+          primaryProfileImage: userData.data.primaryProfileImage,
+          displayName: userData.data.displayName,
+          uniqueDisplayName: userData.data.uniqueDisplayName
         });
       } catch (error) {
         return error;

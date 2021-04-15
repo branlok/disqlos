@@ -4,9 +4,9 @@ import PostsBox from "../UserCenterMain/PostsBox";
 
 function ExploreMain({ targetId }) {
   return (
-    <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 px-2 md:px-20 pt-4 overflow-scroll no-scrollbar">
+    <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r px-2 md:px-20 pt-4 overflow-scroll no-scrollbar">
       {/* <ProfileNav directive={directive} setDirective={setDirective} /> */}
-      {/* <PostsBox targetId={targetId}/> */}
+      <PostsBox directive={"user"} targetId={targetId}/>
     </div>
   );
 }

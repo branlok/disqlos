@@ -21,7 +21,7 @@ export default function useLikePost(postId, directory) {
   );
 
   const updateCache = (directory, variables) => {
-    queryClient.setQueryData(["getPosts", directory], oldData => {
+    queryClient.setQueryData(directory, oldData => {
       let { pageIdx, entryIdx } = variables.page;
       if (variables.unlike) {
         let newLikedByArray = oldData.pages[pageIdx][

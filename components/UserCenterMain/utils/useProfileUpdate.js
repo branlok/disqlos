@@ -12,11 +12,22 @@ export default function useProfileUpdate() {
       return handleUploadRoutes({ ...values, userId });
     },
     {
-      onSuccess: (data) =>
-        queryClient.setQueryData("selfData", (oldData) => {
+      onSuccess: (data, variables) => {
+        if (variables.newProfileImage) {
+          queryClient.setQueryData("selfData", (oldData) => {
             oldData.primaryProfileImage = data;
+            oldData.displayName = variables.displayName;
+            oldData.profileDescription = variables.profileDescription;
             return oldData;
-        }),
+          });
+        } else {
+          queryClient.setQueryData("selfData", (oldData) => {
+            oldData.displayName = variables.displayName;
+            oldData.profileDescription = variables.profileDescription;
+            return oldData;
+          });
+        }
+      },
     }
   );
 

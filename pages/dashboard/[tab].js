@@ -24,8 +24,8 @@ function Dashboard() {
             <b>Disqlos</b>
           </div>
         </nav>
-        <div className="w-full h-full  flex flex-row bg-red-300 flex-initial overflow-hidden">
-          <UserControlSidebar />
+        <div className="w-full h-full flex flex-row bg-red-300 flex-initial overflow-hidden">
+          <UserControlSidebar userData={userData}/>
           <UserCenterMain userId={userId}/>
           <SocialSidebar />
         </div>

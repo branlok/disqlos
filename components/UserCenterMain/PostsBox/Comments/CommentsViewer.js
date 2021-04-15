@@ -9,61 +9,63 @@ function CommentsViewer({
   postCachedLocation,
   numberOfComments,
   commentsResponse,
-  directory
+  directory,
+  targetId,
 }) {
   //const { commentsResponse } = useCommentsReq(postId, viewerOpened);
   const queryClient = useQueryClient();
 
-
-  let NoCommentsMessage = (<div className="flex justify-center flex-col items-center font-xs py-2">
-  <MessageBubble className="mb-2" /> No one has replied yet, be the
-  first!
-</div>)
+  let NoCommentsMessage = (
+    <div className="flex justify-center flex-col items-center font-xs py-2">
+      <MessageBubble className="mb-2" /> No one has replied yet, be the first!
+    </div>
+  );
 
   if (commentsResponse.isSuccess) {
     return (
       <div className="h-full w-full py-2 bg-custom-pink-550 mb-2 rounded-md ">
         <div className="max-h-56 px-2 rounded-md overflow-y-scroll no-scrollbar flex flex-col">
-          {commentsResponse.data.pages.length == "0" && <NoCommentsMessage/>}
-            {commentsResponse.data.pages.map((page, pageIdx) => {
-              return (
-                <React.Fragment key={pageIdx + postId}>
-                  {page.map((comment, commentIdx) => {
-                    return (
-                      <SingleComment
-                        key={comment.commentId}
-                        postId={postId}
-                        item={comment}
-                        postCachedLocation={postCachedLocation}
-                        page={{ pageIdx, commentIdx }}
-                        directory={directory}
-                      />
-                    );
-                  })}
-                </React.Fragment>
-              );
-            })}
-            {
-              <div className="w-full flex justify-center items-center">
-                {commentsResponse.hasNextPage ? (
-                  <button
-                    className="px-2 my-2 border rounded-md bg-gray-300 font-bold text-white cursor-pointer"
-                    onClick={() => commentsResponse.fetchNextPage()}
-                  >
-                    Load More
-                  </button>
-                ) : (
-                  <button
-                    onClick={() =>
-                      queryClient.invalidateQueries(["fetchComments", postId])
-                    }
-                    className="px-2 my-2 text-xs border rounded-md bg-gray-400 font-bold text-white cursor-pointer hover:bg-gray-500 active:bg-gray-700"
-                  >
-                    Refresh
-                  </button>
-                )}
-              </div>
-            }
+          {commentsResponse.data.pages.length == "0" && <NoCommentsMessage />}
+          {commentsResponse.data.pages.map((page, pageIdx) => {
+            return (
+              <React.Fragment key={pageIdx + postId}>
+                {page.map((comment, commentIdx) => {
+                  return (
+                    <SingleComment
+                      key={comment.commentId}
+                      postId={postId}
+                      item={comment}
+                      postCachedLocation={postCachedLocation}
+                      page={{ pageIdx, commentIdx }}
+                      directory={directory}
+                      targetId={targetId}
+                    />
+                  );
+                })}
+              </React.Fragment>
+            );
+          })}
+          {
+            <div className="w-full flex justify-center items-center">
+              {commentsResponse.hasNextPage ? (
+                <button
+                  className="w-full px-2 my-2 border rounded-md  font-bold text-gray-600 cursor-pointer hover:bg-gray-600 active:bg-gray-800 hover:text-white transition-all"
+                  onClick={() => commentsResponse.fetchNextPage()}
+                >
+                  Load More
+                </button>
+              ) : (
+                <button
+                  onClick={() =>
+                    queryClient.invalidateQueries(["fetchComments", postId])
+                  }
+                  className="w-full px-2 my-2 border rounded-md  font-bold text-gray-600 cursor-pointer hover:bg-gray-600 active:bg-gray-800 hover:text-white transition-all"
+                >
+                  No Posts
+                </button>
+              )}
+            </div>
+          }
         </div>
       </div>
     );
@@ -71,8 +73,10 @@ function CommentsViewer({
     return (
       <div className="animate-pulse  h-full w-full py-2 bg-custom-pink-550 mb-2 rounded-md ">
         <div className="max-h-56 px-2 rounded-md overflow-y-scroll no-scrollbar">
-          <div className="flex justify-center flex-col items-center font-xs py-2">
-            Loading...
+          <div
+            className="w-full px-2 my-2 border rounded-md  font-bold text-gray-600 text-center transition-all"
+          >
+            Loading
           </div>
         </div>
       </div>

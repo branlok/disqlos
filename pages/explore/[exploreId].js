@@ -6,15 +6,13 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../utils/auth";
 import useUser from "../../components/Queries/USERS/useUser";
 
-import { useQueryClient } from "react-query";
-import ExploreRouter from "../../components/UserCenterMain/ExploreRouter";
-import ExploreMain from "../../components/ExploreMain";
 //user dashboard do not require prerendering. but serverside rendering can aide
 
-function Dashboard() {
+function Explore() {
 
+    //Logged In UserData
   const { userId } = useAuth();
-  const { userData } = useUser();
+  const { userData, isReady2 } = useUser();
   const router = useRouter();
 
   const {exploreId} = router.query;
@@ -23,7 +21,7 @@ function Dashboard() {
   if (!userId) return null;
 
 
-  if (userData.isSuccess) {
+  if (userData.isSuccess && isReady2) {
     return (
       <div className="flex flex-col h-screen w-screen">
         <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray flex items-center px-4">
@@ -32,8 +30,8 @@ function Dashboard() {
           </div>
         </nav>
         <div className="w-full h-full  flex flex-row bg-red-300 flex-initial overflow-hidden">
-          <UserControlSidebar />
-          <UserCenterMain userId={userId} targetId={exploreId}/>
+          <UserControlSidebar userData={userData}/>
+          <UserCenterMain userData={userData} userId={userId} targetId={exploreId}/>
           {/* <ExploreMain targetId={exploreId}/> */}
           <SocialSidebar />
         </div>
@@ -46,4 +44,4 @@ function Dashboard() {
   }
 }
 
-export default Dashboard;
+export default Explore;

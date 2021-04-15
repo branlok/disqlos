@@ -17,7 +17,7 @@ export default function useCommentsReq(postId, viewerOpened = false) {
       refetchOnMount: false,
       staleTime: 60 * 1000,
       cacheTime: 60 * 1000,
-      getNextPageParam: (lastPage, allPage) =>
+      getNextPageParam: (lastPage, allPage) =>  
       //if we receieve less than limit, it means it is the last page. if exactly 5, we allow for fetch button one more time, but after that it will stop.
         lastPage.length < 5
           ? undefined

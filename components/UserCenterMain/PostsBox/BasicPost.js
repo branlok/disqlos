@@ -22,9 +22,9 @@ function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId, ta
   //const cacheReference = matchDirectoryToCache(directory, targetId) 
  const liked = item.likedBy.includes(userData.data.uid);
 
- 
-  const { likeMutation } = useLikePost(item.postId, directory);
   
+  const { likeMutation } = useLikePost(item.postId, ["getPosts", directory, targetId]);
+  console.log(directory, item.postId, "bruh")
   function handleLikeUnlike() {
     if (liked) {
       likeMutation.mutate({unlike: true, page})
@@ -39,7 +39,7 @@ function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId, ta
     <div className="relative h-full px-2 mb-4 bg-custom-pink-300 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
       <div className="h-full flex child">
         <PortfolioCard postOwner={item.userId} post={item} />
-        <ContentBody postContent={item.content} />
+        <ContentBody postContent={item.content} date={item.createdOn}/>
         <Settings
           postId={item.postId}
           postOwner={item.userId}
@@ -57,6 +57,7 @@ function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId, ta
           directory={directory}
           handleLikeUnlike={handleLikeUnlike}
           liked={liked}
+          targetId={targetId}
         />
       )}
       {!queuedPost && (

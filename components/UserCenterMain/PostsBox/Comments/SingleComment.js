@@ -2,12 +2,11 @@ import React from "react";
 import BinSVG from "../../../../styles/svg/deleteBin.svg";
 import ProfileCircle from "../../../BasicComponents/ProfileCircle";
 import useUser from "../../../Queries/USERS/useUser";
-import displaySelection from "../../helperFunctions/displaySelection";
 import useDeleteComment from "../../utils/useDeleteComment";
 
 import TimeAgo from "react-timeago";
 
-function SingleComment({ postId, item, page, postCachedLocation, directory }) {
+function SingleComment({targetId, postId, item, page, postCachedLocation, directory }) {
   const { userData } = useUser();
   const uid = userData.data.uid;
 
@@ -17,13 +16,14 @@ function SingleComment({ postId, item, page, postCachedLocation, directory }) {
     item.commentId,
     page,
     postCachedLocation,
-    directory
+    directory,
+    targetId
   );
 
   if (uid == item.uid) {
     let primaryProfileImage = userData.data.primaryProfileImage;
     return (
-      <div className="my-2 bg-custom-pink-300 rounded-sm flex flex-row justify-between items-center px-2 py-1 first:mt-0 last:mb-0">
+      <div className="my-1 bg-custom-pink-300 rounded-sm flex flex-row justify-between items-center px-2 py-1 first:mt-0 last:mb-0">
         <div className="relative flex flex-col w-full">
           <header className="flex justify-between items-center w-full border-b-2 pb-1 ">
             <div className="flex justify-between items-center py-2 h-full flex-col md:flex-row w-full">

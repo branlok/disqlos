@@ -13,7 +13,7 @@ export default function usePostGetters(directive, targetId) {
   //   : [""];
 
   const getPosts = useInfiniteQuery(
-    ["getPosts", directive],
+    ["getPosts", directive, targetId],
     ({ pageParam = false }) => {
       if (pageParam) {
         if (directive == "dashboardPosts" || directive == "userPosts") return fetchAfterInitialPosts(targetId, pageParam);

@@ -8,7 +8,8 @@ export default function useDeleteComment(
   commentId,
   page,
   postCachedLocation,
-  directory
+  directory,
+  targetId,
 ) {
 
   const queryClient = useQueryClient();
@@ -19,7 +20,7 @@ export default function useDeleteComment(
       oldData.pages[pageIdx].splice(commentIdx, 1);
       return oldData;
     });
-    queryClient.setQueryData(["getPosts", directory], (oldData) => {
+    queryClient.setQueryData(["getPosts", directory, targetId], (oldData) => {
       let { pageIdx, entryIdx } = postCachedLocation;
       oldData.pages[pageIdx][entryIdx].numberOfComments--;
       return oldData;

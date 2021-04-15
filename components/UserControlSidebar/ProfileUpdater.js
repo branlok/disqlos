@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik";
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import useUser from "../Queries/USERS/useUser";
 import * as yup from "yup";
 import useProfileUpdate from "../UserCenterMain/utils/useProfileUpdate";
@@ -9,10 +9,11 @@ function ProfileUpdater({ setShowProfileUpdater }) {
   const userProfile = userData.data;
   const imageInput = useRef();
   const profileMutation = useProfileUpdate();
+  const [showReturn, setShowReturn] = useState(false);
 
   const primaryProfileImage = userProfile.primaryProfileImage;
-  const defaultProfileImage = userProfile.defaultProfileImage;
-  const customProfileImage = userProfile.customProfileImage;
+  // const defaultProfileImage = userProfile.defaultProfileImage;
+  // const customProfileImage = userProfile.customProfileImage;
 
   /*FORMIK logic*/
   const profileSchema = {
@@ -31,8 +32,8 @@ function ProfileUpdater({ setShowProfileUpdater }) {
         type: yup.string().required(),
       })
       .nullable(),
-    displayName: yup.string().required(),
-    profileDescription: yup.string().required(),
+    displayName: yup.string().min(3, "min of 3 characters").max(38, "max of 38 characters").required(),
+    profileDescription: yup.string().max(135, "max of 135 characters").required(),
   });
 
   function handleFile(e, setFieldValue) {
@@ -45,12 +46,15 @@ function ProfileUpdater({ setShowProfileUpdater }) {
       console.log(file);
     } else {
       e.target.value = null;
+      alert("Import Images less than 5Mb")
       setFieldValue("newProfileImage", null);
     }
   }
 
+  const ErrorStyle = "text-red-500 outline-none ring ring-red-300"
+
   return (
-    <div className="top-0 left-0 w-screen h-screen absolute bg-gray-500 bg-opacity-20 z-20 flex justify-center items-center">
+    <div className="top-0 left-0 w-screen h-screen absolute bg-gray-500 bg-opacity-30 z-20 flex justify-center items-center">
       <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100">
         <h1 className="text-center my-2 font-bold text-xl">Update Profile</h1>
         <Formik
@@ -60,7 +64,8 @@ function ProfileUpdater({ setShowProfileUpdater }) {
             profileMutation.mutate(values, {
               onSuccess: () => {
                 console.log("success");
-                formik.resetForm();
+                // formik.resetForm();
+                setShowReturn(true);
               },
             });
           }}
@@ -90,29 +95,35 @@ function ProfileUpdater({ setShowProfileUpdater }) {
               <label htmlFor="displayName">Display Name</label>
               <Field
                 name="displayName"
-                className="h-8 w-full my-2 pl-2 rounded-md border"
+                className={`h-8 w-full my-2 pl-2 rounded-md border ${props.errors.displayName && ErrorStyle}`}
               ></Field>
               <label>Profile Description</label>
               <Field
                 name="profileDescription"
                 as="textarea"
-                className="w-full  my-2 p-2 rounded-md border"
+                className={`w-full  my-2 p-2 rounded-md border ${props.errors.profileDescription && ErrorStyle}`}
               ></Field>
               <div>
-                <button
-                  type="button"
-                  className="border rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2"
-                  onClick={() => setShowProfileUpdater(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="border rounded-md px-2 py-1 bg-gray-800 text-white hover:bg-green-500 hover:text-white m-2"
-                >
-                  Update
-                </button>
-                <div className="h-full rounded-md  justify-center flex items-center mx-1 border-4 mt-2">
+                {showReturn ? (
+                  <button onClick={() => setShowProfileUpdater(false)} type="button" className="border rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2">Return</button>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className="border rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2"
+                      onClick={() => setShowProfileUpdater(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="border rounded-md px-2 py-1 bg-gray-800 text-white hover:bg-green-500 hover:text-white m-2"
+                    >
+                      Update
+                    </button>
+                  </>
+                )}
+                <div className="h-full rounded-md  justify-center flex items-center mx-1 mt-2">
                   {profileMutation.isLoading && (
                     <PictureSvg2 className="animate-spin fill-current text-gray-400 my " />
                   )}

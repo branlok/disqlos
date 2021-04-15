@@ -12,6 +12,7 @@ import useAddComments from "./useAddComments";
 import useOnlyUserData from "../../../Queries/USERS/useOnlyUserData";
 
 function InputComment({
+  targetId,
   postId,
   viewerOpened,
   setViewerOpened,
@@ -39,8 +40,7 @@ function InputComment({
       : "getTargetPosts";
 
   const { addCommentMutation } = useAddComments(
-    ["getPosts", directory],
-    userData
+    ["getPosts", directory, targetId]
   );
   //const { commentsResponse } = useCommentsReq(postId); //becayse you put in a prop, it knows its different. im guess.
   //you could also use queryClient.invalidateQueries(postId) as long as thiscomments always exists, so will the direct useHook.
@@ -55,7 +55,6 @@ function InputComment({
           alert("login please");
           return;
         }
-
         addCommentMutation.mutate({
           content,
           userId,

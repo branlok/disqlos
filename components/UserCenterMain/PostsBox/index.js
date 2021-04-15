@@ -6,13 +6,13 @@ import usePostGetters from "./usePostGetters";
 function PostsBox({ directive, targetId }) {
   //if we are on explore/uid
   let { getPosts } = usePostGetters(directive, targetId);
-
+  console.log(directive, targetId)
   if (getPosts.status == "success")
     return (
       <div className="w-full mt-2 flex flex-col pb-40">
         {getPosts.data.pages.map((page, pageIdx) => {
           return (
-            <React.Fragment key={pageIdx + "posts"}>
+            <React.Fragment key={pageIdx + directive + targetId}>
               {page.map((item, entryIdx) => {
                 //{pageIdx,entryIdx} used for updating query-cache in userLikedPost.js
                 if (item.type == "text")
@@ -22,6 +22,7 @@ function PostsBox({ directive, targetId }) {
                       item={item}
                       page={{ pageIdx, entryIdx }}
                       directory={directive}
+                      targetId={targetId}
                     />
                   );
                 if (item.type == "image")
@@ -31,6 +32,7 @@ function PostsBox({ directive, targetId }) {
                       item={item}
                       page={{ pageIdx, entryIdx }}
                       directory={directive}
+                      targetId={targetId}
                     />
                   );
               })}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Header from "./Header";
-import PublicHeader from "../PublicUserPage/PublicHeader";
 import ProfileNav from "./ProfileNav";
 
 import PostMaker from "./PostMaker";
@@ -12,6 +11,7 @@ import QueuePostMaker from "./QueueBox/QueuePostMaker";
 
 import MetaQueuePostMaker from "./MetaQueueBox/MetaQueuePostMaker";
 import MetaQueueBox from "./MetaQueueBox/index";
+import ProfileExplore from "./ProfileExplore";
 
 function UserCenterMain({ targetId, userId }) {
   const router = useRouter();
@@ -19,16 +19,14 @@ function UserCenterMain({ targetId, userId }) {
   const { exploreId } = router.query;
 
   const [directive, setDirective] = useState(""); //submap of user's content 1. View Posts [filters], StoryMode
-
+  console.log(router.query.tab);
   const [queueId, setQueueId] = useState(false);
 
   useEffect(() => {
     //user
     if (exploreId) {
       setDirective("userPosts");
-
     }
-
     //dashbaord
     if (tab == "feed") {
       setDirective("feed");
@@ -41,9 +39,11 @@ function UserCenterMain({ targetId, userId }) {
     }
   });
 
+  console.log(router.query);
+
   if (directive === "dashboardPosts") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll ">
+      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll ">
         <div id="top" className=" w-3/4 m-auto  pb-40 mb-40 ">
           <Header />
           <PostMaker setDirective={setDirective} />
@@ -54,14 +54,14 @@ function UserCenterMain({ targetId, userId }) {
     );
   } else if (directive === "feed") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 px-2 md:px-20 pt-4 overflow-scroll no-scrollbar">
+      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r  px-2 md:px-20 pt-4 overflow-scroll no-scrollbar">
         <ProfileNav directive={directive} setDirective={setDirective} />
         <PostsBox directive={directive} />
       </div>
     );
   } else if (directive === "queue") {
     return (
-      <div className="svgBackground h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 pt-4 overflow-scroll no-scrollbar overscroll-contain ">
+      <div className="svgBackground h-full w-full flex-initial bg-custom-gray-500 border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain ">
         <div className="w-3/4 m-auto pb-60 mb-40">
           <Header />
           {queueId ? (
@@ -84,13 +84,7 @@ function UserCenterMain({ targetId, userId }) {
     );
   } else if (directive == "userPosts") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r z-0 px-2 md:px-20 pt-4 overflow-scroll no-scrollbar">
-        {/* <PublicHeader /> */}
-        <PostsBox
-          directive={directive}
-          targetId={targetId}
-        />
-      </div>
+      <ProfileExplore directive={directive} targetId={targetId} />
     );
   } else {
     return <div></div>;

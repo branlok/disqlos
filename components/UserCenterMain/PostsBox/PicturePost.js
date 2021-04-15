@@ -29,7 +29,7 @@ function PicturePost({ item, page, queuedPost, directory, queueId }) {
       <ImageCard imageUrl={item.imageUrl} />
       <div className="h-full flex child">
         <PortfolioCard postOwner={item.userId} post={item} />
-        <ContentBody postContent={item.content} />
+        <ContentBody postContent={item.content} date={item.createdOn} />
         <Settings
           postId={item.postId}
           postOwner={item.userId}
