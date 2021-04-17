@@ -18,20 +18,20 @@ function FollowerSearch({ navigation, setNavigation }) {
   });
 
   return (
-    <div className="h-full w-64 flex-none z-10 bg-custom-pink-500 flex flex-col">
-      <header className="relative h-16 p-2 w-full border-b flex-none">
-        <h3 className="font-bold text-custom-pink-950 text-center rounded-md w-full h-full rounded-md flex justify-center items-center">
+    <div className="h-full w-64 flex-none z-10 bg-custom-pink-500 dark:bg-cb-2  flex flex-col">
+      <header className="relative h-16 p-2 w-full border-b flex-none dark:border-cb-3 ">
+        <h3 className="font-bold text-custom-pink-950  dark:text-white text-center rounded-md w-full h-full rounded-md flex justify-center items-center">
           Search
         </h3>
         <div
-          className="absolute top-4 left-2 w-10 h-8 p-2 flex items-start rounded-md  bg-gray-200 hover:bg-gray-300"
+          className="absolute top-4 left-2 w-10 h-8 p-2 flex items-start rounded-md  bg-gray-200 hover:bg-gray-300 dark:bg-cb-4"
           onClick={() => {queryClient.refetchQueries("followerData");  setNavigation("main")}}
         >
-          <ReturnSVG className="h-full w-full" />
+          <ReturnSVG className="h-full w-full current-fill dark:text-cb-3 " />
         </div>
       </header>
       <div className="h-12 flex-none">
-        <div className="h-full w-full bg-custom-pink-500">
+        <div className="h-full w-full bg-custom-pink-500 dark:bg-cb-3">
           <Formik
             initialValues={initialData}
             validationSchema={validationSchema}
@@ -44,7 +44,7 @@ function FollowerSearch({ navigation, setNavigation }) {
               <div className="flex">
                 <Field
                   name="searchQuery"
-                  className="pl-2 h-8 w-full rounded-md text-sm border"
+                  className="pl-2 h-8 w-full rounded-md text-sm border dark:bg-cb-2 dark:border-cb-2 dark:text-white"
                   placeholder="Search User"
                 ></Field>
               </div>
@@ -52,7 +52,7 @@ function FollowerSearch({ navigation, setNavigation }) {
           </Formik>
         </div>
       </div>
-      <div className="h-full w-full flex-initial bg-custom-pink-550 p-2.5 overflow-y-scroll no-scrollbar">
+      <div className="h-full w-full flex-initial bg-custom-pink-550 dark:bg-cb-3 p-2.5 overflow-y-scroll no-scrollbar ">
         {searchFollowerQuery.isSuccess
           && searchFollowerQuery.data.map((item) => {
               return (
@@ -68,7 +68,7 @@ function FollowerSearch({ navigation, setNavigation }) {
             })
           }
       </div>
-      <footer className="h-16 lex items-center justify-center border-t">
+      <footer className="h-16 lex items-center justify-center border-t dark:border-cb-3 ">
         {/* <div className=" rounded-md px-2 py-1 hover:bg-gray-300 cursor-pointer flex justify-center items-center ">
           <AddFollowerSvg
             className="fill-current text-gray-600"

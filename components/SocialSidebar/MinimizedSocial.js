@@ -6,7 +6,7 @@ import CollapseSvg from "../../styles/svg/collapse.svg";
 
 function MinimizedSocial({collapse, setCollapse, followerDataQuery, showToggle}) {
   return (
-    <div className="relative h-full w-20 flex-none bg-custom-pink-500 p-2 flex flex-col ">
+    <div className="relative h-full w-20 flex-none p-2 flex flex-col ">
       <MiniUserCard />
       <MiniUserCard />
       <MiniUserCard />

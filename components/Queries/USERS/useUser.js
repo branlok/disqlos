@@ -20,6 +20,9 @@ export default function useUser() {
   const [refetchInterval, setRefetchInterval] = useState(1000);
 
   const userData = useQuery("selfData", () => getUserData(userId), {
+    onSuccess: (data) => {
+      if (data.uniqueDisplayName){ setIsReady2(true); setRefetchInterval(false);};
+    },
     enabled: isReady,
     refetchInterval: refetchInterval,
     refetchOnMount: false, //subsequent calls on this function, if within staletime and cache time, it wont be called again.
@@ -29,7 +32,7 @@ export default function useUser() {
 
   useEffect(() => {
     //Set interval for refetch until firestore cloud function adds users
-    if (userId && userData.isSuccess && userData.data.uniqueDisplayName) {
+    if (!isReady && userId && userData.isSuccess && userData.data.uniqueDisplayName) {
       setRefetchInterval(false);
       setIsReady2(true);
     } else if (
@@ -49,5 +52,5 @@ export function getUserData(userId) {
     .collection("USERS")
     .doc(userId)
     .get()
-    .then((response) => response.data());
+    .then((response) => response.data())
 }

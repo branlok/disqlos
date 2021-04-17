@@ -12,19 +12,19 @@ function PublicHeader({ targetId, portfolioData, directive }) {
   const following = userData.data.following.includes(targetId)
 
     return (
-      <div className="py-4 px-8 w-full flex flex-col  justify-between items-center bg-custom-pink-400 rounded-md border-2 border-gray mb-5">
+      <div className="py-4 px-8 w-full flex flex-col  justify-between items-center bg-custom-pink-400 dark:bg-cb-4 dark:border-cb-3 text-gray-600 dark:text-gray-200   rounded-md border-2 border-gray mb-5">
         <div className="w-20 h-20">
           <ProfileCircle imageURL={portfolioData.data.primaryProfileImage} />
         </div>
         <div className="h-full flex justify-between items-center ">
-          <b className=" text-gray-600"> {portfolioData.data.displayName}</b>
+          <b className=""> {portfolioData.data.displayName}</b>
         </div>
-        <div className="border-t-4">
-          <p className="text-gray-700">
+        <div className="my-2  w-full text-center border-t-4 dark:border-gray-500">
+          <p className="text-center ">
             {portfolioData.data.profileDescription}
           </p>
         </div>
-        <ul className="h-full flex items-center justify-end text-gray-600 text-xs lg:text-base ">
+        <ul className="h-full  justify-between  flex items-center text-gray-600 dark:text-gray-200  text-xs lg:text-base ">
           <li className="px-2 text-center">
             {" "}
             {portfolioData.data.numberOfPosts} Posts

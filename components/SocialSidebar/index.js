@@ -24,7 +24,7 @@ export default function SocialSidebar() {
 
   if (followerDataQuery.isSuccess) {
     return (
-      <div className="relative">
+      <div className="relative dark:bg-cb-2 bg-custom-pink-500 ">
         {collapse ? (
           <MinimizedSocial
             collapse={collapse}
@@ -63,15 +63,15 @@ function Collapser({ collapse, setCollapse, showToggle }) {
   if (showToggle) {
     return (
       <div
-        className={`w-14 h-12 absolute top-2 -left-14 z-10 flex justify-center items-center ${
-          collapse && "bg-gray-300"
+        className={`w-14 h-12 absolute top-2 -left-14 z-10 flex justify-center items-center dark:text-gray-200 dark:hover:text-gray-200 cursor-pointer cursor-pointer ${
+          collapse && "bg-gray-300  text-white dark:bg-cb-3"
         } rounded-l`}
         onClick={() => setCollapse(!collapse)}
       >
         {orientationLeft ? (
-          <CollapseSvg className="grayFill cursor-pointer  transform rotate-180" />
+          <CollapseSvg className="fill-current   transform rotate-180" />
         ) : (
-          <CollapseSvg className="grayFill cursor-pointer" />
+          <CollapseSvg className="fill-current cursor-pointer" />
         )}
       </div>
     );
@@ -82,9 +82,9 @@ function Collapser({ collapse, setCollapse, showToggle }) {
 
 const ScrollToTop = () => {
   return (
-    <div className="absolute bottom-4 -left-10 w-6 h-6 flex justify-center items-center border rounded-md cursor-pointer bg-gray-300 hover:bg-gray-400 transition-all shadow-sm">
+    <div className="absolute bottom-4 -left-10 w-6 h-6 flex justify-center items-center border rounded-md cursor-pointer bg-gray-300 dark:bg-cb-1 dark:border-cb-4 dark:hover:bg-cb-4 dark:text-white hover:bg-gray-400 transition-all shadow-sm">
       <a href="#top">
-        <TriangleSvg style={{ fill: "white" }} />
+        <TriangleSvg className="fill-current"/>
       </a>
     </div>
   );

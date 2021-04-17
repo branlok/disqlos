@@ -43,8 +43,8 @@ function UserCenterMain({ targetId, userId }) {
 
   if (directive === "dashboardPosts") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll ">
-        <div id="top" className=" w-3/4 m-auto  pb-40 mb-40 ">
+      <div className="h-full w-full flex-initial bg-custom-gray-500  dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
+        <div id="top" className="w-3/4 xl:w-4/6 m-auto pb-40 mb-40 ">
           <Header />
           <PostMaker setDirective={setDirective} />
           <ProfileNav directive={directive} setDirective={setDirective} />
@@ -54,15 +54,17 @@ function UserCenterMain({ targetId, userId }) {
     );
   } else if (directive === "feed") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r  px-2 md:px-20 pt-4 overflow-scroll no-scrollbar">
-        <ProfileNav directive={directive} setDirective={setDirective} />
-        <PostsBox directive={directive} />
+      <div className="h-full w-full flex-initial bg-custom-gray-500  dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
+        <div id="top" className="w-3/4 xl:w-4/6 m-auto pb-40 mb-40 ">
+          <ProfileNav directive={directive} setDirective={setDirective} />
+          <PostsBox directive={directive} />
+        </div>
       </div>
     );
   } else if (directive === "queue") {
     return (
-      <div className="svgBackground h-full w-full flex-initial bg-custom-gray-500 border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain ">
-        <div className="w-3/4 m-auto pb-60 mb-40">
+      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l dark:bg-cb-1 dark:border-cb-4 transition-colors border-r pt-4 overflow-scroll no-scrollbar overscroll-contain ">
+        <div id="top" className="w-3/4 m-auto pb-60 mb-40">
           <Header />
           {queueId ? (
             <MetaQueuePostMaker queueId={queueId} />
@@ -83,9 +85,7 @@ function UserCenterMain({ targetId, userId }) {
       </div>
     );
   } else if (directive == "userPosts") {
-    return (
-      <ProfileExplore directive={directive} targetId={targetId} />
-    );
+    return <ProfileExplore directive={directive} targetId={targetId} />;
   } else {
     return <div></div>;
   }

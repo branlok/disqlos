@@ -6,7 +6,7 @@ import MinimizedSidebar from "./MinimizedSidebar";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import ControlSidebarRegular from "./ControlSidebarRegular";
 
-function UserControlSidebar({userData}) {
+function UserControlSidebar({ userData }) {
   let [collapse, setCollapse] = useState(false); //this is going to the redux/contextapi
 
   let [showToggle, setShowToggle] = useState(true);
@@ -21,13 +21,23 @@ function UserControlSidebar({userData}) {
     }
   }, [width]);
 
-  if (collapse) {
-    return <MinimizedSidebar userData={userData} setCollapse={setCollapse} showToggle={showToggle} />;
-  } else {
-    return (
-      <ControlSidebarRegular userData={userData} setCollapse={setCollapse} showToggle={showToggle}/>
-    );
-  }
+  const ToggleSidebar = collapse ? (
+    <MinimizedSidebar
+      userData={userData}
+      setCollapse={setCollapse}
+      showToggle={showToggle}
+    />
+  ) : (
+    <ControlSidebarRegular
+      userData={userData}
+      setCollapse={setCollapse}
+      showToggle={showToggle}
+    />
+  );
+
+  return (
+    <div className="bg-custom-pink-500 dark:bg-cb-2 ">{ToggleSidebar}</div>
+  );
 }
 
 export default UserControlSidebar;

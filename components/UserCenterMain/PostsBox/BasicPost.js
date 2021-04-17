@@ -36,7 +36,7 @@ function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId, ta
   }
 
   return (
-    <div className="relative h-full px-2 mb-4 bg-custom-pink-300 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
+    <div className="relative h-full px-2 mb-4 bg-custom-pink-300  dark:bg-cb-4  rounded-md  shadow-md flex flex-col child last:mb-0 transition ">
       <div className="h-full flex child">
         <PortfolioCard postOwner={item.userId} post={item} />
         <ContentBody postContent={item.content} date={item.createdOn}/>
@@ -47,6 +47,8 @@ function BasicPost({ clientLiked, item, page, queuedPost, directory, queueId, ta
           handleLikeUnlike={handleLikeUnlike}
           queuedPost={queuedPost}
           queueId={queueId}
+          directory={directory}
+          targetId={targetId}
         />
       </div>
       {!queuedPost && (

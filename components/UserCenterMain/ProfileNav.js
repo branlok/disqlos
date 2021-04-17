@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 
 function ProfileNav({ directive }) {
   return (
-    <div className="w-full h-12 border-b-2 flex flex-between items-center">
+    <div className="w-full h-12 border-b-2 dark:border-cb-4 flex flex-between items-center">
       <div
-        className={`h-full w-24 flex-none flex items-center mx-2 px-4  color-gray-600 ${
+        className={`h-full w-24 flex-none flex items-center mx-2 px-4  color-gray-600 dark:text-gray-300 ${
           directive == "feed" && "font-bold"
         } `}
       >
@@ -15,7 +15,7 @@ function ProfileNav({ directive }) {
       </div>
       <ul className="h-full w-full flex justify-end items-center">
         <li
-          className={`px-4 mx-2 color-gray-600  ${
+          className={`px-4 mx-2 color-gray-600 dark:text-gray-300 ${
             directive == "dashboardPosts" && "font-bold"
           } `}
         >
@@ -24,7 +24,7 @@ function ProfileNav({ directive }) {
           </Link>
         </li>
         <li
-          className={`px-4 mx-2 color-gray-600  ${
+          className={`px-4 mx-2 color-gray-600 dark:text-gray-300 ${
             directive == "queue" && "font-bold"
           } `}
         >

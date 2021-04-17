@@ -24,7 +24,7 @@ function Explore() {
   if (userData.isSuccess && isReady2) {
     return (
       <div className="flex flex-col h-screen w-screen">
-        <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray flex items-center px-4">
+        <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray dark:bg-cb-3  dark:text-white flex items-center px-4">
           <div>
             <b>Disqlos</b>
           </div>

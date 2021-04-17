@@ -12,7 +12,7 @@ function ProfileCircle({
       <img
         onClick={() => setFullscreen(true)}
         src={imageURL}
-        className="h-full w-full rounded-full box-border border-2 border-custom-pink-600 overflow-hidden object-cover p-0.5 bg-white cursor-pointer"
+        className="h-full w-full rounded-full box-border border-2 border-custom-pink-600 dark:bg-cb-2 dark:border-cb-4 overflow-hidden object-cover p-0.5 bg-white cursor-pointer"
       ></img>
      {fullscreen && allowFullscreen && <OpenImage imageUrl={imageURL} setFullscreen={setFullscreen}/>}
     </>

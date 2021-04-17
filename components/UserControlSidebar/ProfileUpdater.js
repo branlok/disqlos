@@ -54,8 +54,8 @@ function ProfileUpdater({ setShowProfileUpdater }) {
   const ErrorStyle = "text-red-500 outline-none ring ring-red-300"
 
   return (
-    <div className="top-0 left-0 w-screen h-screen absolute bg-gray-500 bg-opacity-30 z-20 flex justify-center items-center">
-      <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100">
+    <div className="top-0 left-0 w-screen h-screen absolute bg-gray-500 dark:bg-black bg-opacity-30 z-20 flex justify-center items-center ">
+      <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100 dark:bg-cb-4 dark:text-gray-200">
         <h1 className="text-center my-2 font-bold text-xl">Update Profile</h1>
         <Formik
           initialValues={profileSchema}
@@ -105,19 +105,19 @@ function ProfileUpdater({ setShowProfileUpdater }) {
               ></Field>
               <div>
                 {showReturn ? (
-                  <button onClick={() => setShowProfileUpdater(false)} type="button" className="border rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2">Return</button>
+                  <button onClick={() => setShowProfileUpdater(false)} type="button" className="border dark:border-transparent rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2">Return</button>
                 ) : (
                   <>
                     <button
                       type="button"
-                      className="border rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2"
+                      className="border dark:bg-transparent dark:border-transparent dark:text-gray-200 rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2"
                       onClick={() => setShowProfileUpdater(false)}
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="border rounded-md px-2 py-1 bg-gray-800 text-white hover:bg-green-500 hover:text-white m-2"
+                      className="border dark:border-transparent rounded-md px-2 py-1 bg-gray-800 text-white hover:bg-green-500 hover:text-white m-2"
                     >
                       Update
                     </button>

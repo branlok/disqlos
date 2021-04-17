@@ -39,9 +39,11 @@ function InputComment({
       ? "fetchFollowingPosts"
       : "getTargetPosts";
 
-  const { addCommentMutation } = useAddComments(
-    ["getPosts", directory, targetId]
-  );
+  const { addCommentMutation } = useAddComments([
+    "getPosts",
+    directory,
+    targetId,
+  ]);
   //const { commentsResponse } = useCommentsReq(postId); //becayse you put in a prop, it knows its different. im guess.
   //you could also use queryClient.invalidateQueries(postId) as long as thiscomments always exists, so will the direct useHook.
   const queryClient = useQueryClient();
@@ -71,17 +73,17 @@ function InputComment({
         helper.resetForm();
       }}
     >
-      <Form className=" h-full w-full items-center flex justify-center">
+      <Form className=" h-8 w-full items-center flex justify-center">
         <Field
           name="content"
           as="input"
-          className="w-full mr-2 rounded-md pl-2 border-gray border"
+          className="customInputFocus w-full h-full mr-2 rounded-md pl-2 border-gray border dark:bg-cb-2 dark:text-gray-200 dark:border-cb-2"
           type="text"
           placeholder="Reply"
           autoComplete="off"
         ></Field>
         <button
-          className="w-28 bg-gray-800 text-white rounded-md"
+          className="w-32 h-full bg-gray-800 text-white rounded-md font-bold text-sm dark:bg-cb-10 dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
           as="submit"
           value="Comment"
         >
@@ -89,18 +91,22 @@ function InputComment({
         </button>
 
         <div
-          className="border rounded-md ml-2 bg-gray-200 flex justify-center items-center"
+          className="border h-full w-8 flex-none rounded-md ml-2 bg-gray-200 dark:bg-cb-2 dark:border-cb-2 dark:text-white flex justify-center items-center cursor-pointer"
           onClick={() => setViewerOpened(!viewerOpened)}
         >
-          {viewerOpened ? <ArrowUpSvg /> : <ArrowDownSvg />}
+          {viewerOpened ? (
+            <ArrowUpSvg className="w-full h-full fill-current dark:text-white hover:animate-min-bounce" />
+          ) : (
+            <ArrowDownSvg className="w-full h-full fill-current dark:text-white hover:animate-min-bounce" />
+          )}
         </div>
         <div
-          className="border rounded-md ml-2 bg-gray-200 flex justify-center items-center cursor-pointer"
+          className="border h-full w-8 flex-none rounded-md ml-2 bg-gray-200 dark:bg-cb-2 dark:border-cb-2 flex justify-center items-center cursor-pointer "
           onClick={() => handleLikeUnlike()}
         >
           <HeartItSvg
-            className={`fill-current  ${
-              liked ? "text-red-400" : "text-gray-400"
+            className={`fill-current hover:text-red-400 dark:hover:text-special-teal transition-colors ${
+              liked ? "text-red-400 dark:text-special-teal" : "text-gray-400 "
             } p-1 h-6 w-6`}
           />
         </div>
