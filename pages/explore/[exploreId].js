@@ -29,7 +29,7 @@ function Explore() {
             <b>Disqlos</b>
           </div>
         </nav>
-        <div className="w-full h-full  flex flex-row bg-red-300 flex-initial overflow-hidden">
+        <div className="w-full h-full dark:bg-cb-1  flex flex-row bg-red-300 flex-initial overflow-hidden">
           <UserControlSidebar userData={userData}/>
           <UserCenterMain userData={userData} userId={userId} targetId={exploreId}/>
           {/* <ExploreMain targetId={exploreId}/> */}

@@ -7,7 +7,7 @@ function ImageCard({imageUrl}) {
     <div className="pt-2 h-full w-full flex-none">
       <img
       onClick={() => setFullscreen(true)}
-        className="rounded-md h-full w-full border  dark:border-cb-3 overflow-hidden object-cover cursor-pointer"
+        className="rounded-md h-full w-full dark:border-cb-3 overflow-hidden object-cover cursor-pointer"
         src={imageUrl}
       />
      {fullscreen && <OpenImage imageUrl={imageUrl} setFullscreen={setFullscreen}/>}

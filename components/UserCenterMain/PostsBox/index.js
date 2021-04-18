@@ -2,12 +2,14 @@ import React from "react";
 import BasicPost from "./BasicPost";
 import PicturePost from "./PicturePost";
 import usePostGetters from "./usePostGetters";
+import LoadSpinner from "../../../styles/svg/spinner.svg";
 
 function PostsBox({ directive, targetId }) {
   //if we are on explore/uid
   let { getPosts } = usePostGetters(directive, targetId);
   console.log(directive, targetId);
-  if (getPosts.status == "success")
+
+  if (getPosts.status == "success") {
     return (
       <div className="w-full mt-2 flex flex-col pb-40">
         {getPosts.data.pages.map((page, pageIdx) => {
@@ -59,9 +61,20 @@ function PostsBox({ directive, targetId }) {
         )}
       </div>
     );
-
-  if (getPosts.status == "loading") return <div>23</div>;
-  if (getPosts.status == "error") return <div>error</div>;
+  } else if (getPosts.status == "loading") {
+    return (
+      <div className="h-60 w-full rounded-md  justify-center flex flex-col items-center mx-1  rounded-sm rounded-md ">
+        <LoadSpinner className="animate-spin fill-current text-gray-400 " />
+        <p className=" dark:text-gray-300 font-bold my-2 ">Loading </p>
+      </div>
+    );
+  } else if (getPosts.status == "error")
+    {return (
+      <div className="h-60 w-full rounded-md  justify-center flex flex-col items-center mx-1  rounded-sm rounded-md ">
+        <LoadSpinner className="animate-spin fill-current text-gray-400 " />
+        <p className=" dark:text-gray-300 font-bold my-2 ">Error </p>
+      </div>
+    );}
 }
 
 export default PostsBox;

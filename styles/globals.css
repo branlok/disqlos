@@ -57,6 +57,12 @@
     overscroll-behavior-y: none;
   }
 
+  .no-x-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overscroll-behavior-x: none;
+  }
+
 
   @variants responsive {
   }

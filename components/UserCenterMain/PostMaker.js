@@ -138,7 +138,7 @@ function PostMaker({setDirective , directive}) {
                 className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer text-gray-700 dark:text-gray-200 dark:hover:text-white font-bold shadow-sm hover:shadow-md transition-all ${
                   type === "image"
                     ? "border-red-200 bg-red-100 dark:bg-red-500"
-                    : "bg-gradient-to-r from-purple-100 via-pink-100 to-red-100  dark:from-green-400 dark:to-blue-500 dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
+                    : "bg-gradient-to-r from-purple-100 via-pink-100 to-red-100 dark:from-green-400 dark:to-blue-700  dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
                 }`}
                 onClick={() => {
                   handleImageToggle(formik.setFieldValue);

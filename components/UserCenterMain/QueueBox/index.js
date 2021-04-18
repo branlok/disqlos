@@ -3,7 +3,7 @@ import { useAuth } from "../../../utils/auth";
 import useQueuedPostGetters from "./useQueuedPostGetters";
 import QueuePost from "./QueuePost";
 
-function QueueBox({ setQueueId }) {
+function QueueBox() {
   let { ownQueuePostsResponse } = useQueuedPostGetters();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function QueueBox({ setQueueId }) {
       <div className="w-full mt-2">
         {ownQueuePostsResponse.data.map((item) => {
           return (
-            <QueuePost key={item.queueId} item={item} setQueueId={setQueueId} />
+            <QueuePost key={item.queueId} item={item}  />
           );
         })}
       </div>

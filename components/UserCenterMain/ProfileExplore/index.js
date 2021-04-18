@@ -21,7 +21,7 @@ function ProfileExplore({ directive, targetId }) {
     );
   } else {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500 border-l border-r px-2 md:px-20 pt-4 overflow-scroll no-scrollbar"></div>
+      <div className="h-full w-full flex-initial bg-custom-gray-500 dark:bg-cb-1 dark:border-cb-4  border-l border-r px-2 md:px-20 pt-4 overflow-scroll no-scrollbar"></div>
     );
   }
 }

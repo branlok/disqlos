@@ -12,7 +12,8 @@ function Settings({
   queuedPost,
   queueId,
   directory,
-  targetId
+  targetId,
+  leftCorner,
 }) {
   let { userId } = useAuth();
 
@@ -25,16 +26,17 @@ function Settings({
     deletePostMutationWithQueue,
   } = useDeletePost();
 
+
   return (
     <div>
       <div
-        className="absolute top-4 right-4 cursor-pointer rounded-md bg-gray-200  dark:bg-cb-2  h-6 flex justify-center items-center hover:bg-gray-300 transition-all "
+        className="absolute bottom-4 right-2 cursor-pointer rounded-md bg-gray-200  dark:bg-cb-2  h-6 flex justify-center items-center hover:bg-gray-300 transition-all "
         onClick={() => setToggle(!toggle)}
       >
         <SDFWE className="fill-current text-gray-400 p-1" />
       </div>
       {toggle && (
-        <div className="absolute flex justify-center top-4 right-12  h-6">
+        <div className="absolute flex justify-center bottom-4 right-8  h-6">
           {ownership && (
             <button
               onClick={() => {
@@ -47,7 +49,7 @@ function Settings({
                     })
                   : deletePost(postId, ["getPosts", directory, targetId]);
               }}
-              className="bg-red-500 text-white text-sm rounded-md h-full flex justify-center items-center px-2 mx-1"
+              className="bg-red-600 text-white text-xs rounded-md h-full flex justify-center items-center px-2 mx-1"
             >
               Delete
             </button>

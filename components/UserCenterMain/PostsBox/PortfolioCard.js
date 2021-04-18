@@ -18,7 +18,7 @@ function PortfolioCard({ postOwner, post }) {
   if (userId == postOwner) {
     let primaryProfileImage = userData.data.primaryProfileImage;
     return (
-      <div className=" w-28 flex-none bg-custom-pink-550  dark:bg-cb-3 dark:text-gray-200  flex flex-col justify-center items-center rounded-md my-2 py-4">
+      <div className=" w-20 md:w-28 flex-none bg-custom-pink-550  dark:bg-cb-3 dark:text-gray-200  flex flex-col justify-center items-center rounded-md my-2 py-4">
         <div className="w-16 h-16">
           <ProfileCircle imageURL={primaryProfileImage} />
         </div>

@@ -30,6 +30,7 @@ module.exports = {
           900: "#755D8D",
           950: "#221C38",
           1000: "#221C38",
+          1100: "#7F7DCB",
         },
         cb: {
           1: "#0F0F16",
@@ -56,6 +57,8 @@ module.exports = {
     extend: {
       ringWidth: ["dark"],
       animation: ["hover"],
+      width: ["hover"],
+      height: ["hover"],
       backgroundColor: ["active"],
       margin: ["last", "first"],
     },
