@@ -1,17 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer utilities {
+  .hover-trigger .hover-target {
+    /* display: none; */
+    /* opacity: 0; */
+  }
+
+  .hover-trigger:hover + .hover-target {
+    opacity: 1;
+  }
+
   .shadowblue {
     box-shadow: 0px 0px 3px 3px rgba(54, 64, 82, 0.4);
   }
 
   .tab-parent:hover > .tab-subtitle {
     opacity: 1;
-    
   }
 
   .scrollbehaviour .scroll-snap-y {
@@ -32,7 +40,9 @@
     transition: 0.3s;
   } */
 
-  .customInputFocus { @apply dark:focus:ring-cb-9 dark:focus:border-cb-10 focus:ring-2 focus:outline-none focus:ring-blue-200 focus:border-blue-300; } 
+  .customInputFocus {
+    @apply dark:focus:ring-cb-9 dark:focus:border-cb-10 focus:ring-2 focus:outline-none focus:ring-blue-200 focus:border-blue-300;
+  }
 
   .svgBackground {
     background-color: #ffffff;
@@ -62,7 +72,6 @@
     scrollbar-width: none;
     overscroll-behavior-x: none;
   }
-
 
   @variants responsive {
   }

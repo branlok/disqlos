@@ -66,7 +66,7 @@ function UserCenterMain({ targetId, userId }) {
         <div id="top" className="w-3/4 m-auto pb-60 mb-40">
           <Header />
           {id ? (
-            <MetaQueuePostMaker queueId={IDBIndex} />
+            <MetaQueuePostMaker queueId={id} />
           ) : (
             <QueuePostMaker directive={directive} />
           )}

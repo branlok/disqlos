@@ -2,13 +2,14 @@ import { useMutation, useQueryClient } from "react-query";
 import { db } from "../../../utils/firebase";
 
 function useDeleteQueues(userId, queueId) {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const deleteQueueMutation = useMutation(() => deleteQueue(userId, queueId), {
-      onSuccess: () => {
-        queryClient.invalidateQueries("fetchQueuedPosts");
-      }
+    onSuccess: () => {
+      queryClient.invalidateQueries("fetchQueuedPosts");
+    },
   });
-  return {deleteQueueMutation};
+
+  return { deleteQueueMutation };
 }
 
 function deleteQueue(userId, postId) {

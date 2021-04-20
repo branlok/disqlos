@@ -1,23 +1,42 @@
 import React, { useEffect } from "react";
-import { useAuth } from "../../../utils/auth";
 import useQueuedPostGetters from "./useQueuedPostGetters";
 import QueuePost from "./QueuePost";
+import { useAuth } from "../../../utils/auth";
 
 function QueueBox() {
-  let { ownQueuePostsResponse } = useQueuedPostGetters();
-
-  useEffect(() => {
-    console.log("ownpostresponse:", ownQueuePostsResponse.data);
-  });
+  const {userId} = useAuth();
+  let { ownQueuePostsResponse } = useQueuedPostGetters(userId);
 
   if (ownQueuePostsResponse.isSuccess) {
     return (
       <div className="w-full mt-2">
-        {ownQueuePostsResponse.data.map((item) => {
+        {ownQueuePostsResponse.data.pages.map((page, pageIdx) => {
           return (
-            <QueuePost key={item.queueId} item={item}  />
+            <React.Fragment key={pageIdx + "queueBox"}>
+              {page.map((item, entryIdx) => {
+                  return <QueuePost key={item.queueId} item={item} />;
+              })}
+            </React.Fragment>
           );
         })}
+
+{ownQueuePostsResponse.isSuccess && ownQueuePostsResponse.hasNextPage ? (
+          <button
+            className="font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
+            onClick={() => ownQueuePostsResponse.fetchNextPage()}
+          >
+            "Load More"
+          </button>
+        ) : ownQueuePostsResponse.data.pages[0].length > 0 ? (
+          <button
+            className="font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
+            onClick={() => ownQueuePostsResponse.fetchNextPage()}
+          >
+            "End of Results"{" "}
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     );
   } else if (ownQueuePostsResponse.isLoading) {
@@ -37,7 +56,7 @@ function QueueBox() {
       </div>
     );
   } else {
-      return null
+    return null;
   }
 }
 

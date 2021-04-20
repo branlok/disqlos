@@ -23,6 +23,7 @@ function MetaQueuePostMaker({ queueId }) {
     {
       onSuccess: () => {
         queryClient.refetchQueries(["fetchMetaPosts", queueId]);
+        queryClient.invalidateQueries("fromMeta");
       },
     }
   );

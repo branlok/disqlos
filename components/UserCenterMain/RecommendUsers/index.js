@@ -9,7 +9,7 @@ function RecommendUsers({ setRecommended }) {
 
   return (
     <div className="w-full h-32 px-4 py-2 bg-custom-pink-400 dark:bg-cb-2 dark:border-cb-3 rounded-md border my-4 flex flex-col">
-      <div className="flex-initial w-full border-b-2 border-gray-600 text-custom-pink-1000 dark:text-gray-200 font-bold flex justify-between items-center px-0.5">
+      <div className="flex-initial w-full pb-1 border-b-2 border-gray-600 text-custom-pink-1000 dark:text-gray-200 font-bold flex justify-between items-center px-0.5">
         <p>Recommended Users</p>
         <button
           onClick={() => setRecommended(false)}
@@ -34,7 +34,7 @@ function RecommendUsers({ setRecommended }) {
         </div>
       </div>
       {randomUserData.isLoading && (
-        <div className="w-full h-full border flex justify-center items-center font-bold animate-pulse">
+        <div className="w-full h-full  flex justify-center items-center font-bold animate-pulse">
           <p>Loading</p>
         </div>
       )}

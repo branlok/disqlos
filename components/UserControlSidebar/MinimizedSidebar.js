@@ -5,52 +5,66 @@ import Explore from "../../styles/svg/explore.svg";
 import Home from "../../styles/svg/home2.svg";
 import Settings from "../../styles/svg/settings.svg";
 import Space from "../../styles/svg/folder.svg";
-import Link from 'next/link'
+import Link from "next/link";
 function MinimizedSidebar({ userData, setCollapse, showToggle }) {
   // let primaryProfileImage = userData.primaryProfileImage;
 
   return (
     <div className="relative h-full w-20 flex-none p-2 justify-between flex flex-col">
       <div className="justify-between flex flex-col ">
-        
         <div className="w-full h-32 mb-4 border-b-2 pb-4 dark:border-cb-4">
           <ProfileCircle imageURL={userData.data.primaryProfileImage} />
         </div>
 
-        <div className=" tab-parent relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2 cursor-pointer">
-          <Link href="/dashboard/posts">
-            <Home className="fill-current"/>
-          </Link>
-          <div className=" tab-subtitle absolute left-20  w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
-            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700">Home</div>
+        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3 dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2">
+          <div className="h-full w-full flex items-center justify-center  hover-trigger cursor-pointer">
+            <Link href="/dashboard/posts">
+              <Home className="fill-current hover-trigger " />
+            </Link>
+          </div>
+          <div className="hover-target absolute left-20  w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
+            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700 cursor-default">
+              Home
+            </div>
           </div>
         </div>
 
-        <div className="relative tab-parent w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200  dark:hover:text-gray-800 hover:bg-gray-300 mt-2 cursor-pointer">
-          <Link href="/dashboard/explore">
-            <Explore  className="fill-current"/>
-          </Link>
-          <div className=" tab-subtitle absolute left-20  w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
-            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700">Explore</div>
+        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200  dark:hover:text-gray-800 hover:bg-gray-300 mt-2 ">
+          <div className="h-full w-full flex items-center justify-center  hover-trigger cursor-pointer">
+            <Link href="/dashboard/explore">
+              <Explore className="fill-current" />
+            </Link>
+          </div>
+          <div className="hover-target absolute left-20 w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
+            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700 cursor-default">
+              Explore
+            </div>
           </div>
         </div>
 
-        <div className="relative tab-parent w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2 cursor-pointer">
-          <Link href="/dashboard/queue">
-            <Space className="fill-current"/>
-          </Link>
-          <div className=" tab-subtitle absolute left-20  w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
-            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700">Space</div>
+        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2">
+          <div className="h-full w-full flex items-center justify-center  hover-trigger cursor-pointer">
+            <Link href="/dashboard/queue">
+              <Space className="fill-current" />
+            </Link>
+          </div>
+          <div className="hover-target absolute left-20  w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
+            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700 cursor-default">
+              Space
+            </div>
           </div>
         </div>
 
-        <div className="relative tab-parent w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2 cursor-pointer">
-          <Settings className="fill-current" />
-          <div className=" tab-subtitle absolute left-20 w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
-            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700">Settings</div>
+        <div className=" relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2">
+          <div className="h-full w-full flex items-center justify-center  hover-trigger  cursor-pointer">
+            <Settings className="fill-current" />
+          </div>
+          <div className=" hover-target  absolute left-20 w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
+            <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700 cursor-default">
+              Settings
+            </div>
           </div>
         </div>
-
       </div>
 
       {showToggle && (

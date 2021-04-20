@@ -20,7 +20,6 @@ function QueuePostMaker({setDirective}) {
   const mutation = useMutation((value) => handleNewPost(value, userId, true, userData), {
     onSuccess: async () => {
         await queryClient.refetchQueries('fetchQueuedPosts');
-        // queryClient.invalidateQueries("");
     },
   });
 
