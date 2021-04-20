@@ -54,7 +54,7 @@ function ProfileUpdater({ setShowProfileUpdater }) {
   const ErrorStyle = "text-red-500 outline-none ring ring-red-300"
 
   return (
-    <div className="top-0 left-0 w-screen h-screen absolute bg-gray-500 dark:bg-black bg-opacity-30 z-20 flex justify-center items-center ">
+    <div className="top-0 left-0 w-screen h-screen absolute bg-gray-500 dark:bg-black dark:bg-opacity-30 bg-opacity-30 z-20 flex justify-center items-center ">
       <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100 dark:bg-cb-4 dark:text-gray-200">
         <h1 className="text-center my-2 font-bold text-xl">Update Profile</h1>
         <Formik
@@ -71,7 +71,7 @@ function ProfileUpdater({ setShowProfileUpdater }) {
           }}
         >
           {(props) => (
-            <Form className="flex flex-col items-center p-4 text-sm font-bold text-gray-700">
+            <Form className="flex flex-col items-center p-4 text-sm font-bold text-gray-700 dark:text-gray-200">
               <label>Profile Picture</label>
               <img
                 onClick={() => imageInput.current.click()}
@@ -91,17 +91,17 @@ function ProfileUpdater({ setShowProfileUpdater }) {
                 className="hidden"
                 ref={imageInput}
               />
-              <div className="w-full border-t-2 my-2"></div>
+              <div className="w-full border-t-2 my-2 dark:border-gray-400"></div>
               <label htmlFor="displayName">Display Name</label>
               <Field
                 name="displayName"
-                className={`h-8 w-full my-2 pl-2 rounded-md border ${props.errors.displayName && ErrorStyle}`}
+                className={`h-8 w-full my-2 pl-2 rounded-md border dark:bg-gray-900 dark:border-gray-800  ${props.errors.displayName && ErrorStyle}`}
               ></Field>
               <label>Profile Description</label>
               <Field
                 name="profileDescription"
                 as="textarea"
-                className={`w-full  my-2 p-2 rounded-md border ${props.errors.profileDescription && ErrorStyle}`}
+                className={`w-full  my-2 p-2 rounded-md border dark:bg-gray-100 dark:bg-gray-900 dark:border-gray-800 ${props.errors.profileDescription && ErrorStyle}`}
               ></Field>
               <div>
                 {showReturn ? (
@@ -110,7 +110,7 @@ function ProfileUpdater({ setShowProfileUpdater }) {
                   <>
                     <button
                       type="button"
-                      className="border dark:bg-transparent dark:border-transparent dark:text-gray-200 rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2"
+                      className="border dark:bg-transparent dark:border-transparent dark:hover:bg-gray-900 dark:text-gray-200 rounded-md px-2 py-1 bg-gray-300 text-black hover:bg-red-500 hover:text-white m-2"
                       onClick={() => setShowProfileUpdater(false)}
                     >
                       Cancel

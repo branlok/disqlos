@@ -15,14 +15,14 @@ function BasicProfile() {
 let primaryProfileImage =  userProfile.primaryProfileImage
 
     return (
-      <div className="min-h-72 max-h-80 w-full rounded-md bg-custom-pink-550 dark:bg-cb-3  dark:text-gray-200 flex flex-col items-center justify-center p-8">
+      <div className=" w-full rounded-md bg-custom-pink-550 dark:bg-cb-3  dark:text-gray-200 flex flex-col items-center justify-center p-8">
         <div className="h-24 w-24">
           <ProfileCircle imageURL={primaryProfileImage} allowFullscreen={true}/>
         </div>
         <p>
           <b>{userProfile.displayName}</b>{" "}
         </p>
-        <p className="text-gray-600 dark:text-gray-600 text-sm">{userProfile.uniqueDisplayName}</p>
+        <p className="text-gray-600 dark:text-gray-400 text-xs">{userProfile.uniqueDisplayName}</p>
         <p className="text-center text-xs mt-1">
           {userProfile.profileDescription}
         </p>

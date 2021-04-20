@@ -20,6 +20,7 @@ const authContext = createContext();
 
 export function ProvideAuth({children}) {
     const auth = useProvideAuth();
+
     return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 
@@ -30,7 +31,6 @@ export const useAuth = () => {
 
 function useProvideAuth() {
     const [user, setUser] = useState(null);
-
     /* SIGN IN request */
     let signinResponse = useMutation("email",  ({email, password}) => {
         return auth

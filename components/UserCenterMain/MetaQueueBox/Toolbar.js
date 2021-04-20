@@ -138,7 +138,7 @@ function Toolbar({
                 onClick={() => {
                   setDeletePrompt(true);
                 }}
-                className="h-full border-b flex justify-center items-center dark:bg-cb-3 dark:border-cb-4 dark:text-gray-300  hover:bg-red-600 hover:text-white transition-all cursor-pointer"
+                className="h-full border-b flex justify-center items-center dark:bg-cb-3 dark:border-cb-4 dark:text-gray-300 dark:hover:bg-red-600 dark:text-white hover:bg-red-600 hover:text-white transition-all cursor-pointer"
               >
                 Delete Space
               </div>
@@ -147,9 +147,9 @@ function Toolbar({
                   setActionMenu(false);
                   setLockDropdown(false);
                 }}
-                className="h-full flex flex-col text-center justify-center items-center dark:bg-cb-3  dark:text-gray-300 hover:bg-red-600 hover:text-white transition-all cursor-pointer"
+                className="h-full flex flex-col text-center justify-center items-center dark:bg-cb-3  dark:text-gray-300 dark:hover:bg-red-600 hover:bg-red-600 dark:text-white  hover:text-white transition-all cursor-pointer"
               >
-                Placeholder
+                placeholder**
               </div>
             </div>
           )}
@@ -161,7 +161,7 @@ function Toolbar({
         </div>
         <button
           onClick={() => runValidateAndPublish()}
-          className=" h-full  flex items-center justify-center rounded-md px-2 bg-custom-pink-1100  dark:bg-cb-3 dark:border-black 4 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
+          className=" h-full  flex items-center justify-center rounded-md px-2 bg-custom-pink-1100  dark:bg-cb-3 dark:border-black dark:hover:bg-cb-2 4 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
         >
           Publish
         </button>

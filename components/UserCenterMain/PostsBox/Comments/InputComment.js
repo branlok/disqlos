@@ -83,7 +83,7 @@ function InputComment({
           autoComplete="off"
         ></Field>
         <button
-          className="w-32 h-full bg-gray-800 text-white rounded-md font-bold text-sm dark:bg-cb-10 dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
+          className="w-32 h-full bg-custom-pink-1200  text-white rounded-md font-bold text-sm dark:bg-cb-10 dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
           as="submit"
           value="Comment"
         >

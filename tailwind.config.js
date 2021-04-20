@@ -1,6 +1,6 @@
 module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "media", // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     minHeight: {
       40: "10em",
@@ -31,6 +31,7 @@ module.exports = {
           950: "#221C38",
           1000: "#221C38",
           1100: "#7F7DCB",
+          1200: "#4F4958",
         },
         cb: {
           1: "#0F0F16",

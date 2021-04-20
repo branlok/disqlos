@@ -28,8 +28,8 @@ function SignIn() {
 
     if (userId) return <div></div>
     return (
-        <div>
-            {signinResponse.status}
+        <div className="text-black dark:text-white">
+            {/* {signinResponse.status} */}
             <SignInModal handleSignIn={signIn} />
         </div>
     )

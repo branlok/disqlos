@@ -121,7 +121,7 @@ function QueuePostMaker({setDirective}) {
             {console.log(formik.errors, formik.values)}
             <div className="w-full h-8 flex-none flex justify-between items-center mt-2">
               <div
-                className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer dark:text-gray-200 dark:hover:text-white font-bold shadow-sm hover:shadow-md transition-all ${
+                className={`h-full rounded-md px-2 flex justify-center items-center text-white  cursor-pointer dark:text-gray-200 dark:hover:text-white font-bold shadow-sm hover:shadow-md transition-all ${
                   type === "image"
                   ? " bg-gradient-to-r from-red-500 to-red-400 dark:from-red-700 dark:to-red-600"
                   : "bg-gradient-to-r from-indigo-700 to-indigo-600  dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
@@ -147,7 +147,7 @@ function QueuePostMaker({setDirective}) {
                 )}
                 <button
                   type="submit"
-                  className="h-full mx-1 -mr-0 rounded-sm bg-custom-pink-1000 text-sm text-white px-10 rounded-md dark:bg-cb-10 font-bold dark:border-cb-3 dark:hover:border-gray-400 dark:border border hover:shadow-md transition-all"
+                  className="h-full mx-1 -mr-0 rounded-sm  text-sm text-white px-10 rounded-md bg-cb-10 font-bold dark:border-cb-3 dark:hover:border-gray-400 dark:border border hover:shadow-md transition-all"
                   ref={myFormRef}
                 >
                   New Space

@@ -1,18 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect } from "react";
-import { useQueryClient } from "react-query";
+
+
 export default function Home() {
-  
-
-  
-
-  return (
+    return (
     <div>
       <Head>
         <title>Greatness</title>
       </Head>
-      <div className="w-screen h-screen flex flex-col">
+      <div className="w-screen h-screen flex flex-col text-black ">
         <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray flex items-center px-4 flex-none">
           <div>
             <b>Disqlos</b>

@@ -162,7 +162,7 @@ function PostMaker({ setDirective, directive }) {
                 )}
                 <button
                   type="submit"
-                  className="h-full mx-1 -mr-0 rounded-sm bg-custom-pink-1000 text-sm text-white px-10 rounded-md dark:bg-cb-10 font-bold dark:border-cb-3 dark:hover:border-gray-400 dark:border border hover:shadow-md transition-all"
+                  className="h-full mx-1 -mr-0 rounded-sm   text-sm text-white px-10 rounded-md bg-cb-10 font-bold dark:border-cb-3 dark:hover:border-gray-400 dark:border border hover:shadow-md transition-all"
                   ref={myFormRef}
                 >
                   Post
