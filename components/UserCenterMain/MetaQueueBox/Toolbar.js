@@ -63,9 +63,9 @@ function Toolbar({
   };
 
   return (
-    <div className="relative h-16 sm:h-10 mb-4 px-1 py-1 w-full flex  rounded-md border order-gray-500 bg-gray-100 items-center justify-between">
+    <div className="relative h-16 sm:h-12 p-2 mb-4  w-full flex  rounded-md border border-gray-200 dark:border-cb-1 bg-gray-100 dark:bg-cb-4  shadow-md dark:text-white items-center justify-between">
       {deletePrompt && (
-        <div className=" fixed top-0 left-0 h-screen w-screen bg-gray-500 bg-opacity-20 z-50 flex justify-center items-center ">
+        <div className=" fixed top-0 left-0 h-screen w-screen bg-gray-500 dark:bg-black bg-opacity-20 z-50 flex justify-center items-center ">
           <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100 dark:bg-cb-4 dark:text-gray-200 flex items-center flex-col p-10">
             <p>Deleting Space</p>
             <button
@@ -77,7 +77,7 @@ function Toolbar({
                   },
                 });
               }}
-              className=" my-2 py-1 border flex items-center justify-center rounded-md px-2 bg-custom-pink-1100 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
+              className=" my-2 py-1 flex items-center justify-center rounded-md px-2 bg-custom-pink-1100 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
             >
               Confirm
             </button>
@@ -95,7 +95,7 @@ function Toolbar({
         </div>
       )}
       {prompt && (
-        <div className=" fixed top-0 left-0 h-screen w-screen bg-gray-500 bg-opacity-20 z-50 flex justify-center items-center ">
+        <div className=" fixed top-0 left-0 h-screen w-screen bg-gray-500 dark:bg-black bg-opacity-20 z-50 flex justify-center items-center ">
           <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100 dark:bg-cb-4 dark:text-gray-200 flex items-center flex-col p-10">
             <p className="mb-4 text-center">
               Posting a story with the same latest post will lead to overwrite
@@ -104,7 +104,7 @@ function Toolbar({
 
             <button
               onClick={() => runValidateAndPublish(true)}
-              className=" my-2 py-1 border flex items-center justify-center rounded-md px-2 bg-custom-pink-1100 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
+              className=" my-2 py-1 flex items-center justify-center rounded-md px-2 bg-custom-pink-1100 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
             >
               Continue
             </button>
@@ -123,7 +123,7 @@ function Toolbar({
             !lockDropdown && setActionMenu(false);
           }}
           onClick={() => setActionMenu(!actionMenu)}
-          className="focus:outline-none relative border w-8 h-full flex items-center justify-center rounded-md px-2 text-white font-bold hover:bg-gray-300 transition cursor-pointer text-xs md:text-sm text-center"
+          className="focus:outline-none dark:border-black relative  w-8 h-full flex items-center justify-center rounded-md px-2 text-white font-bold hover:bg-gray-300 transition cursor-pointer text-xs md:text-sm text-center"
         >
           <ActionSVG className="h-full fill-current text-gray-500 transform rotate-90" />
         </button>
@@ -132,13 +132,13 @@ function Toolbar({
             <div
               onMouseLeave={() => setLockDropdown(false)}
               onMouseEnter={() => setLockDropdown(true)}
-              className="absolute -bottom-24 left-0 border bg-gray-100 text-gray-600 w-32 h-20 z-20 rounded flex flex-col overflow-hidden shadow-md"
+              className="absolute -bottom-24 left-0  bg-gray-100 dark:border-cb-4 text-gray-600 w-32 h-20 z-20 rounded flex flex-col overflow-hidden shadow-md"
             >
               <div
                 onClick={() => {
                   setDeletePrompt(true);
                 }}
-                className="h-full border-b flex justify-center items-center hover:bg-red-600 hover:text-white transition-all cursor-pointer"
+                className="h-full border-b flex justify-center items-center dark:bg-cb-3 dark:border-cb-4 dark:text-gray-300  hover:bg-red-600 hover:text-white transition-all cursor-pointer"
               >
                 Delete Space
               </div>
@@ -147,7 +147,7 @@ function Toolbar({
                   setActionMenu(false);
                   setLockDropdown(false);
                 }}
-                className="h-full flex flex-col text-center justify-center items-center hover:bg-red-600 hover:text-white transition-all cursor-pointer"
+                className="h-full flex flex-col text-center justify-center items-center dark:bg-cb-3  dark:text-gray-300 hover:bg-red-600 hover:text-white transition-all cursor-pointer"
               >
                 Placeholder
               </div>
@@ -156,12 +156,12 @@ function Toolbar({
         </div>
       </div>
       <div className="flex h-full items-center">
-        <div className="mx-2 text-gray-600 text-xs">
+        <div className="mx-2 text-gray-600 text-xs dark:text-gray-200">
           Last Published: {lastPublished}
         </div>
         <button
           onClick={() => runValidateAndPublish()}
-          className=" h-full border flex items-center justify-center rounded-md px-2 bg-custom-pink-1100 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
+          className=" h-full  flex items-center justify-center rounded-md px-2 bg-custom-pink-1100  dark:bg-cb-3 dark:border-black 4 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
         >
           Publish
         </button>

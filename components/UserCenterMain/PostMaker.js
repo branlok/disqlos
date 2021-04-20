@@ -11,9 +11,9 @@ import SpinnerSvg from "./SpinnerSvg"; //custom svg because tailwind cannot inje
 import handleNewPost from "./utils/handleNewPost";
 import useUser from "../Queries/USERS/useUser";
 
-function PostMaker({setDirective , directive}) {
+function PostMaker({ setDirective, directive }) {
   const { userId } = useAuth();
-  const {userData} = useUser();
+  const { userData } = useUser();
   const myFormRef = useRef();
   const imageInputRef = useRef();
   const queryClient = useQueryClient();
@@ -21,14 +21,17 @@ function PostMaker({setDirective , directive}) {
   const [type, setType] = useState("text");
   const [queue, setQueue] = useState(false); //used for sending handleNewPost signal to switch directory
 
-  const mutation = useMutation((value) => handleNewPost(value, userId, queue, userData), {
-    onSuccess: async () => {
-      queryClient.refetchQueries(["getPosts", "dashboardPosts"])
-      queryClient.refetchQueries("fetchQueuedPosts");
-      //queryClient.invalidateQueries("fetchQueuedPosts");
-     // queryClient.invalidateQueries("fetchOwnPosts");
-    },
-  });
+  const mutation = useMutation(
+    (value) => handleNewPost(value, userId, queue, userData),
+    {
+      onSuccess: async () => {
+        queryClient.refetchQueries(["getPosts", "dashboardPosts"]);
+        queryClient.refetchQueries("fetchQueuedPosts");
+        //queryClient.invalidateQueries("fetchQueuedPosts");
+        // queryClient.invalidateQueries("fetchOwnPosts");
+      },
+    }
+  );
 
   const validationSchema = yup.object({
     content: yup.string().min(1).required(),
@@ -87,20 +90,19 @@ function PostMaker({setDirective , directive}) {
     }
   }
 
-
-   
   return (
     <div className="w-100 h-34 bg-white  dark:bg-cb-3 dark:border-cb-3   rounded-md border-1 border-gray flex flex-col overflow-hidden mb-2 shadow-lg flex">
       <Formik
         initialValues={postSchema}
         validationSchema={validationSchema}
-        onSubmit={(value, action) => mutation.mutate(
+        onSubmit={(value, action) =>
+          mutation.mutate(
             { value },
             {
               onSuccess: () => {
                 if (queue) {
                   console.log("queue passed");
-                   //change route
+                  //change route
                 }
               },
               onSettled: (data, error, variables) => {
@@ -108,8 +110,7 @@ function PostMaker({setDirective , directive}) {
                 action.resetForm();
                 setType("text");
                 setQueue(false);
-                
-              }
+              },
             }
           )
         }
@@ -130,15 +131,15 @@ function PostMaker({setDirective , directive}) {
               onChange={(e) => handleFile(e, formik.setFieldValue)}
               className={`${
                 type !== "image" && "hidden"
-              } mt-2 border p-2 rounded-md dark:text-white dark:bg-cb-3 dark:border-cb-4` }
+              } mt-2 border p-2 rounded-md dark:text-white dark:bg-cb-3 dark:border-cb-4`}
               ref={imageInputRef}
             />
             <div className="w-full h-8 flex-none flex justify-between items-center mt-2">
               <div
-                className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer text-gray-700 dark:text-gray-200 dark:hover:text-white font-bold shadow-sm hover:shadow-md transition-all ${
+                className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer text-white dark:text-gray-200 dark:hover:text-white font-bold shadow-sm hover:shadow-md transition-all ${
                   type === "image"
-                    ? "border-red-200 bg-red-100 dark:bg-red-500"
-                    : "bg-gradient-to-r from-purple-100 via-pink-100 to-red-100 dark:from-green-400 dark:to-blue-700  dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
+                    ? " bg-gradient-to-r from-red-500 to-red-400 dark:from-red-700 dark:to-red-600"
+                    : "bg-gradient-to-r from-indigo-700 to-indigo-600  dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
                 }`}
                 onClick={() => {
                   handleImageToggle(formik.setFieldValue);

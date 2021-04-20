@@ -86,7 +86,7 @@ function MetaQueuePostMaker({ queueId }) {
   }
 
   return (
-    <div className="w-100 h-34 bg-white rounded-md border-1 border-gray flex flex-col overflow-hidden mb-2 shadow-lg flex">
+    <div className="w-100 h-34 bg-white dark:bg-cb-3 dark:border-cb-3 rounded-md border-1 border-gray flex flex-col overflow-hidden mb-2 shadow-lg flex">
       <Formik
         initialValues={postSchema}
         validationSchema={validationSchema}
@@ -107,7 +107,7 @@ function MetaQueuePostMaker({ queueId }) {
           <Form className="flex flex-col p-2">
             <Field
               name="content"
-              className="w-full h-28 p-4 border rounded-md wrapText "
+              className="w-full h-28 p-4 border rounded-md wrapText dark:bg-cb-4 dark:border-cb-4 dark:text-gray-200 dark:focus:ring-gray-800 "
               as="textarea"
               onKeyDown={onEnterPress}
               placeholder="write a post"
@@ -119,28 +119,28 @@ function MetaQueuePostMaker({ queueId }) {
               onChange={(e) => handleFile(e, formik.setFieldValue)}
               className={`${
                 type !== "image" && "hidden"
-              } mt-2 border p-2 rounded-md`}
+              } mt-2 border p-2 rounded-md dark:text-white dark:bg-cb-3 dark:border-cb-4`}
               ref={imageInputRef}
             />
             {console.log(formik.errors, formik.values)}
             <div className="w-full h-8 flex-none flex justify-between items-center mt-2">
               <div
-                className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer ${
+                className={`h-full font-bold rounded-md px-2 flex justify-center items-center cursor-pointer  dark:text-gray-200 dark:hover:text-whitefont-bold shadow-sm hover:shadow-md transition-all  ${
                   type === "image"
-                    ? "border-4 border-red-200 bg-red-100"
-                    : "bg-gray-50 border-4"
+                    ? " bg-gradient-to-r from-red-500 to-red-400 dark:from-red-700 dark:to-red-600"
+                    : "bg-gradient-to-r from-indigo-700 to-indigo-600  dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
                 }`}
                 onClick={() => {
                   handleImageToggle(formik.setFieldValue);
                 }}
               >
                 {type === "text" ? (
-                  <PictureSvg className="cursor-pointer" />
+                  <PictureSvg className="cursor-pointer fill-current" />
                 ) : null}
                 {type === "text" ? (
-                  <p className="px-2">Picture</p>
+                  <p className="px-2 text-sm">Picture</p>
                 ) : (
-                  <p className="px-2">Cancel</p>
+                  <p className="px-2 text-sm">Cancel</p>
                 )}
               </div>
               <div className="h-full flex justify-between items-end">
@@ -151,7 +151,7 @@ function MetaQueuePostMaker({ queueId }) {
                 )}
                 <button
                   type="submit"
-                  className="h-full mx-1 -mr-0 rounded-sm bg-custom-pink-1000 text-sm text-white px-10 rounded-md"
+                  className="h-full mx-1 -mr-0 dark:bg-cb-10 font-bold dark:border-cb-3 dark:hover:border-gray-400 dark:border rounded-sm bg-custom-pink-1000 text-sm text-white px-10 rounded-md"
                   ref={myFormRef}
                 >
                   Post

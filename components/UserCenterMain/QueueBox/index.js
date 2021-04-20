@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import useQueuedPostGetters from "./useQueuedPostGetters";
 import QueuePost from "./QueuePost";
 import { useAuth } from "../../../utils/auth";
+import LoadSpinner from "../../../styles/svg/spinner.svg";
 
 function QueueBox() {
-  const {userId} = useAuth();
+  const { userId } = useAuth();
   let { ownQueuePostsResponse } = useQueuedPostGetters(userId);
 
   if (ownQueuePostsResponse.isSuccess) {
@@ -14,22 +15,23 @@ function QueueBox() {
           return (
             <React.Fragment key={pageIdx + "queueBox"}>
               {page.map((item, entryIdx) => {
-                  return <QueuePost key={item.queueId} item={item} />;
+                return <QueuePost key={item.queueId} item={item} />;
               })}
             </React.Fragment>
           );
         })}
 
-{ownQueuePostsResponse.isSuccess && ownQueuePostsResponse.hasNextPage ? (
+        {ownQueuePostsResponse.isSuccess &&
+        ownQueuePostsResponse.hasNextPage ? (
           <button
-            className="font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
+            className="w-full focus:outline-none font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
             onClick={() => ownQueuePostsResponse.fetchNextPage()}
           >
             "Load More"
           </button>
         ) : ownQueuePostsResponse.data.pages[0].length > 0 ? (
           <button
-            className="font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
+            className="w-full focus:outline-none font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
             onClick={() => ownQueuePostsResponse.fetchNextPage()}
           >
             "End of Results"{" "}
@@ -41,18 +43,15 @@ function QueueBox() {
     );
   } else if (ownQueuePostsResponse.isLoading) {
     return (
-      <div className=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
-        <div className="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
-          Loading
-        </div>
+      <div className="h-60 w-full rounded-md  justify-center flex flex-col items-center mx-1  rounded-sm rounded-md ">
+        <LoadSpinner className="animate-spin fill-current text-gray-400 " />
+        <p className=" dark:text-gray-300 font-bold my-2 ">Loading </p>
       </div>
     );
   } else if (ownQueuePostsResponse.isError) {
     return (
-      <div className=" animate-pulse bg-custom-pink-550 border border-light-blue-300 shadow rounded-md p-4 w-full my-2">
-        <div className="animate-pulse bg-custom-pink-550  flex space-x-4 flex justify-center rounded-sm py-8 ">
-          Something Went Wrong
-        </div>
+      <div className="h-60 w-full rounded-md  justify-center flex flex-col items-center mx-1  rounded-sm rounded-md ">
+        <p className=" dark:text-gray-300 font-bold my-2 ">Something Went Wrong </p>
       </div>
     );
   } else {
