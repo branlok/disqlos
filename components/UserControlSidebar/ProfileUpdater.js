@@ -55,7 +55,8 @@ function ProfileUpdater({ setShowProfileUpdater }) {
 
   return (
     <div className="top-0 left-0 w-screen h-screen absolute bg-gray-500 dark:bg-black dark:bg-opacity-30 bg-opacity-30 z-20 flex justify-center items-center ">
-      <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100 dark:bg-cb-4 dark:text-gray-200">
+      <div onClick={(e) => { setShowProfileUpdater(false)}} className="absolute top-0 left-0 h-screen w-screen z-0"></div>
+      <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100 dark:bg-cb-4 dark:text-gray-200 z-10">
         <h1 className="text-center my-2 font-bold text-xl">Update Profile</h1>
         <Formik
           initialValues={profileSchema}

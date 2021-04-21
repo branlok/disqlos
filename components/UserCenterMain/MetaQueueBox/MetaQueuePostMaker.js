@@ -124,8 +124,8 @@ function MetaQueuePostMaker({ queueId }) {
             />
             {console.log(formik.errors, formik.values)}
             <div className="w-full h-8 flex-none flex justify-between items-center mt-2">
-              <div
-                className={`h-full font-bold rounded-md px-2 flex justify-center items-center cursor-pointer  dark:text-gray-200 dark:hover:text-whitefont-bold shadow-sm hover:shadow-md transition-all  ${
+              <div 
+                className={`h-full rounded-md px-2 flex justify-center items-center cursor-pointer text-white dark:text-gray-200 dark:hover:text-white font-bold shadow-sm hover:shadow-md transition-all  ${
                   type === "image"
                     ? " bg-gradient-to-r from-red-500 to-red-400 dark:from-red-700 dark:to-red-600"
                     : "bg-gradient-to-r from-indigo-700 to-indigo-600  dark:border-cb-3 dark:hover:border-gray-400 dark:border border"
@@ -138,7 +138,7 @@ function MetaQueuePostMaker({ queueId }) {
                   <PictureSvg className="cursor-pointer fill-current" />
                 ) : null}
                 {type === "text" ? (
-                  <p className="px-2 text-sm">Picture</p>
+                  <p className="px-2 text-sm ">Picture</p>
                 ) : (
                   <p className="px-2 text-sm">Cancel</p>
                 )}

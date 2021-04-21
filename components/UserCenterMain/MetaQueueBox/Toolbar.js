@@ -63,7 +63,7 @@ function Toolbar({
   };
 
   return (
-    <div className="relative h-16 sm:h-12 p-2 mb-4  w-full flex  rounded-md border border-gray-200 dark:border-cb-1 bg-gray-100 dark:bg-cb-4  shadow-md dark:text-white items-center justify-between">
+    <div className="relative h-16 sm:h-12 p-2 my-4  w-full flex  rounded-md border border-gray-200 dark:border-cb-4 bg-gray-100 dark:bg-cb-3  shadow-md dark:text-white items-center justify-between">
       {deletePrompt && (
         <div className=" fixed top-0 left-0 h-screen w-screen bg-gray-500 dark:bg-black bg-opacity-20 z-50 flex justify-center items-center ">
           <div className="opacity-100 shadow-lg border-black w-96 p-4 rounded-md bg-gray-100 dark:bg-cb-4 dark:text-gray-200 flex items-center flex-col p-10">
@@ -161,7 +161,7 @@ function Toolbar({
         </div>
         <button
           onClick={() => runValidateAndPublish()}
-          className=" h-full  flex items-center justify-center rounded-md px-2 bg-custom-pink-1100  dark:bg-cb-3 dark:border-black dark:hover:bg-cb-2 4 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
+          className=" h-full  flex items-center justify-center rounded-md px-2 bg-custom-pink-1100  dark:bg-cb-10  dark:border-black dark:hover:bg-cb-2 4 text-white font-bold hover:bg-green-400 transition cursor-pointer text-xs md:text-sm"
         >
           Publish
         </button>

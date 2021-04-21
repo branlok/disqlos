@@ -21,7 +21,6 @@ function Dashboard() {
   const { userData, isReady2 } = useUser();
 
   const [trailing, setTrailing] = useState("...");
-  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     if (!isReady2) {
       let newState;
@@ -35,17 +34,18 @@ function Dashboard() {
     }
   }, [trailing]);
 
-  const [style, setStyle] = useState("bg-gray-300 pl-6 text-yellow-200");
+  // const [style, setStyle] = useState("bg-gray-400 pl-1 text-red-400");
 
-  const toggle = () => {
-    if (dark) {
-      setStyle("bg-gray-300 pl-1 text-yellow-500");
-      setDark(!dark);
-    } else {
-      setStyle("bg-gray-600 pl-6 text-yellow-200");
-      setDark(!dark);
-    }
-  };
+  // const toggle = () => {
+  //   if (dark) {
+  //     setStyle("bg-gray-400 pl-1 text-red-400");
+  //     setDark(!dark);
+  //   } else {
+  //     setStyle("bg-gray-600 pl-6 text-yellow-200 ");
+
+  //     setDark(!dark);
+  //   }
+  // };
 
   if (userData.isSuccess && isReady2) {
     return (
@@ -54,16 +54,7 @@ function Dashboard() {
           <div>
             <b>Disqlos</b>
           </div>
-          <div
-            className={`rounded-full  w-12 h-full flex items-center px-0.5 transition-all ${style}`}
-          >
-            <button
-              onClick={() => toggle()}
-              className="h-5 w-5 rounded-full bg-blue-400 focus:outline-none transition-all flex items-center justify-center p-1 "
-            >
-              {dark ? <MoonSVG className="fill-current" /> : <SunSVG className="fill-current"/>}
-            </button>
-          </div>
+          <ToggleTheme dark={dark} setDark={setDark} />
         </nav>
         <div className="w-full h-full flex flex-row dark:bg-cb-1 flex-initial overflow-hidden">
           <UserControlSidebar userData={userData} />
@@ -98,6 +89,40 @@ function Dashboard() {
   } else {
     return <div>Error</div>;
   }
+}
+
+function ToggleTheme({ dark, setDark }) {
+  const [style, setStyle] = useState("bg-gray-400 pl-1 text-red-400");
+
+  const toggle = () => {
+    if (dark) {
+      setStyle("bg-gray-400 pl-1 text-red-400");
+      setDark(!dark);
+    } else {
+      setStyle("bg-gray-600 pl-6 text-yellow-200 ");
+
+      setDark(!dark);
+    }
+  };
+
+  return (
+    <div
+      onClick={() => toggle()}
+      className={`rounded-full  w-12 h-full flex items-center px-0.5 transition-all cursor-pointer ${style}`}
+    >
+      <button
+        className={`h-5 w-5 rounded-full ${
+          dark ? " bg-blue-600 " : "bg-gray-100"
+        } focus:outline-none transition-all flex items-center justify-center p-1 `}
+      >
+        {dark ? (
+          <MoonSVG className=" h-full w-full fill-current" />
+        ) : (
+          <SunSVG className=" h-full w-full  fill-current" />
+        )}
+      </button>
+    </div>
+  );
 }
 
 export default Dashboard;

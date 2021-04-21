@@ -16,20 +16,20 @@ function MinimizedSidebar({ userData, setCollapse, showToggle }) {
           <ProfileCircle imageURL={userData.data.primaryProfileImage} />
         </div>
 
-        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3 dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2">
+        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3 dark:text-gray-200  mt-2">
           <div className="h-full w-full flex items-center justify-center  hover-trigger cursor-pointer">
             <Link href="/dashboard/posts">
-              <Home className="fill-current hover-trigger " />
+              <Home className="fill-current" />
             </Link>
           </div>
-          <div className="hover-target absolute left-20  w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all ">
+          <div className="hover-target absolute left-20  w-24 text-center h-full z-20 flex justify-center items-center opacity-0 transition-all">
             <div className="font-bold py-0.5 w-full rounded-md bg-gray-200 shadow-sm text-gray-700 cursor-default">
               Home
             </div>
           </div>
         </div>
 
-        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200  dark:hover:text-gray-800 hover:bg-gray-300 mt-2 ">
+        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200   mt-2 ">
           <div className="h-full w-full flex items-center justify-center  hover-trigger cursor-pointer">
             <Link href="/dashboard/explore">
               <Explore className="fill-current" />
@@ -42,7 +42,7 @@ function MinimizedSidebar({ userData, setCollapse, showToggle }) {
           </div>
         </div>
 
-        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2">
+        <div className="relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200  mt-2">
           <div className="h-full w-full flex items-center justify-center  hover-trigger cursor-pointer">
             <Link href="/dashboard/queue">
               <Space className="fill-current" />
@@ -55,7 +55,7 @@ function MinimizedSidebar({ userData, setCollapse, showToggle }) {
           </div>
         </div>
 
-        <div className=" relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200 dark:hover:text-gray-800 hover:bg-gray-300 mt-2">
+        <div className=" relative w-full h-12 bg-gray flex justify-center items-center rounded-md bg-gray-200 dark:bg-cb-3  dark:text-gray-200   mt-2">
           <div className="h-full w-full flex items-center justify-center  hover-trigger  cursor-pointer">
             <Settings className="fill-current" />
           </div>

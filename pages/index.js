@@ -18,8 +18,8 @@ export default function Home() {
           <header className="h-1/2 w-full flex flex-col justify-center items-center">
             <h1 className="text-6xl font-bold mb-4">Disqlos</h1>
             <p className="text-3xl w-1/2 text-center">
-              is a new microblogging social platform. We empower users to relay
-              thoughts and messages into organized and meaningful stories.
+              is a new microblogging social platform. We empower users to tell great
+              blog while maintaining bite size information.
             </p>
           </header>
           <section className="h-1/2 w-full flex flex-col justify-center items-center">
