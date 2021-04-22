@@ -14,8 +14,8 @@ function PostDemo({ hasImage, postContent, displayName, primaryProfileImage }) {
   const [date, setDate] = useState(Date.now());
 
   return (
-    <div className=" w-full">
-      <div className="relative mx-5 w-96 px-2 bg-custom-pink-300 dark:bg-cb-4 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
+    <div className="w-full ">
+      <div className="relative mx-5 px-2 my-2 bg-custom-pink-300 dark:bg-cb-4 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
         <div className="relative flex child">
           <div className=" w-20 md:w-28 flex-none bg-custom-pink-550  dark:bg-cb-3 dark:text-gray-200  flex flex-col justify-center items-center rounded-md my-2 py-4">
             <div className="w-16 h-16">
@@ -39,7 +39,7 @@ function PostDemo({ hasImage, postContent, displayName, primaryProfileImage }) {
                 <ImageCard imageUrl={hasImage} />
               </div>
             )}
-            <p className="font-bold text-sm text-gray-600 mt-4  dark:text-gray-300 ">
+            <p className="font-bold text-sm text-gray-600 mt-4 w-96  dark:text-gray-300 ">
               {postContent}
             </p>
             <div className="flex flex-col md:flex-row w-full mt-1 justify-center items-center">

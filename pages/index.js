@@ -9,6 +9,7 @@ import MessageSVG from "../styles/illustrations/Message.svg";
 import PostDemo from "../components/BasicComponents/Demo/PostDemo";
 import PostSection from "../components/BasicComponents/Demo/PostSection";
 import QuickOverview from "../components/BasicComponents/Demo/QuickOverview";
+import SpacesDemo from "../components/BasicComponents/Demo/SpacesDemo";
 
 export default function Home() {
   const [offsetY, setOffsetY] = useState(0);
@@ -118,6 +119,12 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </section>
+        <section className="h-full w-full bg-custom-pink-300 overflow-hidden flex flex-col justify-center items-center ">
+          <SpacesDemo/>
+        </section>
+        <section className="h-1/2 w-full text-white bg-custom-pink-1000 overflow-hidden flex flex-col justify-center items-center ">
+          End
         </section>
       </div>
     </div>

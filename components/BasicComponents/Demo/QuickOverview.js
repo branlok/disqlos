@@ -8,22 +8,22 @@ function QuickOverview() {
   const page = [
     ({ style }) => (
       <animated.div className="absolute" style={{ ...style }}>
-        <h1 className="text-3xl font-bold">
-          We make reading and writing blogs simple.
+        <h1 className="text-5xl font-bold">
+          Reading and writing blogs made simple.
         </h1>
-        <p className="text-xl text-gray-100">
-          Each post contains no more than 170 characters
+        <p className="text-2xl text-gray-100">
+          Less is More. Each post contains no more than 170 characters. 
         </p>
       </animated.div>
     ),
     ({ style }) => (
       <animated.div className="absolute" style={{ ...style }}>
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-5xl font-bold">
           The Sum of The Parts is Greater Than the Whole.
         </h1>
-        <p className="text-xl text-gray-100">
+        <p className="text-2xl text-gray-100">
           When 170 characters isn't enough, join posts together to form a thread! <br/>
-          Gather a community, share comments and make replies.
+          Comment and share, bring a community together with our follower system.
         </p>
       </animated.div>
     ),
@@ -32,15 +32,28 @@ function QuickOverview() {
         className="absolute"
         style={{ ...style }}
       >
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-5xl font-bold">
             Media
         </h1>
-        <p className="text-xl text-gray-100">
-          More than just words to count in a post, add your pictures and links <br/>
-          to bring more to your voice.
+        <p className="text-2xl text-gray-100">
+          More than just characters in a post. Add pictures and previewed links. <br/>
         </p>
       </animated.div>
     ),
+    ({ style }) => (
+        <animated.div
+          className="absolute"
+          style={{ ...style }}
+        >
+          <h1 className="text-5xl font-bold">
+            Privately
+          </h1>
+          <p className="text-2xl text-gray-100">
+            Little shy? Or just need more time? Write more without commitment, <br/> use <b>spaces</b> feature to do so. 
+            You choose when to disclose your work.
+          </p>
+        </animated.div>
+      ),
   ];
 
   const transitions = useTransition(index, {
@@ -60,13 +73,13 @@ function QuickOverview() {
       </div>
       <button
         className="absolute left-0 top-0 h-full w-10  text-white"
-        onClick={() => setIndex((state) => (state + 5) % 3)}
+        onClick={() => setIndex((state) => (state + 7) % 4)}
       >
         <ArrowLeft className="text-white fill-current" />
       </button>
       <button
         className="absolute right-0 top-0 h-full w-10  text-white"
-        onClick={() => setIndex((state) => (state + 1) % 3)}
+        onClick={() => setIndex((state) => (state + 1) % 4)}
       >
         <ArrowRight className="text-white fill-current" />
       </button>
