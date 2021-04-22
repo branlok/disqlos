@@ -21,6 +21,9 @@ module.exports = {
       },
       colors: {
         "base-gray": "#E9E8EB",
+        "pale-red": {
+          1: "#BD6B6B",
+        },
         "custom-pink": {
           300: "#F9F6FF",
           400: "#F9F6FF",

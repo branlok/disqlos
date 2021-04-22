@@ -138,7 +138,7 @@ function Toolbar({
                 onClick={() => {
                   setDeletePrompt(true);
                 }}
-                className="h-full border-b flex justify-center items-center dark:bg-cb-3 dark:border-cb-4 dark:text-gray-300 dark:hover:bg-red-600 dark:text-white hover:bg-red-600 hover:text-white transition-all cursor-pointer"
+                className="h-full border-b flex justify-center items-center dark:bg-cb-3 dark:border-cb-4 dark:text-gray-300 dark:hover:bg-red-600 dark:text-white hover:bg-pale-red-1 hover:text-white transition-all cursor-pointer"
               >
                 Delete Space
               </div>
@@ -147,7 +147,7 @@ function Toolbar({
                   setActionMenu(false);
                   setLockDropdown(false);
                 }}
-                className="h-full flex flex-col text-center justify-center items-center dark:bg-cb-3  dark:text-gray-300 dark:hover:bg-red-600 hover:bg-red-600 dark:text-white  hover:text-white transition-all cursor-pointer"
+                className="h-full flex flex-col text-center justify-center items-center dark:bg-cb-3  dark:text-gray-300 dark:hover:bg-red-600 hover:bg-pale-red-1 dark:text-white  hover:text-white transition-all cursor-pointer"
               >
                 placeholder**
               </div>
