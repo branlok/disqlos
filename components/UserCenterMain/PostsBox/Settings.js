@@ -3,29 +3,35 @@ import { useAuth } from "../../../utils/auth";
 import useDeletePost from "../utils/useDeletePost";
 import SDFWE from "../../../styles/svg/threedots.svg";
 import HeartItSvg from "../../../styles/svg/heart.svg";
+import useCreateSpace from "../utils/useCreateSpace";
 
 function Settings({
   postId,
   postOwner,
-  liked,
-  handleLikeUnlike,
   queuedPost,
   queueId,
   directory,
   targetId,
-  leftCorner,
+  type,
+  contentValue,
+  myUserProfilePicture,
+  imageUrl,
 }) {
   let { userId } = useAuth();
-
   const ownership = userId == postOwner ? true : false;
-
   let [toggle, setToggle] = useState(false);
-  let {
-    deletePost,
-    deletePostMutation,
-    deletePostMutationWithQueue,
-  } = useDeletePost();
 
+  let { deletePost, deletePostMutationWithQueue } = useDeletePost();
+
+  const { addSpaceMutation } = useCreateSpace({
+    userId,
+    postOwner,
+    postId,
+    contentValue,
+    type,
+    imageUrl,
+    myUserProfilePicture,
+  });
 
   return (
     <div>
@@ -49,18 +55,24 @@ function Settings({
                     })
                   : deletePost(postId, ["getPosts", directory, targetId]);
               }}
-              className="bg-pale-red-1 text-white text-xs rounded-md h-full flex justify-center items-center px-2 mx-1"
+              className="bg-pale-red-1 hover:bg-red-400 text-white text-xs rounded-md h-full flex justify-center items-center px-2 mx-1 transition-colors "
             >
               Delete
             </button>
           )}
           {!ownership && (
-            <button
-              className="bg-pale-red-1 text-white text-sm rounded-md h-full flex justify-center items-center px-2 mx-1"
-            >
+            <button className="bg-pale-red-1 text-white text-sm rounded-md h-full flex justify-center items-center px-2 mx-1">
               Report
             </button>
           )}
+          <button
+            onClick={() =>
+              !addSpaceMutation.isSuccess && addSpaceMutation.mutate()
+            }
+            className="bg-gray-700 text-white text-xs rounded-md h-full flex justify-center items-center px-2 ml-1 mr-2 hover:bg-gray-600  transition-colors"
+          >
+            {addSpaceMutation.isSuccess ? "added!" : "Use as Space"}
+          </button>
         </div>
       )}
       {/* {!queuedPost && (

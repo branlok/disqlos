@@ -64,7 +64,7 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-    overscroll-behavior-y: none;
+    overscroll-behavior-y: auto;
   }
 
   .no-x-scrollbar {

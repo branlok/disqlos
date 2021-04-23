@@ -4,6 +4,9 @@ import { db } from "../../../utils/firebase"
 
 export default function useDeletePost() {
 
+    //this custom hook will delete regular posts that resides in public_posts and private_posts
+    //mustn't mistaken: delete queue will require queueId.
+
     const queryClient = useQueryClient(); //does this cause rerender everytime theres a change here? also is it shallow
     const deletePostMutation = useMutation(({postId}) => db.collection("PUBLIC_POSTS").doc(postId).delete(), {
         onSuccess: (data, {postId, refetchTarget}) => {

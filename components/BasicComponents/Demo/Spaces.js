@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TimeAgo from "react-timeago";
-function Spaces({ numberOfChildren, postContent, setShowList }) {
+function Spaces({ numberOfChildren, postContent, setShowList, target }) {
   const [date, setdate] = useState(Date.now());
 
   return (
@@ -17,7 +17,7 @@ function Spaces({ numberOfChildren, postContent, setShowList }) {
             <div className="mx-2"> {numberOfChildren} Posts</div>
           </div>
           <div className="relative w-full flex-initial flex flex-col justify-center items-center pb-4 bg-white-100 border-gray-400 mt-4  ">
-            <button onClick={() => setShowList(true)}className=" w-32 mx-2 rounded-md text-white py-2 text-sm my-1 font-bold bg-custom-pink-1000 hover:shadow-md hover:bg-custom-pink-1100 transition-all">
+            <button onClick={() => setShowList(target)}className=" w-32 mx-2 rounded-md text-white py-2 text-sm my-1 font-bold bg-custom-pink-1000 hover:shadow-md hover:bg-custom-pink-1100 transition-all">
               <a>Use Space</a>
             </button>
           </div>

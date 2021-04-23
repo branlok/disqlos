@@ -49,7 +49,10 @@ function PicturePost({ item, page, queuedPost, directory, queueId, targetId }) {
           queueId={queueId}
           directory={directory}
           targetId={targetId}
-          leftCorner={true}
+          contentValue={item.content}
+          type="image"
+          myUserProfilePicture={userData.data.primaryProfileImage}
+          imageUrl={item.imageUrl}
         />
         {pagination && !showChildrenPosts && (
           <div className="absolute top-3.5 right-2 ">

@@ -37,8 +37,8 @@ export default function Home() {
             style={{ transform: `translateY(${offsetY * 0.5}px)` }}
           >
             <header className="w-full h-1/2 flex flex-col justify-end items-center  ">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-4">Disqlos</h1>
-              <p className="text-2xl lg:text-3xl w-3/4 lg:w-1/2 text-center">
+              <h1 className="text-4xl xl:text-6xl font-bold mb-4">Disqlos</h1>
+              <p className="text-2xl xl:text-3xl w-3/4 xl:w-1/2 text-center">
                 is a new microblogging social platform. We empower users to tell
                 great story while maintaining bite size information.
               </p>
@@ -78,40 +78,40 @@ export default function Home() {
         </section>
 
         <section className="h-full w-full bg-custom-pink-1000 text-white overflow-hidden flex flex-col justify-center items-center ">
-          <header className="h-40">
-            <h1 className="text-5xl">There is Space for Everybody</h1>
+          <header className=" my-10 text-center">
+            <h1 className=" font-bold text-3xl xl:text-5xl">There is Space for Everybody</h1>
             <p>
               A primary feature at disqlos is that each post can be made into a
               private space
             </p>
           </header>
-          <div className="flex items-center justify-around w-3/4 ">
-            <div className="flex flex-col items-center h-full ">
-              <div className="h-60 w-60 rounded-full bg-gray-100 bg-opacity-90">
+          <div className="flex items-center justify-around w-3/4 h-1/2">
+            <div className="flex flex-col items-center h-full mx-4 ">
+              <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 bg-opacity-90">
                 <SpaceSVG />
               </div>
-              <div className="w-60 text-center my-6">
+              <div className="w-44 xl:w-72 text-xs xl:text-sm text-center my-6">
                 Within a space you are able to continue to post under its
                 original post. We will organize its hierarchy. And unlike
                 comments and replies, this space is private.
               </div>
             </div>
-            <div className="flex flex-col items-center h-full ">
-              <div className="h-60 w-60 rounded-full bg-gray-100 ">
+            <div className="flex flex-col items-center h-full mx-4">
+              <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
                 <DesignSVG />
               </div>
-              <div className="w-60 text-center my-6">
+              <div className="w-44 xl:w-72 text-xs xl:text-sm text-center my-6">
                 Once you think you've written enough. We will bundle and
                 published the thread of posts that you curated. and your space
                 won't be deleted unless specified. So expand and republish as
                 you like.
               </div>
             </div>
-            <div className="flex flex-col items-center h-full ">
-              <div className="h-60 w-60 rounded-full bg-gray-100 ">
+            <div className="flex flex-col items-center h-full mx-4">
+              <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
                 <WelcomeSVG />
               </div>
-              <div className="w-60 text-center my-6">
+              <div className="w-44 xl:w-72 text-xs xl:text-sm text-center my-6">
                 Collaboration/Sharing might be important whether use the space
                 to build a diary, a story, or documenting a challenge. With our
                 follower and friends system, you have the control to include or
@@ -124,7 +124,7 @@ export default function Home() {
           <SpacesDemo/>
         </section>
         <section className="h-1/2 w-full text-white bg-custom-pink-1000 overflow-hidden flex flex-col justify-center items-center ">
-          End
+          
         </section>
       </div>
     </div>

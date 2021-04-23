@@ -29,7 +29,6 @@ function ContentBody({ postContent, date, numberOfChildren, story, hasImage }) {
         />
         {numberOfChildren && (
           <div className="text-xs text-gray-400 mx-1">
-            {" "}
             with {numberOfChildren} posts
           </div>
         )}

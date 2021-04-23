@@ -48,7 +48,7 @@ function PostSection({ offsetY }) {
       </div>
       <div
         className="h-1/3 w-full flex items-center mr-96  mt-10  z-20"
-        style={{ transform: `translateX(${offsetY * 0.3}px)` }}
+        style={{ transform: `translateX(${(offsetY * 0.3) - 500}px)` }}
       >
 
         <PostDemo

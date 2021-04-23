@@ -63,13 +63,13 @@ function BasicPost({
         <Settings
           postId={item.postId}
           postOwner={item.userId}
-          liked={liked}
-          handleLikeUnlike={handleLikeUnlike}
           queuedPost={queuedPost}
           queueId={queueId}
           directory={directory}
           targetId={targetId}
-          leftCorner={true}
+          contentValue={item.content}
+          type="text"
+          myUserProfilePicture={userData.data.primaryProfileImage}
         />
         {pagination && !showChildrenPosts && (
           <div className="absolute top-3.5 right-2 ">
