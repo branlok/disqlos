@@ -8,8 +8,6 @@ function PlaceholderPost() {
   const styles = useSpring({ opacity: toggle ? 1 : 0 });
   useEffect(() => {
     if (!toggle) {
-      var img = new Image();
-      img.src = url;
       setToggle(true);
     }
   }, [toggle]);
