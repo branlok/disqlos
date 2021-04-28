@@ -36,7 +36,8 @@ function UserControlSidebar({ userData }) {
   );
 
   return (
-    <div className="bg-custom-pink-500 dark:bg-cb-2 ">{ToggleSidebar}</div>
+    //bg-custom-pink-500
+    <div className=" bg-gray-100 dark:bg-cb-2 ">{ToggleSidebar}</div>
   );
 }
 

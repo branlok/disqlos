@@ -50,13 +50,13 @@ function Dashboard() {
   if (userData.isSuccess && isReady2) {
     return (
       <div className={`flex flex-col h-screen w-screen`}>
-        <nav className="h-10 bg-base-gray flex-shrink-0 bg-base-gray dark:bg-cb-3  dark:text-white flex items-center px-4 flex justify-between items-center py-2">
+        <nav className="h-10 dark:bg-cb-2 bg-gray-100 flex  lg border-b dark:border-gray-500 dark:bg-cb-3  dark:text-white flex items-center px-4 flex justify-between items-center py-2 z-10">
           <div>
             <b>Disqlos</b>
           </div>
           <ToggleTheme dark={dark} setDark={setDark} />
         </nav>
-        <div className="w-full h-full flex flex-row dark:bg-cb-1 flex-initial overflow-hidden">
+        <div className="w-full h-full flex bg-opacity-10 flex-row dark:bg-cb-1 flex-initial overflow-hidden">
           <UserControlSidebar userData={userData} />
           <UserCenterMain userId={userId} />
           <SocialSidebar />

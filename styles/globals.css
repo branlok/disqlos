@@ -10,6 +10,27 @@
     /* opacity: 0; */
   }
 
+  @keyframes AnimationName {
+    0% {
+      background-position: 42% 0%;
+    }
+    50% {
+      background-position: 59% 100%;
+    }
+    100% {
+      background-position: 42% 0%;
+    }
+  }
+
+  .animateGradient {
+    background: linear-gradient(226deg, #a88ed4, #a3bcd4);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 16s ease infinite;
+    -moz-animation: AnimationName 16s ease infinite;
+    animation: AnimationName 16s ease infinite;
+  }
+
   .hover-trigger:hover + .hover-target {
     opacity: 1;
   }

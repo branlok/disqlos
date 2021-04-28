@@ -3,6 +3,7 @@ import BasicPost from "./BasicPost";
 import PicturePost from "./PicturePost";
 import usePostGetters from "./usePostGetters";
 import LoadSpinner from "../../../styles/svg/spinner.svg";
+import PlaceholderPost from "./PlaceholderPost";
 
 function PostsBox({ directive, targetId }) {
   //if we are on explore/uid
@@ -38,6 +39,7 @@ function PostsBox({ directive, targetId }) {
                     />
                   );
               })}
+              <PlaceholderPost />
             </React.Fragment>
           );
         })}
@@ -68,13 +70,14 @@ function PostsBox({ directive, targetId }) {
         <p className=" dark:text-gray-300 font-bold my-2 ">Loading </p>
       </div>
     );
-  } else if (getPosts.status == "error")
-    {return (
+  } else if (getPosts.status == "error") {
+    return (
       <div className="h-60 w-full rounded-md  justify-center flex flex-col items-center mx-1  rounded-sm rounded-md ">
         <LoadSpinner className="animate-spin fill-current text-gray-400 " />
         <p className=" dark:text-gray-300 font-bold my-2 ">Error </p>
       </div>
-    );}
+    );
+  }
 }
 
 export default PostsBox;

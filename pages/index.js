@@ -25,13 +25,14 @@ export default function Home() {
       <Head>
         <title>Greatness</title>
       </Head>
-      <div className="relative h-screen">
-        <nav className="absolute top-0 left-0 w-full h-10 bg-base-gray flex-shrink-0 bg-base-gray flex items-center px-4 flex-none z-10">
+      <div className="relative h-screen ">
+        <nav className="absolute top-0 left-0 w-full h-10 bg-base-gray flex-shrink-0 flex items-center px-4 flex-none z-10">
           <div>
             <b>Disqlos</b>
           </div>
         </nav>
         <section className="h-full w-full bg-custom-pink-300 overflow-hidden flex flex-col ">
+    
           <div
             className="h-full flex flex-col "
             style={{ transform: `translateY(${offsetY * 0.5}px)` }}
@@ -69,11 +70,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative h-1/2 w-full py-20 bg-custom-pink-1000  overflow-hidden flex flex-col justify-around items-center ">
+        <section  className="relative h-1/2 w-full py-20 bg-custom-pink-1000  overflow-hidden flex flex-col justify-around items-center ">
+
           <QuickOverview />
         </section>
 
         <section className="relative h-full w-full py-20 bg-custom-pink-300  overflow-hidden flex flex-col justify-around items-center ">
+        <div style={{"background-image": "url(./people.png)"}}  className="bg-cover absolute w-full h-full opacity-30"></div>
           <PostSection offsetY={offsetY} />
         </section>
 

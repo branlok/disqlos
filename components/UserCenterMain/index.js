@@ -41,7 +41,7 @@ function UserCenterMain({ targetId, userId }) {
 
   if (directive === "dashboardPosts") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500  dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
+      <div    className="h-full w-full flex-initial dark:bg-cb-2 bg-gray-100  dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r border-gray-200 pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
         <div id="top" className="w-3/4 xl:w-4/6 m-auto pb-40 mb-40 ">
           <Header />
           <PostMaker setDirective={setDirective} />
@@ -52,7 +52,7 @@ function UserCenterMain({ targetId, userId }) {
     );
   } else if (directive === "feed") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500  dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
+      <div className="h-full w-full flex-initial bg-custom-gray-500 dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
         <div id="top" className="w-3/4 xl:w-4/6 m-auto pb-40 mb-40 ">
           <ProfileNav directive={directive} setDirective={setDirective} />
           {recommended && <RecommendUsers setRecommended={setRecommended}/>}

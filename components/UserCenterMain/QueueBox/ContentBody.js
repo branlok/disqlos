@@ -25,7 +25,7 @@ function ContentBody({
       onMouseOver={() => setOnHover(true)}
       className="flex-none relative text-s font-gray-700 bg-custom-pink-550 dark:bg-cb-3  w-full flex flex-col justify-between items-center text-center rounded-md px-2  my-2 overflow-hidden"
     >
-      <h1 className="my-2 h-full lg:min-h-40 items-center flex justify-center text-lg w-full font-bold py-3 bg-gray-100  dark:bg-cb-2 dark:text-gray-200 rounded-md px-4 text-gray-700 bg-opacity-70 z-10">
+      <h1 className="my-2 h-full lg:min-h-40 items-center flex justify-center text-lg w-full font-bold py-3 bg-gray-100  dark:bg-cb-2 dark:text-gray-200 rounded-md px-4 text-gray-700 bg-opacity-100 hover:bg-opacity-20 filter blur-md transition-all z-10">
         {postContent}
       </h1>
       <SpaceInfo createdOn={createdOn} numberOfChildren={numberOfChildren} />

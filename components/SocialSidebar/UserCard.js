@@ -32,18 +32,18 @@ function UserCard({
 
   return (
     <div
-      className={`w-full h-20 mb-2 p-0.5 rounded-md border-2 border-custom-pink-300  dark:bg-cb-3 dark:border-cb-3 dark:text-gray-200 bg-gray-200 hover:shadow-md dark:hover:border-gray-400   transition-shadow duration-250 flex-none`}
+      className={`w-full h-20 mb-2 p-0.5 rounded-md border-2 border-purple-600  dark:bg-cb-3 dark:border-cb-3 dark:text-gray-200 bg-gray-200 hover:shadow-md dark:hover:border-gray-400   transition-shadow duration-250 flex-none`}
     >
       <div
-        className={`w-full h-full px-1 bg-gray-200 dark:bg-cb-3 dark:text-gray-200  dark:hover:bg-cb-4 transition-colors rounded-sm flex flex-row items-center justify-between cursor-pointer`}
+        className={`w-full h-full px-1 bg-purple-100 hover:bg-purple-200 dark:bg-cb-3 dark:text-gray-200  dark:hover:bg-cb-4 transition-colors rounded-sm flex flex-row items-center justify-between cursor-pointer`}
       >
-        <div onClick={() => router.push(`/explore/${targetId}`) } className="flex flex-row items-center justify-start">
+        <div onClick={() => router.push(`/explore/${targetId}`) } className="w-full flex flex-row items-center justify-start">
           <div className="h-12 w-12 flex-none">
             <ProfileCircle imageURL={imageURL} />
           </div>
-          <div className="flex-initial px-2 flex flex-col justify-center ">
+          <div className="w-4/5  px-2 flex flex-col justify-center ">
             <p className="font-bold text-gray-600 dark:text-gray-200 text-sm">{name}</p>
-            <p className="text-xs text-gray  text-gray-400">{caption}</p>
+            <p className="text-xs text-gray  text-gray-400 truncate block">{caption}</p>
           </div>
         </div>
         {followButton && (

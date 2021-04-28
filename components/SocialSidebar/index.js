@@ -24,7 +24,8 @@ export default function SocialSidebar() {
 
   if (followerDataQuery.isSuccess) {
     return (
-      <div className="relative dark:bg-cb-2 bg-custom-pink-500 ">
+      //bg-custom-pink-500
+      <div className="relative dark:bg-cb-2 bg-gray-100 ">
         {collapse ? (
           <MinimizedSocial
             collapse={collapse}

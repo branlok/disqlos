@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserCard from "./UserCard";
 import AddFollowerSvg from "../../styles/svg/personAdd.svg";
 import FollowerSearch from "./FollowerSearch";
+import PlaceholderFriends from "./PlaceholderFriends";
 
 function SocialSidebarRegular({ followerDataQuery, setShowSearch }) {
   const [navigation, setNavigation] = useState("main");
@@ -15,6 +16,7 @@ function SocialSidebarRegular({ followerDataQuery, setShowSearch }) {
           </h3>
         </header>
         <div className=" h-full w-64  p-2.5 flex-initial z-10 items-center  overflow-y-scroll no-scrollbar">
+          <PlaceholderFriends/>
           {followerDataQuery.data?.map((item) => {
             return (
               <UserCard

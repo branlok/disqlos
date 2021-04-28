@@ -7,8 +7,8 @@ function ImageContent({image, onHover}) {
   return (
     <>
       <img
-        className={`absolute top-0 object-cover left-0 opacity-20 w-full h-full ${
-          onHover ? "opacity-100 " : "opacity-20 "
+        className={`absolute top-0 object-cover left-0 opacity-20 w-full h-full  ${
+          onHover ? "opacity-20 " : "opacity-20 "
         }
         ${hideInterface ? "z-40 opacity-100" : "z-0 opacity-30 "}
         transition-all`}

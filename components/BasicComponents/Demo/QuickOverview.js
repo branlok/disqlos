@@ -33,7 +33,7 @@ function QuickOverview() {
       <animated.div className="absolute" style={{ ...style }}>
         <h1 className="text-xl lg:text-5xl font-bold">Media</h1>
         <p className="text-sm lg:text-2xl text-gray-100">
-          More than just characters in a post. Add pictures and previewed links.{" "}
+          Theres more than just characters in a post. Feel free to add JPG, and popular Gif as you like.{" "}
           <br />
         </p>
       </animated.div>

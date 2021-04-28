@@ -49,7 +49,8 @@ module.exports = {
           teal: "#1aedae",
         },
         "custom-gray": {
-          500: "#F5F1F1",
+          //500: "#F5F1F1",
+          500: "#eae6f0",
         },
       },
       fontFamily: {
