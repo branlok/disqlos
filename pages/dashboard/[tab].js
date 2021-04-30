@@ -46,7 +46,7 @@ function Dashboard() {
 
   if (userData.isSuccess && isReady2) {
     return (
-      <div className={`flex flex-col h-screen w-screen adjust`}>
+      <div className={`flex flex-col h-screen w-screen`}>
         <nav className="h-12 dark:bg-cb-2 bg-gray-100 flex  lg border-b dark:border-gray-500 dark:bg-cb-3  dark:text-white flex items-center px-4 flex justify-between items-center py-2 z-10">
           <div>
             <b>Disqlos</b>
