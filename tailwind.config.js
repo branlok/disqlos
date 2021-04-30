@@ -60,12 +60,13 @@ module.exports = {
   },
   variants: {
     extend: {
+      padding: ["odd"],
       ringWidth: ["dark"],
       animation: ["hover"],
       width: ["hover"],
       height: ["hover"],
       backgroundColor: ["active"],
-      margin: ["last", "first"],
+      margin: ["last", "first", "odd"],
     },
   },
   plugins: [],

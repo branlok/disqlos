@@ -41,8 +41,8 @@ function UserCenterMain({ targetId, userId }) {
 
   if (directive === "dashboardPosts") {
     return (
-      <div    className="h-full w-full flex-initial dark:bg-cb-2 bg-gray-100  dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r border-gray-200 pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
-        <div id="top" className="w-3/4 xl:w-4/6 m-auto pb-40 mb-40 ">
+      <div className="h-full w-full flex-initial dark:bg-cb-2 bg-gray-100  dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r border-gray-200 pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
+        <div id="top" className="w-11/12 sm:w-3/4 m-auto pb-40 mb-40 ">
           <Header />
           <PostMaker setDirective={setDirective} />
           <ProfileNav directive={directive} setDirective={setDirective} />
@@ -53,9 +53,9 @@ function UserCenterMain({ targetId, userId }) {
   } else if (directive === "feed") {
     return (
       <div className="h-full w-full flex-initial bg-custom-gray-500 dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
-        <div id="top" className="w-3/4 xl:w-4/6 m-auto pb-40 mb-40 ">
+        <div id="top" className="w-11/12 sm:w-3/4 m-auto pb-40 mb-40 ">
           <ProfileNav directive={directive} setDirective={setDirective} />
-          {recommended && <RecommendUsers setRecommended={setRecommended}/>}
+          {recommended && <RecommendUsers setRecommended={setRecommended} />}
           <PostsBox directive={directive} />
         </div>
       </div>
@@ -63,22 +63,15 @@ function UserCenterMain({ targetId, userId }) {
   } else if (directive === "queue") {
     return (
       <div className="h-full w-full flex-initial bg-custom-gray-500 border-l dark:bg-cb-1 dark:border-cb-4 transition-colors border-r pt-4 overflow-scroll no-scrollbar overscroll-contain ">
-        <div id="top" className="w-3/4 m-auto pb-60 mb-40">
+        <div id="top" className="w-11/12 sm:w-3/4 m-auto pb-60 mb-40">
           <Header />
           {id ? (
             <MetaQueuePostMaker queueId={id} />
           ) : (
             <QueuePostMaker directive={directive} />
           )}
-          <ProfileNav
-            directive={directive}
-            setDirective={setDirective}
-          />
-          {id ? (
-            <MetaQueueBox queueId={id} />
-          ) : (
-            <QueueBox />
-          )}
+          <ProfileNav directive={directive} setDirective={setDirective} />
+          {id ? <MetaQueueBox queueId={id} /> : <QueueBox />}
         </div>
       </div>
     );

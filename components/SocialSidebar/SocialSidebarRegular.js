@@ -16,7 +16,7 @@ function SocialSidebarRegular({ followerDataQuery, setShowSearch }) {
           </h3>
         </header>
         <div className=" h-full w-64  p-2.5 flex-initial z-10 items-center  overflow-y-scroll no-scrollbar">
-          <PlaceholderFriends/>
+          <PlaceholderFriends followerDataQuery={followerDataQuery}/>
           {followerDataQuery.data?.map((item) => {
             return (
               <UserCard

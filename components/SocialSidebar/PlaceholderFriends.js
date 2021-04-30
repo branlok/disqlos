@@ -2,18 +2,30 @@ import React, { useState, useEffect } from "react";
 import CloseSVG from "../../styles/svg/close.svg";
 import Image from "next/image";
 import { useSpring, animated } from "react-spring";
-function PlaceholderFriends() {
+function PlaceholderFriends({ followerDataQuery }) {
   const [toggle, setToggle] = useState(false);
   const [visible, setVisible] = useState(true);
   const styles = useSpring({ opacity: toggle ? 1 : 0 });
+  //   useEffect(() => {
+  //     if (followerDataQuery.data.m > 1) setVisible(false);
+  //   }, [followerDataQuery]);
+
   useEffect(() => {
-    if (!toggle) {
+      //only show up when user has no following.
+    if (!toggle && followerDataQuery.data.length < 1) {
+      setVisible(true);
       setToggle(true);
+    } else {
+      setVisible(false);
     }
-  }, [toggle]);
+  }, []);
+
   if (!visible) return null;
   return (
-    <animated.div style={styles} className="relative overflow-hidden bg-gradient-to-r from-indigo-700 to-indigo-600 h-full px-2 mb-4 bg-custom-pink-300 dark:bg-cb-4 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
+    <animated.div
+      style={styles}
+      className="relative overflow-hidden bg-gradient-to-r from-indigo-700 to-indigo-600 h-full px-2 mb-4 bg-custom-pink-300 dark:bg-cb-4 rounded-md shadow-md flex flex-col child last:mb-0 transition "
+    >
       {/* <img
         className="absolute top-0 left-0 object-cover posiion-center h-full w-full opacity-10"
 

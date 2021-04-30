@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSpring, animated, config } from "react-spring";
 import PortfolioCard from "./PortfolioCard";
 import ContentBody from "./ContentBody";
 import Settings from "./Settings";
@@ -11,10 +12,6 @@ import { getOwnUserData } from "../../Queries/USERS/useUser";
 import useOnlyUserData from "../../Queries/USERS/useOnlyUserData";
 import QueuePostsContent from "./QueuePostsContent/index";
 
-// function matchDirectoryToCache(directory, targetId) {
-// return directory == "posts" ? "fetchOwnPosts" : directory == "feed" ? "fetchFollowingPosts" : ["getTargetPosts", targetId]
-// }
-
 function BasicPost({
   clientLiked,
   item,
@@ -24,6 +21,7 @@ function BasicPost({
   queueId,
   targetId,
 }) {
+  const [appear, setAppear] = useState(false);
   const { userData } = useOnlyUserData();
   //const cacheReference = matchDirectoryToCache(directory, targetId)
   const liked = item.likedBy.includes(userData.data.uid);
@@ -44,7 +42,20 @@ function BasicPost({
     }
   }
 
-  //Queu Logic
+  const styles = useSpring({
+    config: config.gentle,
+    from: { transform: " scale(0.95)", opacity: 0 },
+    to: {
+      opacity: appear ? 1 : 0,
+      transform: "scale(1)",
+    },
+  });
+
+  useEffect(() => {
+    if (!appear) {
+      setAppear(true);
+    }
+  }, [appear]);
 
   //render current or use pagination
   const [showChildrenPosts, setShowChildrenPosts] = useState(false);
@@ -52,13 +63,21 @@ function BasicPost({
   const pagination = item.leadPost ? true : false;
 
   return (
-    <div className="relative h-full px-2 mb-4 bg-custom-pink-300 dark:bg-cb-4 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
+    <animated.div style={styles} className="relative h-full px-2 mb-4 bg-custom-pink-300 dark:bg-cb-4 rounded-md shadow-md flex flex-col child last:mb-0 transition ">
       <div className="relative flex child">
         <PortfolioCard postOwner={item.userId} post={item} />
         {showChildrenPosts ? (
-          <QueuePostsContent queueContent={item.childrenPosts} setShowChildrenPosts={setShowChildrenPosts}/>
+          <QueuePostsContent
+            queueContent={item.childrenPosts}
+            setShowChildrenPosts={setShowChildrenPosts}
+          />
         ) : (
-          <ContentBody postContent={item.content} date={item.createdOn} numberOfChildren={item.numberOfChildren} story={item.numberOfChildren && true}/>
+          <ContentBody
+            postContent={item.content}
+            date={item.createdOn}
+            numberOfChildren={item.numberOfChildren}
+            story={item.numberOfChildren && true}
+          />
         )}
         <Settings
           postId={item.postId}
@@ -73,7 +92,12 @@ function BasicPost({
         />
         {pagination && !showChildrenPosts && (
           <div className="absolute top-3.5 right-2 ">
-            <button className="font-bold rounded-md bg-gray-500 text-white py-1 p-2 hover:bg-gray-800 hover:text-white text-xs transition " onClick={() => setShowChildrenPosts(true)}>Open</button>
+            <button
+              className="font-bold rounded-md bg-gray-500 text-white py-1 p-2 hover:bg-gray-800 hover:text-white text-xs transition "
+              onClick={() => setShowChildrenPosts(true)}
+            >
+              Open
+            </button>
           </div>
         )}
       </div>
@@ -98,7 +122,7 @@ function BasicPost({
           handleLikeUnlike={handleLikeUnlike}
         />
       )}
-    </div>
+    </animated.div>
   );
 }
 

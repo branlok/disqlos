@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
         {/* <ProvideUser> */}
           <Provider store={store}>
             <Component {...pageProps} />
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           </Provider>
         {/* </ProvideUser> */}
         </ProvideTheme>

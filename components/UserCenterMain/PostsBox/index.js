@@ -39,7 +39,7 @@ function PostsBox({ directive, targetId }) {
                     />
                   );
               })}
-              <PlaceholderPost />
+              <PlaceholderPost postExists={getPosts.data.pages[0].length} />
             </React.Fragment>
           );
         })}

@@ -13,6 +13,7 @@ import { useQueryClient } from "react-query";
 import UserSidebarPlaceholder from "../../components/Placeholders/UserSidebarPlaceholder";
 import SocialSidebarPlaceholder from "../../components/Placeholders/SocialSidebarPlaceholder";
 import CenterMainPlaceholder from "../../components/Placeholders/CenterMainPlaceholder";
+import Footer from "../../components/Footer";
 //user dashboard do not require prerendering. but serverside rendering can aide
 
 function Dashboard() {
@@ -20,32 +21,28 @@ function Dashboard() {
   const { dark, setDark } = useDark();
   const { userData, isReady2 } = useUser();
 
-  const [trailing, setTrailing] = useState("...");
-  useEffect(() => {
-    if (!isReady2) {
-      let newState;
-      if (trailing == "...") newState = ".";
-      if (trailing == ".") newState = "..";
-      if (trailing == "..") newState = "...";
-      const interval = setInterval(() => {
-        setTrailing(newState);
-      }, 500);
-      return () => clearInterval(interval);
-    }
-  }, [trailing]);
+  const [toggleLeftCol, setToggleLeftCol] = useState(false);
+  const [toggleRightCol, setToggleRightCol] = useState(false);
+  const footerProps = {
+    toggleLeftCol,
+    setToggleLeftCol,
+    toggleRightCol,
+    setToggleRightCol,
+  };
 
-  // const [style, setStyle] = useState("bg-gray-400 pl-1 text-red-400");
-
-  // const toggle = () => {
-  //   if (dark) {
-  //     setStyle("bg-gray-400 pl-1 text-red-400");
-  //     setDark(!dark);
-  //   } else {
-  //     setStyle("bg-gray-600 pl-6 text-yellow-200 ");
-
-  //     setDark(!dark);
+  // const [trailing, setTrailing] = useState("...");
+  // useEffect(() => {
+  //   if (!isReady2) {
+  //     let newState;
+  //     if (trailing == "...") newState = ".";
+  //     if (trailing == ".") newState = "..";
+  //     if (trailing == "..") newState = "...";
+  //     const interval = setInterval(() => {
+  //       setTrailing(newState);
+  //     }, 500);
+  //     return () => clearInterval(interval);
   //   }
-  // };
+  // }, [trailing]);
 
   if (userData.isSuccess && isReady2) {
     return (
@@ -56,11 +53,19 @@ function Dashboard() {
           </div>
           <ToggleTheme dark={dark} setDark={setDark} />
         </nav>
-        <div className="w-full h-full flex bg-opacity-10 flex-row dark:bg-cb-1 flex-initial overflow-hidden">
-          <UserControlSidebar userData={userData} />
+        <div className="relative w-full h-full flex bg-opacity-10 flex-row dark:bg-cb-1 flex-initial overflow-hidden">
+          <UserControlSidebar
+            userData={userData}
+            toggleLeftCol={toggleLeftCol}
+            setToggleLeftCol={setToggleLeftCol}
+          />
           <UserCenterMain userId={userId} />
-          <SocialSidebar />
+          <SocialSidebar
+            toggleRightCol={toggleRightCol}
+            setToggleRightCol={setToggleRightCol}
+          />
         </div>
+        <Footer footerProps={footerProps} />
       </div>
     );
     //verify there is content
@@ -77,13 +82,6 @@ function Dashboard() {
           <CenterMainPlaceholder />
           <SocialSidebarPlaceholder />
         </div>
-        {/* <div className="absolute top-0 left-0 bg-black bg-opacity-30 h-screen w-screen flex justify-center items-center">
-      <div className="lg:w-80 font-bold text-gray-600 p-10 bg-gray-200 rounded-lg">
-        <p className="animate-pulse">
-          {userData.isSuccess && !isReady2 && `Hang on tight, we are creating your profile${trailing}`}
-        </p>{" "}
-      </div>
-    </div> */}
       </div>
     );
   } else {

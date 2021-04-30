@@ -6,14 +6,24 @@ import TriangleSvg from "../../styles/svg/trianglearrow.svg";
 import useRetrieveFollowerData from "./utils/useRetrieveFollowerData";
 
 import SocialSidebarRegular from "./SocialSidebarRegular";
-export default function SocialSidebar() {
+export default function SocialSidebar({ toggleRightCol, setToggleRightCol }) {
   let [collapse, setCollapse] = useState(false);
   let [showToggle, setShowToggle] = useState(true);
   let [showSearch, setShowSearch] = useState();
   let { width } = useWindowDimensions();
-  let {followerDataQuery} = useRetrieveFollowerData();
+  let [mobile, setMobile] = useState(width < 640 ? true : false);
+  let { followerDataQuery } = useRetrieveFollowerData();
 
   useEffect(() => {
+    if (width < 640) {
+      setMobile(true);
+    }
+    if (width >= 640) {
+      //return to desktop behaviour
+      setMobile(false);
+      //make sure to collapse if it wasn't collapsed
+      setToggleRightCol(false);
+    }
     if (width < 900) {
       setCollapse(true);
       setShowToggle(false);
@@ -22,38 +32,63 @@ export default function SocialSidebar() {
     }
   }, [width]);
 
+  const slideIn = toggleRightCol ? "" : "-right-full";
+
   if (followerDataQuery.isSuccess) {
-    return (
-      //bg-custom-pink-500
-      <div className="relative dark:bg-cb-2 bg-gray-100 ">
-        {collapse ? (
-          <MinimizedSocial
+    if (mobile) {
+      return (
+        <div
+          className={`${slideIn} absolute top-0 right-0 w-full h-full z-50 transition-all flex `}
+        >
+          <div
+            className="w-full"
+            onClick={() => setToggleRightCol(false)}
+          ></div>
+          <div
+            className={` w-4/5 flex-none flex shadow-lg justify-center items-center transition-all h-full sm:block bg-gray-100 dark:bg-cb-2`}
+          >
+            <SocialSidebarRegular
+              collapse={collapse}
+              setCollapse={setCollapse}
+              followerDataQuery={followerDataQuery}
+              showToggle={showToggle}
+              setShowSearch={setShowSearch}
+            />
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        //bg-custom-pink-500
+        <div className="transform hidden sm:block relative dark:bg-cb-2 bg-gray-100 ">
+          {collapse ? (
+            <MinimizedSocial
+              collapse={collapse}
+              setCollapse={setCollapse}
+              followerDataQuery={followerDataQuery}
+              showToggle={showToggle}
+            />
+          ) : (
+            <SocialSidebarRegular
+              collapse={collapse}
+              setCollapse={setCollapse}
+              followerDataQuery={followerDataQuery}
+              showToggle={showToggle}
+              setShowSearch={setShowSearch}
+            />
+          )}
+          <Collapser
             collapse={collapse}
             setCollapse={setCollapse}
-            followerDataQuery={followerDataQuery}
             showToggle={showToggle}
           />
-        ) : (
-          <SocialSidebarRegular
-            collapse={collapse}
-            setCollapse={setCollapse}
-            followerDataQuery={followerDataQuery}
-            showToggle={showToggle}
-            setShowSearch={setShowSearch}
-          />
-        )}
-        <Collapser
-          collapse={collapse}
-          setCollapse={setCollapse}
-          showToggle={showToggle}
-        />
-        <ScrollToTop />
-      </div>
-    );
-  } else  {
-    return <div></div>
+          <ScrollToTop />
+        </div>
+      );
+    }
+  } else {
+    return <div></div>;
   }
-  
 }
 
 //action accessories
@@ -79,13 +114,13 @@ function Collapser({ collapse, setCollapse, showToggle }) {
   } else {
     return null;
   }
-};
+}
 
 const ScrollToTop = () => {
   return (
     <div className="absolute bottom-4 -left-10 w-6 h-6 flex justify-center items-center border rounded-md cursor-pointer bg-gray-300 dark:bg-cb-1 dark:border-cb-4 dark:hover:bg-cb-4 dark:text-white hover:bg-gray-400 transition-all shadow-sm">
       <a href="#top">
-        <TriangleSvg className="fill-current"/>
+        <TriangleSvg className="fill-current" />
       </a>
     </div>
   );

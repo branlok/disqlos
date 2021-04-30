@@ -6,7 +6,7 @@ import CollapseSvg from "../../styles/svg/arrowLeft.svg";
 
 function ControlSidebarRegular({userData, collapse, setCollapse, showToggle}) {
   return (
-    <div className="relative h-full w-64 flex-none p-2 justify-between flex-col flex ">
+    <div className=" h-full w-64 flex-none p-2 justify-between flex-col flex ">
       <div className=" overflow-scroll no-scrollbar overscroll-contain">
         <BasicProfile userData={userData} />
         <Button link="/dashboard/posts" name="Home" />

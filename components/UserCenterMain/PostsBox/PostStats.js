@@ -4,6 +4,7 @@ import HeartSvg from "../../../styles/svg/heart.svg";
 import CommentSvg from "../../../styles/svg/messagebubble.svg";
 import useCommentsReq from "./Comments/useCommentsReq";
 import usePostGetters from "./usePostGetters";
+import useWindowDimensions from "../../../utils/useWindowDimensions";
 
 function PostStats({
   likedBy,
@@ -12,21 +13,27 @@ function PostStats({
   numberOfCommments,
   postId,
 }) {
-  //outside parents needs to have a relative tag, for this to work.
   const numberOfLikes = likedBy.length; //this is dependent on some truth
-  // let {commentsResponse} = useCommentsReq(postId, true);
-  // let commentsResponse = queryClient.getQueryData(["fetchComments", postId ]);
-  // let currentNumberOfComments = commentsResponse && commentsResponse.pages.reduce((accumulator, currentValue) => accumulator + currentValue.length, 0)
-  // console.log(commentsResponse, currentNumberOfComments, "sd")
+  let { width } = useWindowDimensions();
+  const [mobile, setMobile] = useState();
+
+  useEffect(() => {
+    if (width < 640) {
+      setMobile(true);
+    } else if (width >= 640) {
+      setMobile(false);
+    }
+  });
 
   const STYLE_HEART = liked
     ? "fill-current cursor-pointer text-red-400 dark:text-special-teal"
     : "w-full fill-current cursor-pointer  dark:hover:text-special-teal transition-colors";
 
+  if (mobile) return null;
   return (
     <div className="absolute top-0 -left-10  w-8 ">
       <div
-        className="shadow-md mb-2 p-1.5 w-full rounded border text-gray-400  bg-gray-100  dark:bg-cb-3  dark:border-cb-3 text-xs flex-col justify-center items-center hover:text-red-500"
+        className="shadow-md mb-2 p-1.5 w-full rounded border text-gray-400  bg-gray-100  dark:bg-cb-3  dark:border-cb-3 text-xs flex-col justify-center items-center "
         onClick={() => handleLikeUnlike()}
       >
         <HeartSvg className={STYLE_HEART} />

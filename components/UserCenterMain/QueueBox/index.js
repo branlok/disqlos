@@ -10,7 +10,7 @@ function QueueBox() {
 
   if (ownQueuePostsResponse.isSuccess) {
     return (
-      <div className="w-full mt-2 2xl:flex 2xl:flex-wrap ">
+      <div className="w-full mt-2 xl:flex xl:flex-wrap ">
         {ownQueuePostsResponse.data.pages.map((page, pageIdx) => {
           return (
             <React.Fragment key={pageIdx + "queueBox"}>

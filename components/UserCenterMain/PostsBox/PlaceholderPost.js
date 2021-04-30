@@ -2,17 +2,24 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSpring, animated } from "react-spring";
 import CloseSVG from "../../../styles/svg/close.svg";
-function PlaceholderPost() {
+function PlaceholderPost({ postExists }) {
   const [toggle, setToggle] = useState(false);
   const [visible, setVisible] = useState(true);
   const styles = useSpring({ opacity: toggle ? 1 : 0 });
+  
   useEffect(() => {
-    if (!toggle) {
+    console.log(postExists)
+    if (!toggle && postExists < 1) {
+      setVisible(true);
       setToggle(true);
+    } else if (postExists > 0) {
+      setVisible(false);
+
     }
-  }, [toggle]);
+  }, []);
 
   if (!visible) return null;
+  
   return (
     <animated.div
       style={styles}
@@ -27,10 +34,13 @@ function PlaceholderPost() {
 
       <div className="absolute left-0 top-0 h-full w-full flex justify-center items-center">
         <h1 className="md:text-xl lg:text-3xl text-center font-bold text-white p-10 ">
-          Welcome to Disqlos, <br /> you're all set up ! <br /> Get chatty
+        You're all set up ! <br/> Welcome to Disqlos, <br />  <br /> Get chatty 
         </h1>
       </div>
-      <div className="w-8 h-8  text-white absolute right-2 top-2 cursor-pointer hover:text-gray-300 transition-colors">
+      <div
+        onClick={() => setVisible(false)}
+        className="w-8 h-8  text-white absolute right-2 top-2 cursor-pointer hover:text-gray-300 transition-colors"
+      >
         <CloseSVG className="fill-current" />
       </div>
     </animated.div>
