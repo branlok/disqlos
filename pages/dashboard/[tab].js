@@ -53,7 +53,7 @@ function Dashboard() {
           </div>
           <ToggleTheme dark={dark} setDark={setDark} />
         </nav>
-        <div className="relative w-full h-full flex bg-opacity-10 flex-row dark:bg-cb-1 flex-initial overflow-hidden">
+        <div className="relative w-full h-full flex-initial flex bg-opacity-10 flex-row dark:bg-cb-1 flex-initial overflow-hidden">
           <UserControlSidebar
             userData={userData}
             toggleLeftCol={toggleLeftCol}
