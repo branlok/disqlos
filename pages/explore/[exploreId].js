@@ -1,25 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SocialSidebar from "../../components/SocialSidebar";
 import UserControlSidebar from "../../components/UserControlSidebar";
 import UserCenterMain from "../../components/UserCenterMain";
 import { useRouter } from "next/router";
 import { useAuth } from "../../utils/auth";
 import useUser from "../../components/Queries/USERS/useUser";
+import Footer from "../../components/Footer";
 
 //user dashboard do not require prerendering. but serverside rendering can aide
 
 function Explore() {
-
-    //Logged In UserData
+  //Logged In UserData
   const { userId } = useAuth();
   const { userData, isReady2 } = useUser();
   const router = useRouter();
 
-  const {exploreId} = router.query;
+  const { exploreId } = router.query;
 
+  const [toggleLeftCol, setToggleLeftCol] = useState(false);
+  const [toggleRightCol, setToggleRightCol] = useState(false);
+  const footerProps = {
+    toggleLeftCol,
+    setToggleLeftCol,
+    toggleRightCol,
+    setToggleRightCol,
+  };
 
   if (!userId) return null;
-
 
   if (userData.isSuccess && isReady2) {
     return (
@@ -29,12 +36,24 @@ function Explore() {
             <b>Disqlos</b>
           </div>
         </nav>
-        <div className="w-full h-full dark:bg-cb-1  flex flex-row bg-red-300 flex-initial overflow-hidden">
-          <UserControlSidebar userData={userData}/>
-          <UserCenterMain userData={userData} userId={userId} targetId={exploreId}/>
+        <div className="relative w-full h-full flex-initial flex bg-opacity-10 flex-row dark:bg-cb-1 flex-initial overflow-hidden">
+          <UserControlSidebar
+            userData={userData}
+            toggleLeftCol={toggleLeftCol}
+            setToggleLeftCol={setToggleLeftCol}
+          />
+          <UserCenterMain
+            userData={userData}
+            userId={userId}
+            targetId={exploreId}
+          />
           {/* <ExploreMain targetId={exploreId}/> */}
-          <SocialSidebar />
+          <SocialSidebar
+            toggleRightCol={toggleRightCol}
+            setToggleRightCol={setToggleRightCol}
+          />
         </div>
+        <Footer  footerProps={footerProps} />
       </div>
     );
   } else if (userData.isLoading) {

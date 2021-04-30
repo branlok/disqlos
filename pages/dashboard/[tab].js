@@ -46,8 +46,8 @@ function Dashboard() {
 
   if (userData.isSuccess && isReady2) {
     return (
-      <div className={`flex flex-col h-screen w-screen`}>
-        <nav className="h-10 dark:bg-cb-2 bg-gray-100 flex  lg border-b dark:border-gray-500 dark:bg-cb-3  dark:text-white flex items-center px-4 flex justify-between items-center py-2 z-10">
+      <div className={`flex flex-col h-screen w-screen adjust`}>
+        <nav className="h-12 dark:bg-cb-2 bg-gray-100 flex  lg border-b dark:border-gray-500 dark:bg-cb-3  dark:text-white flex items-center px-4 flex justify-between items-center py-2 z-10">
           <div>
             <b>Disqlos</b>
           </div>
@@ -106,12 +106,12 @@ function ToggleTheme({ dark, setDark }) {
   return (
     <div
       onClick={() => toggle()}
-      className={`rounded-full  w-12 h-full flex items-center px-0.5 transition-all cursor-pointer ${style}`}
+      className={`rounded-full  w-12 h-7 flex items-center px-0.5 transition-all cursor-pointer ${style}`}
     >
       <button
         className={`h-5 w-5 rounded-full ${
           dark ? " bg-blue-600 " : "bg-gray-100"
-        } focus:outline-none transition-all flex items-center justify-center p-1 `}
+        } focus:outline-none transition-all flex items-center justify-center p-1 shadow-md `}
       >
         {dark ? (
           <MoonSVG className=" h-full w-full fill-current" />
