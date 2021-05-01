@@ -43,7 +43,7 @@ export default function Home() {
                 great story while maintaining bite size information.
               </p>
             </header>
-            <section className="w-full h-1/2  flex flex-col justify-center items-center block sm:hidden">
+            <section className="w-full h-1/2  flex flex-col justify-center items-center sm:hidden">
               {/* <SupportSVG /> */}
               <div className="p-2 px-4 text-xl bg-custom-pink-1000 text-white rounded-md ">
                 <Link href="/signup">
@@ -56,7 +56,7 @@ export default function Home() {
                 </Link>
               </div>
             </section>
-            <section className="w-full h-1/2  flex justify-around items-center hidden sm:block">
+            <section className="w-full h-1/2  justify-around items-center hidden sm:flex">
               <div
                 className="h-full w-2/5 z-20 mb-20"
                 style={{ transform: `translateY(${offsetY * 0.9}px)` }}
@@ -94,19 +94,19 @@ export default function Home() {
           <PostSection offsetY={offsetY} />
         </section>
 
-        <section className="h-full w-full bg-custom-pink-1000 text-white overflow-hidden flex flex-col justify-center items-center">
-          <header className="my-10 text-center h-full sm:flex sm:justify-center sm:items-center sm:flex-col px-8 ">
+        <section className=" bg-custom-pink-1000 text-white overflow-hidden flex flex-col justify-center items-center">
+          <header className="my-4 text-center h-full sm:flex sm:justify-center sm:items-center sm:flex-col px-8 border ">
             <h1 className=" font-bold text-3xl xl:text-5xl ">
-              There is Space for Everybody
+              There is a Space for Everybody
             </h1>
             <p>
               A primary feature at disqlos is that each post can be made into a
               private space
             </p>
           </header>
-          <div className="h-full flex-initial my-10 flex flex-col sm:flex-row items-center justify-around w-3/4 h-1/2  ">
+          <div className="h-full flex-initial py-10 flex flex-col sm:flex-row items-center justify-around w-4/5 h-1/2  border">
             <div className="flex flex-row sm:flex-col items-center h-full mx-4 ">
-              <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 bg-opacity-90">
+              <div className="h-28 w-28 sm:h-32 sm:w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 bg-opacity-90">
                 <SpaceSVG />
               </div>
               <div className="w-44 xl:w-72 text-xs xl:text-sm ml-5 text-left sm:text-center my-6">
@@ -116,7 +116,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row sm:flex-col items-center h-full mx-4">
-              <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
+              <div className="h-28 w-28 sm:h-32 sm:w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
                 <DesignSVG />
               </div>
               <div className="w-44 xl:w-72 text-xs xl:text-sm ml-5 text-left sm:text-center my-6">
@@ -127,7 +127,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row sm:flex-col items-center h-full mx-4">
-              <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
+              <div className="h-28 w-28 sm:h-32 sm:w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
                 <WelcomeSVG />
               </div>
               <div className="w-44 xl:w-72 text-xs xl:text-sm ml-5 text-left sm:text-center my-6">
