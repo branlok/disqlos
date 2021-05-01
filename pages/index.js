@@ -95,7 +95,7 @@ export default function Home() {
         </section>
 
         <section className="h-full w-full bg-custom-pink-1000 text-white overflow-hidden flex flex-col justify-center items-center">
-          <header className="my-10 text-center border h-full sm:flex sm:justify-center sm:items-center sm:flex-col ">
+          <header className="my-10 text-center h-full sm:flex sm:justify-center sm:items-center sm:flex-col ">
             <h1 className=" font-bold text-3xl xl:text-5xl">
               There is Space for Everybody
             </h1>
@@ -104,7 +104,7 @@ export default function Home() {
               private space
             </p>
           </header>
-          <div className="h-full flex-initial my-10 flex flex-col sm:flex-row items-center justify-around w-3/4 h-1/2 border ">
+          <div className="h-full flex-initial my-10 flex flex-col sm:flex-row items-center justify-around w-3/4 h-1/2  ">
             <div className="flex flex-row sm:flex-col items-center h-full mx-4 ">
               <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 bg-opacity-90">
                 <SpaceSVG />
