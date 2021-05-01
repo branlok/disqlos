@@ -40,12 +40,13 @@ function SpacesDemo() {
   });
 
   return (
-    <div className="flex h-full w-full p-10 shadow-md overflow-hidden ">
-      <div className="w-1/2 h-full  flex-col border-r-2 flex justify-center items-center ">
-        <h1 className="text-3xl font-bold">Check out spaces 👉</h1>
+    <div className="flex flex-col sm:flex-row h-full w-full p-10 shadow-md overflow-hidden ">
+      <div className=" w-full h-40 sm:w-1/2 sm:h-full flex-col border-b-2 sm:border-r-2 flex justify-center items-center">
+      <h1 className="text-3xl font-bold sm:hidden text-center">Check out spaces 👇</h1>
+        <h1 className="text-3xl font-bold hidden sm:block">Check out spaces 👉 </h1>
         <p>Choose a space and open it!</p>
       </div>
-      <div className="relative w-1/2 h-full ">
+      <div className="relative w-full sm:w-1/2 h-full ">
         {transitions((styles, item) => {
           return item ? (
             <animated.div
@@ -71,26 +72,7 @@ function SpacesDemo() {
                 );
               })}
 
-              {/* <Spaces
-              numberOfChildren={4}
-              postContent={"New diet and excercise regimen"}
-              setShowList={setShowList}
-            />
-            <Spaces
-              numberOfChildren={4}
-              postContent={"Summer 2020 camping trip with my girlfriend"}
-              setShowList={setShowList}
-            />
-            <Spaces
-              numberOfChildren={4}
-              postContent={"Photos from Prom night"}
-              setShowList={setShowList}
-            />
-            <Spaces
-              numberOfChildren={4}
-              postContent={"2019 Graduation"}
-              setShowList={setShowList}
-            /> */}
+             
             </animated.div>
           );
         })}

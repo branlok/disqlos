@@ -44,12 +44,12 @@ function PicturePost({ item, page, queuedPost, directory, queueId, targetId }) {
     from: { transform: "scale(0.95)", opacity: 0 },
     to: {
       opacity: appear ? 1 : 0,
-      transform: endTransform ? "none" : "scale(1)"
+      transform: endTransform ? "none" : "scale(1)",
     },
     onRest: {
-      transform: () => setEndTransform(true)
-    }
-    
+      transform: () => setEndTransform(true),
+      //strange behaviour with tailwindcss and react-spring, causing image to become absolute posiiont instead of fixed- require to remove transform
+    },
   });
 
   const [showChildrenPosts, setShowChildrenPosts] = useState(false);
@@ -57,7 +57,10 @@ function PicturePost({ item, page, queuedPost, directory, queueId, targetId }) {
   const pagination = item.leadPost ? true : false;
 
   return (
-    <animated.div style={styles} className="relative h-full px-2 mb-4 bg-custom-pink-300 dark:bg-cb-4 dark:border-cb-3 rounded-md shadow-md flex flex-col child last:mb-0  ">
+    <animated.div
+      style={styles}
+      className="relative h-full px-2 mb-4 bg-custom-pink-300 dark:bg-cb-4 dark:border-cb-3 rounded-md shadow-md flex flex-col child last:mb-0  "
+    >
       <ImageCard imageUrl={item.imageUrl} />
       <div className="relative h-full flex child">
         <PortfolioCard postOwner={item.userId} post={item} />

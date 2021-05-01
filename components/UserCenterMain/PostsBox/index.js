@@ -46,7 +46,7 @@ function PostsBox({ directive, targetId }) {
 
         {getPosts.isSuccess && getPosts.hasNextPage ? (
           <button
-            className="font-bold text-lg text-white mt-2 bg-gray-300 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
+            className="font-bold text-lg text-white mt-2 bg-gray-700 rounded-md p-2 hover:bg-gray-700 transition-all dark:bg-cb-10"
             onClick={() => getPosts.fetchNextPage()}
           >
             "Load More"

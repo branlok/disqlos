@@ -4,7 +4,7 @@ import { useAuth } from "../../utils/auth";
 import Link from "next/link";
 function authModal({ handleSignIn }) {
   let { userId, signinResponse } = useAuth();
-
+  
   let signupSchema = {
     email: "",
     password: "",
@@ -13,7 +13,7 @@ function authModal({ handleSignIn }) {
   if (userId) return <div></div>; //fallback on an empty page if user already signed in.
 
   return (
-    <div className="w-96 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 dark:bg-cb-4 shadow-md">
+    <div className="h-full w-full sm:h-auto h-full sm:w-96 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 dark:bg-cb-4 shadow-md">
       <header className="">
       <Link href="/">
             <h1 className="text-3xl font-bold text-center cursor-pointer">

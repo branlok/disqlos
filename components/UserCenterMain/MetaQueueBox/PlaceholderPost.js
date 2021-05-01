@@ -8,7 +8,6 @@ function PlaceholderPost({ postExists }) {
   const styles = useSpring({ opacity: toggle ? 1 : 0 });
   
   useEffect(() => {
-    console.log(postExists)
     if (!toggle && postExists < 1) {
       setVisible(true);
       setToggle(true);
@@ -29,12 +28,12 @@ function PlaceholderPost({ postExists }) {
         className="absolute left-0 top-0  w-full h-full opacity-30 object-cover object-center"
         width={800}
         height={800}
-        src="/talk.png"
+        src="/comfort.png"
       />
 
       <div className="absolute left-0 top-0 h-full w-full flex justify-center items-center">
         <h1 className="md:text-xl lg:text-3xl text-center font-bold text-white p-10 ">
-        You're all set up ! <br/> Welcome to Disqlos, <br />  <br /> Get chatty 
+        Take your space. <br/> Post whatever you want!
         </h1>
       </div>
       <div

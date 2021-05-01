@@ -32,7 +32,6 @@ export default function Home() {
           </div>
         </nav>
         <section className="h-full w-full bg-custom-pink-300 overflow-hidden flex flex-col ">
-    
           <div
             className="h-full flex flex-col "
             style={{ transform: `translateY(${offsetY * 0.5}px)` }}
@@ -44,7 +43,20 @@ export default function Home() {
                 great story while maintaining bite size information.
               </p>
             </header>
-            <section className="w-full h-1/2  flex justify-around items-center ">
+            <section className="w-full h-1/2  flex flex-col justify-center items-center block sm:hidden">
+              {/* <SupportSVG /> */}
+              <div className="p-2 px-4 text-xl bg-custom-pink-1000 text-white rounded-md ">
+                <Link href="/signup">
+                  <a>Get Started</a>
+                </Link>
+              </div>
+              <div>
+                <Link href="/signin">
+                  <a>Sign In</a>
+                </Link>
+              </div>
+            </section>
+            <section className="w-full h-1/2  flex justify-around items-center hidden sm:block">
               <div
                 className="h-full w-2/5 z-20 mb-20"
                 style={{ transform: `translateY(${offsetY * 0.9}px)` }}
@@ -70,26 +82,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section  className="relative h-1/2 w-full py-20 bg-custom-pink-1000  overflow-hidden flex flex-col justify-around items-center ">
-
+        <section className="relative h-1/2 w-full py-20 bg-custom-pink-1000  overflow-hidden flex flex-col justify-around items-center ">
           <QuickOverview />
         </section>
 
         <section className="relative h-full w-full py-20 bg-custom-pink-300  overflow-hidden flex flex-col justify-around items-center ">
-        <div style={{"background-image": "url(./people.png)"}}  className="bg-cover absolute w-full h-full opacity-30"></div>
+          <div
+            style={{ "background-image": "url(./people.png)" }}
+            className="bg-cover absolute w-full h-full opacity-30"
+          ></div>
           <PostSection offsetY={offsetY} />
         </section>
 
-        <section className="h-full w-full bg-custom-pink-1000 text-white overflow-hidden flex flex-col justify-center items-center ">
-          <header className=" my-10 text-center">
-            <h1 className=" font-bold text-3xl xl:text-5xl">There is Space for Everybody</h1>
+        <section className="h-full w-full bg-custom-pink-1000 text-white overflow-hidden flex flex-col justify-center items-center">
+          <header className="my-10 text-center border h-full sm:flex sm:justify-center sm:items-center sm:flex-col ">
+            <h1 className=" font-bold text-3xl xl:text-5xl">
+              There is Space for Everybody
+            </h1>
             <p>
               A primary feature at disqlos is that each post can be made into a
               private space
             </p>
           </header>
-          <div className="flex items-center justify-around w-3/4 h-1/2">
-            <div className="flex flex-col items-center h-full mx-4 ">
+          <div className="h-full flex-initial my-10 flex flex-col sm:flex-row items-center justify-around w-3/4 h-1/2 border ">
+            <div className="flex flex-row sm:flex-col items-center h-full mx-4 ">
               <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 bg-opacity-90">
                 <SpaceSVG />
               </div>
@@ -99,7 +115,7 @@ export default function Home() {
                 comments and replies, this space is private.
               </div>
             </div>
-            <div className="flex flex-col items-center h-full mx-4">
+            <div className="flex flex-row sm:flex-col items-center h-full mx-4">
               <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
                 <DesignSVG />
               </div>
@@ -110,7 +126,7 @@ export default function Home() {
                 you like.
               </div>
             </div>
-            <div className="flex flex-col items-center h-full mx-4">
+            <div className="flex flex-row sm:flex-col items-center h-full mx-4">
               <div className="h-32 w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
                 <WelcomeSVG />
               </div>
@@ -124,11 +140,9 @@ export default function Home() {
           </div>
         </section>
         <section className="h-full w-full bg-custom-pink-300 overflow-hidden flex flex-col justify-center items-center ">
-          <SpacesDemo/>
+          <SpacesDemo />
         </section>
-        <section className="h-1/2 w-full text-white bg-custom-pink-1000 overflow-hidden flex flex-col justify-center items-center ">
-          
-        </section>
+        <section className="h-1/2 w-full text-white bg-custom-pink-1000 overflow-hidden flex flex-col justify-center items-center "></section>
       </div>
     </div>
   );

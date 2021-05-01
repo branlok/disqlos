@@ -38,7 +38,7 @@ function SignUpModal({ handleSignUp }) {
 
   return (
     <div className="w-screen h-screen flex justify-center items-center svgBackground">
-      <div className="w-96 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 shadow-md">
+      <div className="h-full w-full sm:h-auto w-96 flex flex-col border rounded-md ounded-md p-8 items-center justify-center bg-custom-pink-300 shadow-md">
         <header className="">
           <Link href="/">
             <h1 className="text-3xl font-bold text-center cursor-pointer">

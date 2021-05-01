@@ -8,9 +8,11 @@ import usePublishQueue from "./usePublishQueue";
 import { useQueryClient } from "react-query";
 import useGetLeadPost from "./useGetLeadPost";
 import Toolbar from "./Toolbar";
+import LoadSpinner from "../../../styles/svg/spinner.svg";
 
 import PublishedStatus from "./PublishedStatus";
 import { useRouter } from "next/router";
+import PlaceholderPost from "./PlaceholderPost";
 
 function MetaQueueBox({ queueId }) {
   let { userId } = useAuth();
@@ -22,9 +24,9 @@ function MetaQueueBox({ queueId }) {
     return (
       <div className="w-full mt-2 flex-col justify-center items-center pb-80">
         <Toolbar
-        metaPosts={metaPosts}
-        leadPost={leadPost}
-        userId={userId}
+          metaPosts={metaPosts}
+          leadPost={leadPost}
+          userId={userId}
           publishQueueMutation={publishQueueMutation}
           lastPublished={leadPost.data?.lastPublishedTime
             ?.toDate()
@@ -70,18 +72,23 @@ function MetaQueueBox({ queueId }) {
           </button>
         )} */}
         {metaPosts.data.length == 0 && (
-          <div className="pt-20">
-            <p className="font-mono text-center text-sm md:text-2xl lg:text-4xl mb-8 dark:text-white">
-              This is a private space. <br /> You can post here, create your
-              story before publishing
-            </p>
-            {/* <DancingSvg className="w-1/2 h-1/2 m-auto" />{" "} */}
-          </div>
+          <PlaceholderPost postExists={false}/>
+          // <div className="pt-20">
+          //   <p className="font-mono text-center text-sm md:text-2xl lg:text-4xl mb-8 dark:text-white">
+          //     This is a private space. <br /> You can post here, create your
+          //     story before publishing
+          //   </p>
+          // </div>
         )}
       </div>
     );
   } else if (metaPosts.isLoading) {
-    return <div>loading</div>;
+    return (
+      <div className="h-60 w-full rounded-md  justify-center flex flex-col items-center mx-1  rounded-sm rounded-md ">
+        <LoadSpinner className="animate-spin fill-current text-gray-400 " />
+        <p className=" dark:text-gray-300 font-bold my-2 ">Loading </p>
+      </div>
+    );
   } else {
     return <div> error </div>;
   }

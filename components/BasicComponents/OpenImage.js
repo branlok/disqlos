@@ -4,7 +4,7 @@ function OpenImage({ imageUrl, setFullscreen }) {
   return (
     <div onClick={() => setFullscreen(false)} className="fixed top-0 left-0 w-screen h-screen bg-opacity-40 bg-black z-40 flex justify-center items-center ">
       <div className="w-full h-full flex flex-col justify-center items-center  rounded-md p-5 ">
-        <img src={imageUrl} className="h-full  object-scale-down" />
+        <img src={imageUrl} className="h-full object-scale-down" />
       </div>
     </div>
   );

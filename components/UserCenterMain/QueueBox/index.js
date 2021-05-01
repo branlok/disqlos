@@ -3,6 +3,7 @@ import useQueuedPostGetters from "./useQueuedPostGetters";
 import QueuePost from "./QueuePost";
 import { useAuth } from "../../../utils/auth";
 import LoadSpinner from "../../../styles/svg/spinner.svg";
+import PlaceholderPost from "./PlaceholderPost";
 
 function QueueBox() {
   const { userId } = useAuth();
@@ -17,6 +18,8 @@ function QueueBox() {
               {page.map((item, entryIdx) => {
                 return <QueuePost key={item.queueId} item={item} />;
               })}
+
+              <PlaceholderPost postExists={ownQueuePostsResponse.data.pages[0].length} />
             </React.Fragment>
           );
         })}
