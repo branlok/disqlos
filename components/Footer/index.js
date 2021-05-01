@@ -11,7 +11,7 @@ function Footer({ footerProps }) {
   } = footerProps;
 
   return (
-    <div className="absolute bottom-12 left-0 sm:hidden h-14 bg-indigo-900 flex-none flex items-center justify-around w-full shadow-lg z-50 text-white">
+    <div className="sticky bottom-0 left-0 sm:hidden h-14 bg-indigo-900 flex-none flex items-center justify-around w-full shadow-lg z-50 text-white">
       <ProfileSVG
         className="fill-current text-white"
         onClick={() => {
