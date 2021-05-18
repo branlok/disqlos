@@ -12,7 +12,7 @@ function ControlSidebarRegular({userData, collapse, setCollapse, showToggle}) {
         <Button link="/dashboard/posts" name="Home" />
         <Button link="/dashboard/explore" name="Explore" />
         <Button link="/dashboard/queue" name="Space" />
-        <Button name="Settings" />
+        <Button link="/dashboard/settings" name="Settings" />
       </div>
       <SignoutButton />
       {showToggle && (

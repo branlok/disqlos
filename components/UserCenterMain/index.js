@@ -13,19 +13,23 @@ import MetaQueuePostMaker from "./MetaQueueBox/MetaQueuePostMaker";
 import MetaQueueBox from "./MetaQueueBox/index";
 import ProfileExplore from "./ProfileExplore";
 import RecommendUsers from "./RecommendUsers";
+import Settings from "../Settings/index";
 
 function UserCenterMain({ targetId, userId }) {
   const router = useRouter();
   const { tab, id } = router.query;
   const { exploreId } = router.query;
   const [directive, setDirective] = useState(""); //submap of user's content 1. View Posts [filters], StoryMode
-
+  console.log
   const [recommended, setRecommended] = useState(true);
 
   useEffect(() => {
     //user
-    if (exploreId) {
-      setDirective("userPosts");
+    // if (exploreId) {
+    //   setDirective("userPosts");
+    // }
+    if (tab == "settings") {
+      setDirective("settings");
     }
     //dashbaord
     if (tab == "feed") {
@@ -37,6 +41,7 @@ function UserCenterMain({ targetId, userId }) {
     if (tab == "queue") {
       setDirective("queue");
     }
+
   });
 
   if (directive === "dashboardPosts") {
@@ -77,6 +82,14 @@ function UserCenterMain({ targetId, userId }) {
     );
   } else if (directive == "userPosts") {
     return <ProfileExplore directive={directive} targetId={targetId} />;
+  } else if (directive == "settings") {
+    return (
+      <div className="h-full w-full flex-initial bg-custom-gray-500 dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
+        <div id="top" className="w-11/12 sm:w-3/4 m-auto p-6 h-full">
+          <Settings/>
+        </div>
+      </div>
+    );
   } else {
     return <div></div>;
   }

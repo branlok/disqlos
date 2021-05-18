@@ -5,6 +5,87 @@
 @tailwind utilities;
 
 @layer utilities {
+  @keyframes move {
+    100% {
+      transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+  }
+
+  .test {
+    background-color: #ffe0e0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23faffdb'/%3E%3Cstop offset='1' stop-color='%23faffdb' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ffd8f9'/%3E%3Cstop offset='1' stop-color='%23ffd8f9' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23d3f2ff'/%3E%3Cstop offset='1' stop-color='%23d3f2ff' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ffe0e0'/%3E%3Cstop offset='1' stop-color='%23ffe0e0' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23d6ffe2'/%3E%3Cstop offset='1' stop-color='%23d6ffe2' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23decfff'/%3E%3Cstop offset='1' stop-color='%23decfff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  .background span {
+    width: 41vmin;
+    height: 41vmin;
+    border-radius: 41vmin;
+    backface-visibility: hidden;
+    position: absolute;
+    animation: move;
+    animation-duration: 45;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .background span:nth-child(0) {
+    color: #583c87;
+    top: 46%;
+    left: 52%;
+    animation-duration: 47s;
+    animation-delay: -28s;
+    transform-origin: -16vw -6vh;
+    box-shadow: -82vmin 0 11.22022270685501vmin currentColor;
+  }
+  .background span:nth-child(1) {
+    color: #583c87;
+    top: 77%;
+    left: 7%;
+    animation-duration: 25s;
+    animation-delay: -9s;
+    transform-origin: -13vw -24vh;
+    box-shadow: -82vmin 0 10.55861333047185vmin currentColor;
+  }
+  .background span:nth-child(2) {
+    color: #e45a84;
+    top: 88%;
+    left: 73%;
+    animation-duration: 45s;
+    animation-delay: -37s;
+    transform-origin: -24vw 21vh;
+    box-shadow: -82vmin 0 10.710979849155775vmin currentColor;
+  }
+  .background span:nth-child(3) {
+    color: #ffacac;
+    top: 28%;
+    left: 39%;
+    animation-duration: 37s;
+    animation-delay: -20s;
+    transform-origin: -9vw 24vh;
+    box-shadow: -82vmin 0 10.405965485942733vmin currentColor;
+  }
+  .background span:nth-child(4) {
+    color: #ffacac;
+    top: 30%;
+    left: 78%;
+    animation-duration: 45s;
+    animation-delay: -2s;
+    transform-origin: -17vw 0vh;
+    box-shadow: -82vmin 0 11.180504611340115vmin currentColor;
+  }
+
   body {
     min-height: 100vh;
     min-height: -webkit-fill-available;

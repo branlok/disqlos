@@ -26,8 +26,8 @@ function PlaceholderPost({ postExists }) {
     >
       <Image
         className="absolute left-10 top-10  w-full h-full opacity-30 object-cover object-center transform translate-x-1/4 translate-y-1/2"
-        width={1000}
-        height={1000}
+        width={2000}
+        height={2000}
         src="/thoughts.png"
       />
 

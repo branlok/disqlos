@@ -23,8 +23,8 @@ function CommentsViewer({
 
   if (commentsResponse.isSuccess) {
     return (
-      <div className="h-full w-full py-2 bg-custom-pink-550 mb-2 rounded-md ">
-        <div className="max-h-56 px-2 rounded-md overflow-y-scroll no-scrollbar flex flex-col">
+      <div className="h-full w-full py-2 bg-custom-pink-550 mb-2 rounded-md dark:bg-cb-4">
+        <div className="max-h-56 px-2 rounded-md overflow-y-scroll no-scrollbar flex flex-col ">
           {commentsResponse.data.pages.length == "0" && <NoCommentsMessage />}
           {commentsResponse.data.pages.map((page, pageIdx) => {
             return (
@@ -59,7 +59,7 @@ function CommentsViewer({
                   onClick={() =>
                     queryClient.invalidateQueries(["fetchComments", postId])
                   }
-                  className="w-full px-2 my-2 border rounded-md  font-bold text-gray-600 cursor-pointer hover:bg-gray-600 active:bg-gray-800 hover:text-white transition-all"
+                  className="w-full px-2 my-2 border rounded-md  font-bold text-gray-600 cursor-pointer hover:bg-gray-600 active:bg-gray-800 hover:text-white transition-all dark:bg-cb-3 dark:border-cb-3 dark:text-gray-500"
                 >
                   No Posts
                 </button>

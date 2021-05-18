@@ -5,11 +5,13 @@ import SupportSVG from "../styles/illustrations/Support.svg";
 import SpaceSVG from "../styles/illustrations/Virtual_reality_VR.svg";
 import WelcomeSVG from "../styles/illustrations/Welcome_1.svg";
 import DesignSVG from "../styles/illustrations/Design.svg";
+import Logo from "../styles/svg/logo.svg";
 import MessageSVG from "../styles/illustrations/Message.svg";
 import PostDemo from "../components/BasicComponents/Demo/PostDemo";
 import PostSection from "../components/BasicComponents/Demo/PostSection";
 import QuickOverview from "../components/BasicComponents/Demo/QuickOverview";
 import SpacesDemo from "../components/BasicComponents/Demo/SpacesDemo";
+import SpaceDescriptions from "../components/BasicComponents/Demo/SpaceDescriptions";
 
 export default function Home() {
   const [offsetY, setOffsetY] = useState(0);
@@ -26,55 +28,61 @@ export default function Home() {
         <title>Greatness</title>
       </Head>
       <div className="relative h-screen ">
-        <nav className="absolute top-0 left-0 w-full h-10 bg-base-gray flex-shrink-0 flex items-center px-4 flex-none z-10">
-          <div>
+        <nav className="absolute top-0 left-0 w-full h-12 dark:bg-cb-2 bg-gray-100 flex  lg border-b dark:border-gray-500 dark:bg-cb-3  dark:text-white flex items-center px-4 flex justify-between items-center py-2 z-10">
+          <div className="flex h-full py-1">
+            <Logo className="h-full fill-current text-custom-pink-900  dark:text-gray-300" />
             <b>Disqlos</b>
           </div>
         </nav>
-        <section className="h-full w-full bg-custom-pink-300 overflow-hidden flex flex-col ">
+        <section className=" h-full w-full bg-custom-pink-300 overflow-hidden flex flex-col  ">
           <div
             className="h-full flex flex-col "
             style={{ transform: `translateY(${offsetY * 0.5}px)` }}
           >
-            <header className="w-full h-1/2 flex flex-col justify-end items-center  ">
-              <h1 className="text-4xl xl:text-6xl font-bold mb-4">Disqlos</h1>
-              <p className="text-2xl xl:text-3xl w-3/4 xl:w-1/2 text-center">
+            <header className="w-full h-1/2 flex flex-col justify-end items-center ">
+              <Logo className="h-12 w-12 fill-current text-custom-pink-1000 dark:text-gray-300" />
+              <h1 className="text-4xl xl:text-6xl font-bold mb-4 text-custom-pink-1000 ">
+                Disqlos
+              </h1>
+              <p className="text-2xl xl:text-3xl w-3/4 xl:w-1/2 text-center text-custom-pink-1000">
                 is a new microblogging social platform. We empower users to tell
                 great story while maintaining bite size information.
               </p>
             </header>
             <section className="w-full h-1/2  flex flex-col justify-center items-center sm:hidden">
-              {/* <SupportSVG /> */}
-              <div className="p-2 px-4 text-xl bg-custom-pink-1000 text-white rounded-md ">
+              <div className="p-2 px-4 text-xl bg-gradient-to-r  from-indigo-900 to-purple-900  text-white rounded-md font-bold">
                 <Link href="/signup">
                   <a>Get Started</a>
                 </Link>
               </div>
               <div>
                 <Link href="/signin">
-                  <a>Sign In</a>
+                  <a>or Login</a>
                 </Link>
               </div>
             </section>
             <section className="w-full h-1/2  justify-around items-center hidden sm:flex">
               <div
-                className="h-full w-2/5 z-20 mb-20"
-                style={{ transform: `translateY(${offsetY * 0.9}px)` }}
+                className="w-3/5 mt-44"
+                style={{
+                  transform: `translateY(${offsetY * 0.9}px)`,
+                  zIndex: -1,
+                }}
               >
                 <SupportSVG />
               </div>
               <div
-                className="h-full mr-24 flex justify-center items-center flex-col "
+                className="h-full mr-10 flex justify-center items-center flex-col "
                 style={{ transform: `translateX(${offsetY * 0.05}px)` }}
               >
-                <div className="p-2 px-4 text-xl bg-custom-pink-1000 text-white rounded-md">
-                  <Link href="/signup">
+                <div className="p-4 text-3xl bg-gradient-to-r from-indigo-900 to-purple-900  text-white rounded-md font-bold shadow-md hover:shadow-lg transition-all">
+                  <Link className="h-ful w-full" href="/signup">
                     <a>Get Started</a>
                   </Link>
                 </div>
-                <div>
+                <div className="mt-4 hover:bg-gray-500 px-4 py-1 rounded-md hover:text-white transition cursor-pointer">
                   <Link href="/signin">
-                    <a>Sign In</a>
+                    <a>or Login</a>
                   </Link>
                 </div>
               </div>
@@ -82,67 +90,32 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative h-1/2 w-full py-20 bg-custom-pink-1000  overflow-hidden flex flex-col justify-around items-center ">
-          <QuickOverview />
+        <section className="bg-custom-pink-1000 py-10 text-white overflow-hidden flex flex-col justify-center items-center">
+          <SpaceDescriptions />
         </section>
 
-        <section className="relative h-full w-full py-20 bg-custom-pink-300  overflow-hidden flex flex-col justify-around items-center ">
-          <div
-            style={{ "background-image": "url(./people.png)" }}
-            className="bg-cover absolute w-full h-full opacity-30"
-          ></div>
+        <section className=" test relative h-full w-full py-20 bg-custom-pink-300  overflow-hidden flex flex-col justify-around items-center ">
           <PostSection offsetY={offsetY} />
         </section>
 
-        <section className=" bg-custom-pink-1000 text-white overflow-hidden flex flex-col justify-center items-center">
-          <header className="my-4 text-center h-full sm:flex sm:justify-center sm:items-center sm:flex-col px-8 border ">
-            <h1 className=" font-bold text-3xl xl:text-5xl ">
-              There is a Space for Everybody
-            </h1>
-            <p>
-              A primary feature at disqlos is that each post can be made into a
-              private space
-            </p>
-          </header>
-          <div className="h-full flex-initial py-10 flex flex-col sm:flex-row items-center justify-around w-4/5 h-1/2  border">
-            <div className="flex flex-row sm:flex-col items-center h-full mx-4 ">
-              <div className="h-28 w-28 sm:h-32 sm:w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 bg-opacity-90">
-                <SpaceSVG />
-              </div>
-              <div className="w-44 xl:w-72 text-xs xl:text-sm ml-5 text-left sm:text-center my-6">
-                Within a space you are able to continue to post under its
-                original post. We will organize its hierarchy. And unlike
-                comments and replies, this space is private.
-              </div>
-            </div>
-            <div className="flex flex-row sm:flex-col items-center h-full mx-4">
-              <div className="h-28 w-28 sm:h-32 sm:w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
-                <DesignSVG />
-              </div>
-              <div className="w-44 xl:w-72 text-xs xl:text-sm ml-5 text-left sm:text-center my-6">
-                Once you think you've written enough. We will bundle and
-                published the thread of posts that you curated. and your space
-                won't be deleted unless specified. So expand and republish as
-                you like.
-              </div>
-            </div>
-            <div className="flex flex-row sm:flex-col items-center h-full mx-4">
-              <div className="h-28 w-28 sm:h-32 sm:w-32 xl:h-52 xl:w-52 rounded-full bg-gray-100 ">
-                <WelcomeSVG />
-              </div>
-              <div className="w-44 xl:w-72 text-xs xl:text-sm ml-5 text-left sm:text-center my-6">
-                Collaboration/Sharing might be important whether use the space
-                to build a diary, a story, or documenting a challenge. With our
-                follower and friends system, you have the control to include or
-                exclude memberships.
-              </div>
-            </div>
-          </div>
+        <section className="relative h-1/2 w-full py-20 bg-custom-pink-1000  overflow-hidden flex flex-col justify-around items-center ">
+          <div
+            // style={{ "background-image": "url(./people.png)" }}
+            className="bg-cover absolute w-full h-full opacity-30 test "
+          ></div>
+          <QuickOverview />
         </section>
+
         <section className="h-full w-full bg-custom-pink-300 overflow-hidden flex flex-col justify-center items-center ">
           <SpacesDemo />
         </section>
-        <section className="h-1/2 w-full text-white bg-custom-pink-1000 overflow-hidden flex flex-col justify-center items-center "></section>
+        <section className="h-1/2 w-full text-white bg-custom-pink-1000 overflow-hidden flex flex-col justify-center items-center text-center ">
+          Created by Brandon Lok <br />
+          Support my project at
+          <a className="border-b-2 "href="https://github.com/branlok/disqlos" target="_blank">
+            Github
+          </a>
+        </section>
       </div>
     </div>
   );

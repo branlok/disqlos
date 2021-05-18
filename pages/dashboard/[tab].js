@@ -8,6 +8,7 @@ import { useDark } from "../../utils/darkContext";
 import useUser from "../../components/Queries/USERS/useUser";
 import MoonSVG from "../../styles/svg/moon.svg";
 import SunSVG from "../../styles/svg/sun.svg";
+import Logo from "../../styles/svg/logo.svg";
 
 import { useQueryClient } from "react-query";
 import UserSidebarPlaceholder from "../../components/Placeholders/UserSidebarPlaceholder";
@@ -23,6 +24,7 @@ function Dashboard() {
 
   const [toggleLeftCol, setToggleLeftCol] = useState(false);
   const [toggleRightCol, setToggleRightCol] = useState(false);
+
   const footerProps = {
     toggleLeftCol,
     setToggleLeftCol,
@@ -48,7 +50,8 @@ function Dashboard() {
     return (
       <div className={`flex flex-col h-screen w-screen`}>
         <nav className="h-12 dark:bg-cb-2 bg-gray-100 flex  lg border-b dark:border-gray-500 dark:bg-cb-3  dark:text-white flex items-center px-4 flex justify-between items-center py-2 z-10">
-          <div>
+          <div className="flex h-full py-1">
+            <Logo className="h-full fill-current text-purple-900 dark:text-gray-300" />
             <b>Disqlos</b>
           </div>
           <ToggleTheme dark={dark} setDark={setDark} />
@@ -64,6 +67,7 @@ function Dashboard() {
             toggleRightCol={toggleRightCol}
             setToggleRightCol={setToggleRightCol}
           />
+
         </div>
         <Footer footerProps={footerProps} />
       </div>
