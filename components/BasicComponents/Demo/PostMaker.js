@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 
 function PostMaker({setNewPost, oldPosts}) {
   const myFormRef = useRef();
+  
   const onEnterPress = (e) => {
     //add shift to textarea for new line, and enter to submit
     if (e.keyCode == 13 && e.shiftKey == false) {

@@ -20,7 +20,7 @@ function UserCenterMain({ targetId, userId }) {
   const { tab, id } = router.query;
   const { exploreId } = router.query;
   const [directive, setDirective] = useState(""); //submap of user's content 1. View Posts [filters], StoryMode
-  console.log
+  console.log;
   const [recommended, setRecommended] = useState(true);
 
   useEffect(() => {
@@ -41,7 +41,6 @@ function UserCenterMain({ targetId, userId }) {
     if (tab == "queue") {
       setDirective("queue");
     }
-
   });
 
   if (directive === "dashboardPosts") {
@@ -84,9 +83,9 @@ function UserCenterMain({ targetId, userId }) {
     return <ProfileExplore directive={directive} targetId={targetId} />;
   } else if (directive == "settings") {
     return (
-      <div className="h-full w-full flex-initial bg-custom-gray-500 dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
-        <div id="top" className="w-11/12 sm:w-3/4 m-auto p-6 h-full">
-          <Settings/>
+      <div className="z-50 h-full w-full flex-initial bg-custom-gray-500 dark:bg-cb-1 dark:border-cb-4 transition-colors border-l border-r pt-4 overflow-scroll no-scrollbar overscroll-contain smoothScroll">
+        <div id="top" className="w-full h-full  m-auto z-10">
+          <Settings />
         </div>
       </div>
     );

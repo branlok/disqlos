@@ -19,7 +19,7 @@ function Settings() {
     }
 
   return (
-    <div className="w-full h-full flex border-8 border-gray-200 rounded-md bg-custom-pink-300 shadow-md dark:bg-gray-900 dark:text-white dark:border-gray-500 ">
+    <div className="w-full h-full flex border-gray-200 bg-custom-pink-300 shadow-md dark:bg-gray-900 dark:text-white dark:border-gray-500 ">
       <div className="w-1/3 h-full border-r border-gray-300 flex flex-col dark:border-gray-500">
         <h1 className="h-14 w-full text-xl text-center font-bold flex justify-center items-center border-b border-gray-300 dark:border-gray-500">
           Settings
